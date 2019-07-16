@@ -1,0 +1,28 @@
+.navbar {
+  position: relative;
+  -webkit-box-shadow: 0px 1px 10px 1px rgba(171,171,171,1);
+  -moz-box-shadow: 0px 1px 10px 1px rgba(171,171,171,1);
+  box-shadow: 0px 1px 10px 1px rgba(171,171,171,1);
+}
+
+.rekr-brand {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important;  /* 50% of your logo width */
+  display: block;
+}
+
+.navbar-nav {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.dropdown {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+
+.dropdown-menu {
+  margin-top: 12px !important;
+}

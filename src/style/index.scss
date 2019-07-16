@@ -1,0 +1,56 @@
+$primary: #00d72e;
+$primary-hover: #00b126;
+$gray: #657786;
+$joule: #816efa;
+
+$theme-colors: (
+  "primary": #00d72e,
+  "danger": #ff4136,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #e6ecf0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  margin-top: 25px;
+  max-width: 900px;
+}
+
+.btn-secondary {
+  border: 1px $primary solid;
+  color: $primary;
+  border-radius: 2px;
+  padding: 5px 10px;
+  background: white;
+}
+
+.btn-secondary:hover {
+  border: 1px $primary-hover solid;
+  color: $primary-hover;
+  background: white;
+}
+
+.btn-secondary:active {
+  border: 1px $primary-hover solid !important;
+  color: $primary-hover !important;
+  background-color: white !important;
+}
+
+@import "navigation.scss";
+@import "sitewide.scss";
+@import "pages/index.scss";
+@import "components/index.scss";

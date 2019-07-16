@@ -1,12 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './app';
+import './style/index.scss'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import { ApolloProvider } from 'react-apollo';
+
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { from, split } from 'apollo-link';
+import { HttpLink } from 'apollo-link-http';
+import { WebSocketLink } from 'apollo-link-ws';
+import { onError } from 'apollo-link-error';
+import { getMainDefinition } from 'apollo-utilities'
+
+
+const cache = new InMemoryCache();
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message }) => {
+      if (message === "AUTH") {
+        console.log(message)
+        // localStorage.removeItem('token');
+        // window.location.reload();
+      }
+      return "stfu";
+    });
+  }
+});
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4000/graphql',
+  headers: {
+    id: localStorage.getItem('id'),
+    token: localStorage.getItem('token'),
+  },
+})
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:4000/graphql`,
+  options: {
+    reconnect: true
+  }
+});
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
+
+
+const client = new ApolloClient({
+  cache,
+  link: from([errorLink, link])
+})
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>, document.getElementById('root')
+);
