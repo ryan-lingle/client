@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from './loader';
+import { Loader, ErrorMessage } from '.';
 import { Query } from "react-apollo";
 import { PARSE_RSS_FEED } from '../actions'
 
@@ -21,7 +21,7 @@ const Podcast = (props) => {
   return(
     <Query query={PARSE_RSS_FEED} variables={{ rssUrl }}>
       {({ data, loading, error }) => {
-        if (error) return <p>{JSON.stringify(error)}</p>;
+        if (error) return <ErrorMessage error={error} />;
         if (loading) return <Loader />;
 
         // pass podcast vars to parent

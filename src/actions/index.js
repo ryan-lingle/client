@@ -19,6 +19,27 @@ const PARSE_RSS_FEED = gql`
   }
 `
 
+const HOME = gql`
+  query home {
+    currentUser {
+      feed {
+        id
+        satoshis
+        user {
+          username
+        }
+        episode {
+          title
+          podcast {
+            title
+            image
+          }
+        }
+      }
+    }
+  }
+`
+
 const GET_USER = gql`
   query GetUser($username: String) {
     user(username: $username) {
@@ -107,6 +128,7 @@ const SUBSRIBE_INVOICE = gql`
 
 export {
   PARSE_RSS_FEED,
+  HOME,
   GET_USER,
   GET_EPISODE,
   CREATE_PODCAST,
