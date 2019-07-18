@@ -1,0 +1,57 @@
+.rek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-top: $background 1px solid;
+  padding: 5px 25px;
+  width: 525px;
+  margin: auto;
+}
+
+.rek-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0px;
+}
+
+
+#rek-flex-2 {
+  width: 120px;
+}
+
+.rek:hover {
+  background: #f5f8fa;
+  cursor: pointer;
+}
+
+.rek-middle {
+  flex-grow: 1;
+  padding: 0px 20px;
+}
+
+.rek-satoshis {
+  white-space: nowrap;
+  font-size: 12px;
+  text-align: center;
+  color: $primary;
+  margin-left: 3px;
+  margin-right: 20px;
+  padding: 1px 5px;
+  border-radius: 5px;
+  border: 1px $primary solid;
+}
+
+.rek-username {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.rek-podcast-art {
+  border-radius: 2px;
+}
+
+.bookmark {
+  color: $gray;
+}

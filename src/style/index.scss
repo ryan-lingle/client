@@ -1,7 +1,9 @@
 $primary: #00d72e;
 $primary-hover: #00b126;
 $gray: #657786;
+$gray-hover: #4d5a66;
 $joule: #816efa;
+$background: #e6ecf0;
 
 $theme-colors: (
   "primary": #00d72e,
@@ -17,7 +19,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #e6ecf0;
+  background: $background;
 }
 
 code {
@@ -26,7 +28,7 @@ code {
 }
 
 .container {
-  margin-top: 25px;
+  margin-top: 80px;
   max-width: 900px;
 }
 
@@ -42,6 +44,7 @@ code {
   border: 1px $primary-hover solid;
   color: $primary-hover;
   background: white;
+  cursor: pointer;
 }
 
 .btn-secondary:active {

@@ -15,10 +15,10 @@ import 'react-notifications/lib/notifications.css';
 const DefaultContainer = () => (
   <div>
     <Navigation />
+    <PrivateRoute path="/u/:username" component={UserProfile} />
     <div className="container">
       <NotificationContainer />
       <PrivateRoute path="/" exact component={Home} />
-      <PrivateRoute path="/u/:username" component={UserProfile} />
       <PrivateRoute path="/bookmarks" component={Bookmarks} />
       <PrivateRoute path="/notifications" exact component={Notifications} />
       <PrivateRoute path="/create-podcast" exact component={CreatePodcast} />

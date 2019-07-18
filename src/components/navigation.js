@@ -5,7 +5,7 @@ import RekModal from './rek_modal';
 
 const Navigation = (props) => {
   return(
-    <Navbar bg="white" expand="md">
+    <Navbar bg="white" expand="md" fixed={"top"} >
       <Navbar.Brand href="/" className="text-primary rekr-brand">REKR</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -22,7 +22,7 @@ const Navigation = (props) => {
             <img src={ProfilePic} alt="avatar" className="rounded-circle" width="35px"/>
           </Dropdown.Toggle>
           <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item href="/profile" >Profile</Dropdown.Item>
+            <Dropdown.Item href="/u/ryan" >Profile</Dropdown.Item>
             <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>
             <Dropdown.Item onClick={() => {
               localStorage.clear();
@@ -31,7 +31,7 @@ const Navigation = (props) => {
           </Dropdown.Menu>
         </Dropdown>
         <RekModal>
-          <Nav.Link href="#" className="rek-btn btn-secondary">Rek</Nav.Link>
+          <div href="#" className="rek-btn btn btn-secondary">Rek</div>
         </RekModal>
       </Navbar.Collapse>
     </Navbar>

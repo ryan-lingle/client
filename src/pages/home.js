@@ -1,5 +1,5 @@
 import React from "react";
-import { Feed, Loader, ErrorMessage } from "../components";
+import { Stream, Loader, ErrorMessage } from "../components";
 import { Query } from "react-apollo";
 import { HOME } from '../actions';
 const Home = ({ match }) => {
@@ -10,7 +10,7 @@ const Home = ({ match }) => {
           if (error) return <ErrorMessage error={error} />;
           if (loading) return <Loader />;
           console.log(data)
-          return <Feed feed={data.currentUser.feed} />
+          return <Stream feed={data.currentUser.feed} />
         }}
       </Query>
     </div>

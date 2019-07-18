@@ -45,6 +45,27 @@ const GET_USER = gql`
     user(username: $username) {
       id
       username
+      reks {
+        id
+        satoshis
+        episode {
+          title
+          podcast {
+            image
+          }
+        }
+        user {
+          username
+        }
+      }
+      followers {
+        id
+        username
+      }
+      following {
+        id
+        username
+      }
     }
   }
 `
