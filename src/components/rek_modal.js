@@ -15,8 +15,17 @@ export default class RekModal extends React.Component {
       episodeId: null,
       satoshis: null,
       invoice: null,
-      invoiceId: null,
     };
+
+    if (this.props.episodeId) {
+      this.state = {
+        isOpen: false,
+        step: 2,
+        episodeId: this.props.episodeId,
+        satoshis: null,
+        invoice: null,
+      };
+    }
   }
 
   onChildClick = () => {
@@ -24,24 +33,29 @@ export default class RekModal extends React.Component {
   }
 
   closeModal = () => {
-    this.setState({ isOpen: false })
+    this.setState({ isOpen: false, step: 1 })
   }
 
   handleEpisodeSelection = (episodeId) => {
     this.setState({ episodeId, step: 2 })
   }
 
-  handleInvoice = ({ invoice, satoshis, invoiceId}) => {
-    this.setState({ invoice, satoshis, invoiceId, step: 3})
+  handleInvoice = ({ invoice, satoshis }) => {
+    if (invoice) {
+      this.setState({ invoice, satoshis, step: 3})
+    } else {
+      this.setState({ step: 1, isOpen: false })
+      NotificationManager.info('Rek Created');
+    }
   }
 
   handleInvoicePaid = () => {
     this.setState({ isOpen: false })
-    NotificationManager.info('Donation Created');
+    NotificationManager.info('Rek Created');
   }
 
   renderStep = (step) => {
-    const { episodeId, invoice, invoiceId, satoshis } = this.state;
+    const { episodeId, invoice, satoshis } = this.state;
     return {
       1: () => {
         return(
@@ -62,7 +76,6 @@ export default class RekModal extends React.Component {
         return(
           <Invoice
             invoice={invoice}
-            id={invoiceId}
             satoshis={satoshis}
             handleInvoicePaid={this.handleInvoicePaid}
           />

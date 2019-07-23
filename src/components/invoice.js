@@ -5,7 +5,7 @@ import { FormControl } from 'react-bootstrap'
 import { withApollo } from 'react-apollo'
 import { SUBSRIBE_INVOICE } from '../actions'
 
-const Invoice = ({ id, invoice, satoshis, client, handleInvoicePaid }) => {
+const Invoice = ({ invoice, satoshis, client, handleInvoicePaid }) => {
   function joule() {
     requestProvider().then((webln) => {
       webln.sendPayment(invoice)
@@ -21,10 +21,12 @@ const Invoice = ({ id, invoice, satoshis, client, handleInvoicePaid }) => {
   function subscribe() {
     client.subscribe({
         query: SUBSRIBE_INVOICE,
-        variables: { id },
+        variables: { invoice },
       }).subscribe({
         next({ data }) {
-          handleInvoicePaid()
+          if (data.invoicePaid.invoice == invoice) {
+            handleInvoicePaid()
+          }
         },
         error(err) { console.error('err', err); },
       });

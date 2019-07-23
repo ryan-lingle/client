@@ -29,10 +29,19 @@
 
 #episode-result {
   width: 100%;
-  border: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px;
+}
+
+#episode-result img {
+  border-radius: 3px;
+}
+
+.episode-result-title {
+  padding-left: 10px;
 }
 
 #episode-result:hover {
@@ -42,6 +51,8 @@
 
 .modal-title {
   margin-left: 25px;
+  color: $primary;
+  font-weight: 300;
 }
 
 #rek-form .form-text {
@@ -53,13 +64,36 @@
   margin-right: 10px;
 }
 
+#satoshi-input:focus {
+  box-shadow: none;
+  border: none;
+  background-color: $light-gray;
+}
+
 #episode-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px black solid;
-  padding: 0px 40px 15px 40px;
-  margin-bottom: 15px;
+  border-bottom: 1px $gray solid;
+  padding: 0px 25px 25px 25px;
+  margin-bottom: 5px;
+  color: $gray-hover;
+  font-weight: bold;
+}
+
+#rek-form-podcast-art {
+  width: 120px;
+  border-radius: 3px;
+}
+
+#rek-form-episode {
+  font-size: 18px;
+  padding-left: 30px;
+  text-align: center;
+}
+
+.rek-submit {
+  margin: 15px auto 0px auto !important;
 }
 
 #invoice {
@@ -87,4 +121,49 @@
 #copy-btn {
   width: 160px;
   margin-left: 10px;
+}
+
+#satoshi-input-container {
+  width: 100%;
+}
+
+#rek-form-satoshis {
+  margin: 5px auto;
+  color: $gray;
+  width: 100% !important;
+}
+
+#rek-form-satoshis .wallet-satoshis {
+  color: $gray-hover;
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: $light-gray; /* Grey background */
+  outline: none; /* Remove outline */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  height: 15px;
+  border-radius: 5px;
+}
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border-radius: 50%;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: $primary;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: $primary;
+  cursor: pointer;
 }

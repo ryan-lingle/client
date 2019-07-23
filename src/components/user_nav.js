@@ -1,6 +1,8 @@
 import React from "react";
 import egg from "../egg.jpg";
 import { Stream } from ".";
+import FollowButton from "./follow_button";
+import Wallet from "./wallet.js"
 
 export default class UserNav extends React.Component {
   state = {
@@ -9,7 +11,7 @@ export default class UserNav extends React.Component {
 
   render() {
     const { tab } = this.state;
-    console.log(tab)
+    const onSats = tab === "satoshis";
     return(
       <div>
         <div id="user-nav">
@@ -17,14 +19,25 @@ export default class UserNav extends React.Component {
             const current = _tab_ === tab;
             return(
               <div key={i} className={`user-nav-tab ${current ? 'current-user-nav-tab' : null}`} onClick={() => { this.setState({ tab: _tab_ })}}>
-                {capitalize(_tab_)}
+                <div className="text-center font-weight-bold">{this.props[_tab_].count}</div>
+                <div>{capitalize(_tab_)}</div>
               </div>
             )
           })}
-          <div className="btn btn-secondary follow-btn">Follow</div>
+          {this.props.current ?
+            <div className={`user-nav-tab ${onSats ? 'current-user-nav-tab' : null}`} onClick={() => { this.setState({ tab: "satoshis" })}} >
+              <div className="text-center font-weight-bold">{this.props.satoshis}</div>
+              <div>Satoshis</div>
+            </div>
+            : null
+          }
+          <FollowButton userId={this.props.id} following={this.props.followedByCurrentUser} />
           <img src={egg} id="user-profile-avatar" alt={"avatar"} />
         </div>
-        <Stream feed={this.props[tab]} type={tab} />
+        {onSats ?
+          <Wallet satoshis={this.props.satoshis} id={this.props.id} />
+          :  <Stream {...this.props[tab]} userId={this.props.id} type={tab} />
+        }
       </div>
     )
   }

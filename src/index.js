@@ -21,11 +21,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message }) => {
       if (message === "AUTH") {
-        console.log(message)
-        // localStorage.removeItem('token');
-        // window.location.reload();
+        localStorage.removeItem('token');
+        window.location.reload();
       }
-      return "stfu";
+      return "stf";
     });
   }
 });
@@ -69,3 +68,5 @@ ReactDOM.render(
     <App />
   </ApolloProvider>, document.getElementById('root')
 );
+
+export default client;

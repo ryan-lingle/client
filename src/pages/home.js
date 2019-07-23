@@ -9,8 +9,7 @@ const Home = ({ match }) => {
         {({ data, loading, error }) => {
           if (error) return <ErrorMessage error={error} />;
           if (loading) return <Loader />;
-          console.log(data)
-          return <Stream feed={data.currentUser.feed} />
+          return <Stream {...data.currentUser.feed} type={"feed"} />
         }}
       </Query>
     </div>

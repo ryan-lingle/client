@@ -1,11 +1,11 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap"
 import Podcast from "./podcast";
-import { CREATE_PODCAST } from '../actions';
-import { Mutation } from "react-apollo";
+import { CREATE_PODCAST, CREATE_EPISODES } from '../actions';
+import { Mutation, withApollo } from "react-apollo";
 import ErrorMessage from "./error_msg";
 
-export default class RssValidator extends React.Component {
+class RssValidator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,27 +24,37 @@ export default class RssValidator extends React.Component {
     this.setState({ podcast })
   }
 
-  podcastReducer = (podcast) => {
-    const { title, image, description, email, website, rss, episodes } = podcast;
-    return {
-      title,
-      rss,
-      description,
-      email,
-      website,
-      image,
-      episodes: episodes.map(episode => this.episodeReducer(episode))
-    }
-  }
-
   episodeReducer = (episode) => {
     const { title, description, released } = episode;
     return { title, description, released }
   }
 
-  // submitPodcast = (event) => {
+  handleEpisodeCreate = async (episodes, podcastId) => {
+    const payload = [];
+    episodes.forEach((episode, i) => {
+      const { title, description, released } = episode;
+      payload.push({ title, description, released });
+      if (((i + 1) % 25) === 0) {
+        this.props.client.mutate({
+          mutation: CREATE_EPISODES,
+          variables: {
+            podcastId,
+            episodes: payload
+          }
+        });
+        payload.length = 0;
+      }
+    });
+  }
 
-  // }
+  handlePodcastCreate = async (createPodcast, podcast) => {
+    const { title, image, description, email, website, rss, episodes } = podcast;
+    const { data } = await createPodcast({ variables: {
+      title, image, description,
+      email, website, rss
+    }})
+    this.handleEpisodeCreate(episodes, data.createPodcast.id);
+  }
 
   render() {
     const { rssUrl, podcast } = this.state;
@@ -65,7 +75,7 @@ export default class RssValidator extends React.Component {
               <span >
                 <ErrorMessage error={error} />
                 <Button variant="primary" disabled={!podcast} onClick={() => {
-                  createPodcast({ variables: this.podcastReducer(podcast) })
+                  this.handlePodcastCreate(createPodcast, podcast)
                 }}>Submit</Button>
               </span>
             )}
@@ -80,3 +90,5 @@ export default class RssValidator extends React.Component {
     )
   }
 }
+
+export default withApollo(RssValidator);

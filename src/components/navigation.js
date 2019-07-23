@@ -4,6 +4,7 @@ import ProfilePic from '../profile.png';
 import RekModal from './rek_modal';
 
 const Navigation = (props) => {
+  const username = localStorage.getItem("username");
   return(
     <Navbar bg="white" expand="md" fixed={"top"} >
       <Navbar.Brand href="/" className="text-primary rekr-brand">REKR</Navbar.Brand>
@@ -22,7 +23,7 @@ const Navigation = (props) => {
             <img src={ProfilePic} alt="avatar" className="rounded-circle" width="35px"/>
           </Dropdown.Toggle>
           <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item href="/u/ryan" >Profile</Dropdown.Item>
+            <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>
             <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>
             <Dropdown.Item onClick={() => {
               localStorage.clear();

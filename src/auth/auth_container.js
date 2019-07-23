@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from 'react-router-dom'
 import { Navbar } from "react-bootstrap"
 import { Mutation } from "react-apollo";
 import SignUpForm from "./sign_up_form";
@@ -16,16 +15,15 @@ class AuthContainer extends React.Component {
     const data = createUser || logIn;
     localStorage.setItem('id', data.id)
     localStorage.setItem('token', data.token)
-    this.setState({ redirectToReferrer: true })
+    localStorage.setItem('username', data.username)
+    try {
+      window.location.href = this.props.location.state.from;
+    } catch {
+      window.location.href = "/";
+    }
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state
-
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />
-    }
 
     return (
       <div>

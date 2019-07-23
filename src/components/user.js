@@ -1,12 +1,15 @@
 import React from "react";
 import egg from "../egg.jpg";
+import FollowButton from "./follow_button";
 
-const User = (props) => {
+const User = ({ id, followedByCurrentUser, username }) => {
   return(
-    <div className="user">
+    <div className="user item">
       <img src={egg} className="rounded-circle" alt="avatar" width="60px" />
-      <div>{props.username}</div>
-      <div className="btn btn-secondary follow-btn">Follow</div>
+      <a href={"/u/" + username}>
+        <div className="rek-username">{username}</div>
+      </a>
+      <FollowButton userId={id} following={followedByCurrentUser} />
     </div>
   )
 }

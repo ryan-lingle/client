@@ -15,3 +15,22 @@
 .push-right {
   margin-left: auto;
 }
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-top: $background 1px solid;
+  padding: 5px 25px;
+  width: 525px;
+  margin: auto;
+}
+
+.item:hover {
+  background: #f5f8fa;
+}
+
+.stream {
+  margin-bottom: 20px;
+}

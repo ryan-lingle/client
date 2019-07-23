@@ -46,8 +46,8 @@ export default class EpisodeSearch extends React.Component {
   episodeResult = (episode) => {
     return(
       <div id="episode-result" onClick={this.handleSelection} key={episode.id} data-id={episode.id} >
-        <img src={episode.podcast.image} width="50px" alt="podcast art"/>
-        <div>
+        <img src={episode.podcast.image} width="60px" alt="podcast art"/>
+        <div className="episode-result-title">
           {episode.title}
         </div>
       </div>
