@@ -1,27 +1,23 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap"
 import Podcast from "./podcast";
-import { CREATE_PODCAST, CREATE_EPISODES } from '../actions';
+import { PARSE_PODCAST, CREATE_PODCAST, CREATE_EPISODES } from '../actions';
 import { Mutation, withApollo } from "react-apollo";
-import ErrorMessage from "./error_msg";
+import { ErrorMessage, Loader } from ".";
 
-class RssValidator extends React.Component {
+class RssParser extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      rssurl: null,
+      loading: false,
       podcast: null,
     }
     this.rssUrl = React.createRef()
   }
 
-  addRssUrl = (event) => {
-    event.preventDefault()
-    this.setState({ rssUrl: this.rssUrl.current.value })
-  }
 
-  addPodcast = (podcast) => {
-    this.setState({ podcast })
+  handlePodcast = ({ parsePodcast }) => {
+    this.setState({ podcast: parsePodcast, loading: false })
   }
 
   episodeReducer = (episode) => {
@@ -34,7 +30,7 @@ class RssValidator extends React.Component {
     episodes.forEach((episode, i) => {
       const { title, description, released } = episode;
       payload.push({ title, description, released });
-      if (((i + 1) % 25) === 0) {
+      if (((i + 1) % 20) === 0) {
         this.props.client.mutate({
           mutation: CREATE_EPISODES,
           variables: {
@@ -43,6 +39,13 @@ class RssValidator extends React.Component {
           }
         });
         payload.length = 0;
+      }
+    });
+    this.props.client.mutate({
+      mutation: CREATE_EPISODES,
+      variables: {
+        podcastId,
+        episodes: payload
       }
     });
   }
@@ -57,21 +60,33 @@ class RssValidator extends React.Component {
   }
 
   render() {
-    const { rssUrl, podcast } = this.state;
+    const { podcast, loading } = this.state;
     return(
       <div>
         <div id="rss-validator">
-          <Form id="rss-feed-form" onSubmit={this.parse}>
-            <Form.Group controlId="rss-feed">
-              <Form.Label>RSS Feed</Form.Label>
-              <Form.Control type="rss-feed" ref={this.rssUrl} placeholder="https://your-podcast.com/rss-feed.rss" />
-            </Form.Group>
-          </Form>
-          <Button variant="primary" disabled={podcast} onClick={this.addRssUrl}>
-            Validate
-          </Button>
+          <Mutation mutation={PARSE_PODCAST} onCompleted={this.handlePodcast} >
+            {(parsePodcast, { error }) => {
+              return(
+                <div id="rss-feed-form">
+                  <div id="rss-feed-label">RSS Feed</div>
+                  <Form inline onSubmit={(e) => {
+                    e.preventDefault();
+                    this.setState({ loading: true })
+                    parsePodcast({ variables: {
+                      rssUrl: this.rssUrl.current.value
+                    }})
+                  }}>
+                    <Form.Group controlId="rss-feed">
+                      <Form.Control type="rss-feed" ref={this.rssUrl} placeholder="https://your-podcast.com/rss-feed.rss" />
+                      <button disabled={podcast} className="btn btn-primary">Fetch</button>
+                    </Form.Group>
+                  </Form>
+                </div>
+              )
+            }}
+          </Mutation>
           <Mutation mutation={CREATE_PODCAST}>
-            {(createPodcast, { error, data }) => (
+            {(createPodcast, { error }) => (
               <span >
                 <ErrorMessage error={error} />
                 <Button variant="primary" disabled={!podcast} onClick={() => {
@@ -81,14 +96,11 @@ class RssValidator extends React.Component {
             )}
           </Mutation>
         </div>
-        <div>
-          {rssUrl
-            ? <Podcast rssUrl={rssUrl} podcast={podcast} addPodcast={this.addPodcast} />
-            : null}
-        </div>
+        {loading ? <Loader /> : null}
+        {podcast ? <Podcast {...podcast} /> : null}
       </div>
     )
   }
 }
 
-export default withApollo(RssValidator);
+export default withApollo(RssParser);

@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, Nav, Dropdown, Form } from "react-bootstrap"
-import ProfilePic from '../profile.png';
 import RekModal from './rek_modal';
 
 const Navigation = (props) => {
   const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("profilePic");
   return(
     <Navbar bg="white" expand="md" fixed={"top"} >
       <Navbar.Brand href="/" className="text-primary rekr-brand">REKR</Navbar.Brand>
@@ -20,7 +20,7 @@ const Navigation = (props) => {
         </Form>
         <Dropdown>
           <Dropdown.Toggle as="div" >
-            <img src={ProfilePic} alt="avatar" className="rounded-circle" width="35px"/>
+            <img src={profilePic} alt="avatar" className="rounded-circle" width="35px"/>
           </Dropdown.Toggle>
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>

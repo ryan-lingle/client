@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  max-width: 700px;
+  max-width: 600px;
   margin: 50px auto;
 
   button {
@@ -13,32 +13,18 @@
 #rss-feed-form {
   flex-grow: 1;
   margin-right: 10px;
+  width: 100%;
   .form-group {
     margin-bottom: 0px;
   }
 }
 
-#podcast-details {
-  display: flex;
-  justify-content: space-between;
-  margin: 40px 0px;
-  border-top: 2px $gray solid;
-  border-bottom: 2px $gray solid;
-  padding: 40px;
+#rss-feed {
+  width: 425px;
+  margin-right: 10px;
 }
 
-#podcast-details-1 {
-  margin-left: 80px;
-}
-
-.podcast-detail {
-  padding-bottom: 12px;
-}
-
-#episode-details {
-  width: 100%;
-}
-
-.episode-row {
-  border-top: 1px $gray solid;
+#rss-feed-label {
+  margin-bottom: 5px;
+  margin-left: 5px;
 }

@@ -96,33 +96,6 @@
   margin: 15px auto 0px auto !important;
 }
 
-#invoice {
-  text-align: center;
-}
-
-.invoice-flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.joule-btn {
-  background: $joule;
-  color: white;
-  margin-left: 10px;
-  padding: 5px 10px;
-  line-height: 1;
-}
-
-.joule-btn:hover {
-  color: white;
-}
-
-#copy-btn {
-  width: 160px;
-  margin-left: 10px;
-}
-
 #satoshi-input-container {
   width: 100%;
 }

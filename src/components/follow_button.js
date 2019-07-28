@@ -21,7 +21,7 @@ export default class FollowButton extends React.Component {
   }
 
   render() {
-    if (this.props.userId === localStorage.getItem("id")) {
+    if (this.props.current) {
       return(<div className="follow-btn"></div>)
     }
 

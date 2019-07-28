@@ -1,7 +1,7 @@
 import React from 'react';
-import Egg from '../egg.jpg';
 import BookmarkButton from './bookmark_button';
 import { observer } from '../utils';
+import Tooltip from "./tooltip";
 
 export default class Rek extends React.Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ export default class Rek extends React.Component {
         <div>
           <div className="rek-flex" id="rek-flex-1">
             <a href={"/u/" + user.username}>
-              <img src={Egg} alt={"avatar"} className="rounded-circle rek-profile-pic" width={"60px"} />
+              <img src={user.profilePic} alt={"avatar"} className="rounded-circle rek-profile-pic" width={"60px"} />
             </a>
             <div className="rek-middle">
               <a href={"/u/" + user.username}>
@@ -31,7 +31,11 @@ export default class Rek extends React.Component {
             <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
           </div>
         </div>
-        <img className="rek-podcast-art" alt={"podcast art"} src={podcast.image} width={"70px"} />
+        <Tooltip tooltip={podcast.title}>
+          <a href={"/podcast/" + podcast.slug}>
+            <img className="rek-podcast-art" alt={"podcast art"} src={podcast.image} width={"70px"} />
+          </a>
+        </Tooltip>
       </div>
     )
   }

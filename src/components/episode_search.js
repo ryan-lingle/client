@@ -1,7 +1,8 @@
 import React from  'react';
 import { Form, FormControl } from "react-bootstrap";
 import { Query } from "react-apollo";
-import { SEARCH_EPISODES } from "../actions"
+import { SEARCH_EPISODES } from "../actions";
+import { Loader, ErrorMessage } from ".";
 
 export default class EpisodeSearch extends React.Component {
 
@@ -14,7 +15,8 @@ export default class EpisodeSearch extends React.Component {
   }
 
   handleSelection = ({ target }) => {
-    this.props.handleSelection(target.getAttribute('data-id'));
+    const episodeId = target.getAttribute('data-id') || target.parentNode.getAttribute('data-id')
+    this.props.handleSelection(episodeId);
   }
 
   searchResults(term) {
@@ -22,8 +24,8 @@ export default class EpisodeSearch extends React.Component {
       return(
         <Query query={SEARCH_EPISODES} variables={{ term }}>
           {({ data, loading, error }) => {
-            if (loading) return <p>LOADING</p>;
-            if (error) return <p>ERROR</p>;
+            if (loading) return <div className="loader-padding"><Loader /></div>;
+            if (error) return <ErrorMessage error={error} />;
             return (
               <div id="episode-results">
                 {data.searchEpisodes.map((result) => (
@@ -58,8 +60,10 @@ export default class EpisodeSearch extends React.Component {
     const { term } = this.state;
     return(
       <div>
-        <Form inline>
+        <Form inline onSubmit={e => e.preventDefault()}>
           <FormControl
+            autoFocus={true}
+            autoComplete="off"
             type="text"
             placeholder="Search for a Podcast Episode"
             id="episode-search"

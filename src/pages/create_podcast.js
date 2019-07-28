@@ -1,11 +1,11 @@
 import React from "react"
-import { RssValidator } from "../components"
+import { RssParser } from "../components"
 
 const CreatePodcast = (props) => {
 
   return(
     <div id="create-podcast-container">
-      <RssValidator />
+      <RssParser />
     </div>
   )
 }

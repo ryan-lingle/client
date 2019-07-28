@@ -1,10 +1,10 @@
 import React from "react";
-import { Modal } from "react-bootstrap"
+import { Modal } from "react-bootstrap";
 import { NotificationManager } from 'react-notifications';
 
-import EpisodeSearch from "./episode_search"
-import RekForm from "./rek_form"
-import Invoice from "./invoice"
+import EpisodeSearch from "./episode_search";
+import RekForm from "./rek_form";
+import Invoice from "./invoice";
 
 export default class RekModal extends React.Component {
   constructor(props) {

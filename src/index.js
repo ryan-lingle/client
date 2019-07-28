@@ -9,7 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { from, split } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client';
 import { WebSocketLink } from 'apollo-link-ws';
 import { onError } from 'apollo-link-error';
 import { getMainDefinition } from 'apollo-utilities'
@@ -29,7 +29,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-const httpLink = new HttpLink({
+const uploadLink = createUploadLink({
   uri: 'http://localhost:4000/graphql',
   headers: {
     id: localStorage.getItem('id'),
@@ -54,7 +54,7 @@ const link = split(
     );
   },
   wsLink,
-  httpLink,
+  uploadLink,
 );
 
 

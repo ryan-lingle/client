@@ -1,11 +1,12 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { ErrorMessage, Loader, UserNav } from '../components';
-import { GET_USER } from "../actions";
+import { ErrorMessage, Loader } from '../components';
+import Podcast from "../components/podcast";
+import { GET_PODCAST } from "../actions";
 
-const UserProfile = ({ match }) => {
+const PodcastShow = ({ match }) => {
   return(
-    <Query query={GET_USER} variables={match.params} >
+    <Query query={GET_PODCAST} variables={match.params} >
       {({ data, loading, error }) => {
         if (loading) return <Loader />;
         if (error) return(
@@ -13,15 +14,12 @@ const UserProfile = ({ match }) => {
             <ErrorMessage error={error} />
           </div>
         );
-
         return (
-          <div id="user-profile">
-            <UserNav {...data.user} />
-          </div>
+          <Podcast {...data.podcast} />
         )
       }}
     </Query>
   )
 }
 
-export default UserProfile;
+export default PodcastShow;

@@ -12,8 +12,10 @@ const FOLLOWER_STREAM = gql`
     users(userId: $userId, n: $n, followers: true) {
       more
       stream {
+        current
         id
         username
+        profilePic
         followedByCurrentUser
       }
     }
@@ -25,8 +27,10 @@ const FOLLOWING_STREAM = gql`
     users(userId: $userId, n: $n, following: true) {
       more
       stream {
+        current
         id
         username
+        profilePic
         followedByCurrentUser
       }
     }
@@ -42,6 +46,7 @@ const FEED_STREAM = gql`
         satoshis
         user {
           id
+          profilePic
           username
         }
         episode {
@@ -51,6 +56,7 @@ const FEED_STREAM = gql`
           podcast {
             title
             image
+            slug
           }
         }
       }
@@ -67,6 +73,7 @@ const REK_STREAM = gql`
         satoshis
         user {
           id
+          profilePic
           username
         }
         episode {
@@ -76,6 +83,7 @@ const REK_STREAM = gql`
           podcast {
             title
             image
+            slug
           }
         }
       }
@@ -94,6 +102,7 @@ const BOOKMARK_STREAM = gql`
           title
           bookmarked
           podcast {
+            slug
             title
             image
           }

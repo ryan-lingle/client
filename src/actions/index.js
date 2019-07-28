@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-const PARSE_RSS_FEED = gql`
-  query ParseRssFeed($rssUrl: String!) {
+const PARSE_PODCAST = gql`
+  mutation ParsePodcast($rssUrl: String!) {
     parsePodcast(rssUrl: $rssUrl) {
       id
       title
@@ -19,18 +19,19 @@ const PARSE_RSS_FEED = gql`
   }
 `
 
-const USERNAME = gql`
-  query USERNAME {
+const CURRENT_SATS = gql`
+  query CurrentSats {
     currentUser {
-      username
+      satoshis
     }
   }
 `
 
-const CURRENT_SATS = gql`
-  query USERNAME {
-    currentUser {
-      satoshis
+const UPDATE_USER = gql`
+  mutation UpdateUser($email: String, $username: String, $password: String, $profilePic: Upload) {
+    updateUser(email: $email, username: $username, password: $password, profilePic: $profilePic) {
+      username
+      profilePic
     }
   }
 `
@@ -45,6 +46,7 @@ const HOME = gql`
           satoshis
           user {
             id
+            profilePic
             username
           }
           episode {
@@ -52,6 +54,7 @@ const HOME = gql`
             id
             bookmarked
             podcast {
+              slug
               title
               image
             }
@@ -66,6 +69,7 @@ const GET_USER = gql`
   query GetUser($username: String) {
     user(username: $username) {
       id
+      profilePic
       satoshis
       username
       current
@@ -80,7 +84,9 @@ const GET_USER = gql`
             bookmarked
             title
             podcast {
+              slug
               image
+              title
             }
           }
         }
@@ -96,11 +102,14 @@ const GET_USER = gql`
             bookmarked
             title
             podcast {
+              slug
               image
+              title
             }
           }
           user {
             id
+            profilePic
             username
           }
         }
@@ -109,8 +118,10 @@ const GET_USER = gql`
         count
         more
         stream {
+          current
           id
           username
+          profilePic
           followedByCurrentUser
         }
       }
@@ -118,10 +129,32 @@ const GET_USER = gql`
         count
         more
         stream {
+          current
           id
           username
+          profilePic
           followedByCurrentUser
         }
+      }
+    }
+  }
+`
+
+const GET_PODCAST = gql`
+  query GetPodcast($slug: String!) {
+    podcast(slug: $slug) {
+      id
+      title
+      description
+      rss
+      email
+      image
+      website
+      episodes {
+        id
+        title
+        description
+        released
       }
     }
   }
@@ -132,7 +165,9 @@ const GET_EPISODE = gql`
     episode(id: $id) {
       title
       podcast {
+        slug
         image
+        title
       }
     }
   }
@@ -176,6 +211,7 @@ const SIGN_UP_USER = gql`
       id
       token
       username
+      profilePic
     }
   }
 `
@@ -186,6 +222,7 @@ const LOGIN_USER = gql`
       id
       token
       username
+      profilePic
     }
   }
 `
@@ -243,6 +280,7 @@ const BOOKMARKS = gql`
             bookmarked
             podcast {
               title
+              slug
               image
             }
           }
@@ -262,11 +300,12 @@ const WITHDRAW = gql`
 `
 
 export {
-  PARSE_RSS_FEED,
+  PARSE_PODCAST,
   HOME,
-  USERNAME,
+  UPDATE_USER,
   CURRENT_SATS,
   GET_USER,
+  GET_PODCAST,
   GET_EPISODE,
   CREATE_PODCAST,
   CREATE_EPISODES,

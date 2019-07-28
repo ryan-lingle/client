@@ -9,7 +9,7 @@
 
 
 #rek-flex-2 {
-  width: 120px;
+  width: 105px;
 }
 
 .rek-middle {
@@ -27,7 +27,6 @@
   text-align: center;
   color: $primary;
   margin-left: 3px;
-  margin-right: 20px;
   padding: 1px 5px;
   border-radius: 5px;
   border: 1px $primary solid;
@@ -43,9 +42,13 @@
   text-decoration: none;
 }
 
-.podcast-art {
+.rek-podcast-art {
   border-radius: 2px;
   width: 70px;
+}
+
+.rek-podcast-art:hover {
+  cursor: pointer;
 }
 
 // ### BOOKMARK #############

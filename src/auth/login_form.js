@@ -20,7 +20,7 @@ const SignUpForm = (props) => {
         ref={node => { username = node }}
       />
       <Form.Control
-        type="text"
+        type="password"
         placeholder="Password"
         className="mr-sm-2"
         ref={node => { password = node }}
