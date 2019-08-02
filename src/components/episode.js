@@ -20,10 +20,14 @@ const Episode = ({ episode, podcast }) => {
           {episode.title}
         </div>
       </div>
-      <RekModal episodeId={episode.id} >
-        <div href="#" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
-      </RekModal>
-      <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+      {episode.id ?
+          <RekModal episodeId={episode.id} >
+            <div href="#" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
+          </RekModal>
+        : null}
+      {episode.id ?
+          <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+        : null}
     </div>
   )
 }

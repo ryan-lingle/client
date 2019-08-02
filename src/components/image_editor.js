@@ -35,7 +35,6 @@ export default class ImageEditor extends React.Component {
     fetch(canvas)
     .then(res => res.blob())
     .then(blob => {
-      console.log(blob)
       updateUser({ variables: {
         profilePic: blob
       }}).then(data => window.location.reload())

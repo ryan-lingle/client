@@ -25,7 +25,7 @@ class RssParser extends React.Component {
     return { title, description, released }
   }
 
-  handleEpisodeCreate = async (episodes, podcastId) => {
+  handleEpisodeCreate = async (episodes, podcastId, slug) => {
     const payload = [];
     episodes.forEach((episode, i) => {
       const { title, description, released } = episode;
@@ -47,7 +47,7 @@ class RssParser extends React.Component {
         podcastId,
         episodes: payload
       }
-    });
+    }).then(window.location.href = `/podcast/${slug}`)
   }
 
   handlePodcastCreate = async (createPodcast, podcast) => {
@@ -56,7 +56,7 @@ class RssParser extends React.Component {
       title, image, description,
       email, website, rss
     }})
-    this.handleEpisodeCreate(episodes, data.createPodcast.id);
+    this.handleEpisodeCreate(episodes, data.createPodcast.id, data.createPodcast.slug);
   }
 
   render() {

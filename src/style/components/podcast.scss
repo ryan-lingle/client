@@ -1,9 +1,10 @@
 #podcast {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 40px 0px;
   box-shadow: 0px 1px 10px 1px #ababab;
-  padding: 40px;
+  padding: 20px 40px;
   background: white;
 }
 
@@ -21,4 +22,15 @@
 
 .episode-row {
   border-top: 1px $gray solid;
+}
+
+
+.podcast-small {
+  padding: 20px;
+  color: black;
+}
+
+.podcast-small:hover {
+  text-decoration: none;
+  color: black;
 }

@@ -45,14 +45,14 @@ class Invoice extends React.Component {
   }
 
   subscribe = () => {
-    const { client, invoice } = this.props;
+    const { client, invoice, handleInvoicePaid } = this.props;
     client.subscribe({
       query: SUBSRIBE_INVOICE,
       variables: { invoice },
     }).subscribe({
       next({ data }) {
         if (data.invoicePaid.invoice === invoice) {
-          this.props.handleInvoicePaid()
+          handleInvoicePaid()
         }
       },
       error(err) { console.error('err', err); },

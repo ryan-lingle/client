@@ -65,7 +65,7 @@ class Wallet extends React.Component {
   }
 
   withdraw = () => {
-    this.setState({ withdraw: true })
+    if (this.currentSats > 0) this.setState({ withdraw: true })
   }
 
   buildModal = () => {
@@ -82,25 +82,35 @@ class Wallet extends React.Component {
       )
     } else if (deposit) {
       modalContent = (
-        <div id="deposit-modal">
-          <SatoshiInput onUpdate={this.handleSatoshiUpdate} />
-          <Mutation mutation={WITHDRAW} onCompleted={this.handleInvoice}>
-            {(withdrawInvoice, {error, data}) => (
-              <input type="submit" value="Deposit" className="btn btn-primary rek-submit" onClick={(e) => {
-                e.preventDefault()
-                withdrawInvoice({ variables: { satoshis: this.state.satoshis }})
-              }}/>
-            )}
-          </Mutation>
+        <div>
+          <Modal.Header closeButton>
+            <Modal.Title>Deposit</Modal.Title>
+          </Modal.Header>
+          <div id="deposit-modal">
+            <SatoshiInput onUpdate={this.handleSatoshiUpdate} />
+            <Mutation mutation={WITHDRAW} onCompleted={this.handleInvoice}>
+              {(withdrawInvoice, {error, data}) => (
+                <input type="submit" value="Deposit" className="btn btn-primary rek-submit" onClick={(e) => {
+                  e.preventDefault()
+                  withdrawInvoice({ variables: { satoshis: this.state.satoshis }})
+                }}/>
+              )}
+            </Mutation>
+          </div>
         </div>
       )
     } else if (withdraw) {
       modalContent = (
-        <div id="deposit-modal">
-          <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
-          <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
-            this.requestInvoice(this.state.satoshis)
-          }} />
+        <div>
+          <Modal.Header closeButton>
+            <Modal.Title>Withdraw</Modal.Title>
+          </Modal.Header>
+          <div id="deposit-modal">
+            <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
+            <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
+              this.requestInvoice(this.state.satoshis)
+            }} />
+          </div>
         </div>
       )
     };

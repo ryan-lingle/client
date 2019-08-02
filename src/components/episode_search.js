@@ -28,7 +28,7 @@ export default class EpisodeSearch extends React.Component {
             if (error) return <ErrorMessage error={error} />;
             return (
               <div id="episode-results">
-                {data.searchEpisodes.map((result) => (
+                {data.search.episode.stream.map((result) => (
                   this.episodeResult(result)
                 ))}
               </div>

@@ -37,7 +37,7 @@ export default class SatoshiInput extends React.Component {
   handleSatoshiChange = ({target}) => {
     const satoshis = parseInt(target.value);
     this.setState({ satoshis });
-
+    this.props.onUpdate(satoshis)
   }
 
   numberInput = () => {

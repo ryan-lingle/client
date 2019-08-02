@@ -1,18 +1,12 @@
 import React from "react";
-import { Stream, Loader, ErrorMessage } from "../components";
-import { Query } from "react-apollo";
+import { createStream, Episode } from "../components";
 import { BOOKMARKS } from '../actions';
 
 const Bookmarks = ({ match }) => {
+  const Stream = createStream(Episode);
   return(
     <div id="home" >
-      <Query query={BOOKMARKS}>
-        {({ data, loading, error }) => {
-          if (error) return <ErrorMessage error={error} />;
-          if (loading) return <Loader />;
-          return <Stream {...data.currentUser.bookmarks} type={"bookmarks"} />
-        }}
-      </Query>
+      <Stream query={BOOKMARKS} />
     </div>
   )
 }

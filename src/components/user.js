@@ -7,7 +7,7 @@ const User = ({ id, current, followedByCurrentUser, username, profilePic }) => {
     <div className="user item">
       <img src={profilePic || egg} className="rounded-circle" alt="avatar" width="60px" />
       <a href={"/u/" + username}>
-        <div className="rek-username">{username}</div>
+        <div className="user-username">{username}</div>
       </a>
       <FollowButton current={current} userId={id} following={followedByCurrentUser} />
     </div>

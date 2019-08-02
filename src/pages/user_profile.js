@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import { ErrorMessage, Loader, UserNav } from '../components';
 import { GET_USER } from "../actions";
 
-const UserProfile = ({ match }) => {
+const UserProfile = ({ match, location }) => {
   return(
     <Query query={GET_USER} variables={match.params} >
       {({ data, loading, error }) => {
@@ -13,10 +13,10 @@ const UserProfile = ({ match }) => {
             <ErrorMessage error={error} />
           </div>
         );
-
+        const tab = location.search.split('?tab=')[1];
         return (
           <div id="user-profile">
-            <UserNav {...data.user} />
+            <UserNav {...data.user} tab={tab} />
           </div>
         )
       }}

@@ -7,7 +7,8 @@ import {
   Notifications,
   UserProfile,
   PodcastShow,
-  CreatePodcast
+  CreatePodcast,
+  Search
 } from "./pages";
 import { PrivateRoute } from "./auth";
 
@@ -17,6 +18,7 @@ const DefaultContainer = () => (
   <div>
     <Navigation />
     <PrivateRoute path="/u/:username" component={UserProfile} />
+    <PrivateRoute path="/search" component={Search} />
     <div className="container">
       <NotificationContainer />
       <PrivateRoute path="/podcast/:slug" component={PodcastShow} />

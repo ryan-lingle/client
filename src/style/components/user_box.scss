@@ -1,0 +1,66 @@
+#user-box {
+  position: fixed;
+  top: 80px;
+  left: 17px;
+  background: white;
+  border-radius: 2px;
+}
+
+#user-box-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.profile-pic:hover {
+  cursor: pointer;
+  filter: brightness(95%);
+}
+
+#user-box-username {
+  font-weight: bold;
+  color: black;
+}
+
+#user-box-username:hover {
+  cursor: pointer;
+  color: black;
+}
+
+#user-box-counts {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-box-count {
+  padding: 5px 0px;
+  border-top: 1px solid $light-gray;
+  border-left: 1px solid $light-gray;
+  text-align: center;
+  font-size: 14px;
+  width: 85px;
+  color: black;
+}
+
+#user-box-satoshis {
+  display: block;
+  border-top: 1px solid $light-gray;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: black;
+}
+
+#user-box-satoshis:hover {
+  background: #f5f8fa;;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-box-count:hover {
+  background: #f5f8fa;;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}

@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar, Nav, Dropdown, Form } from "react-bootstrap"
+import { Navbar, Nav, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
+import Search from "./search";
 
 const Navigation = (props) => {
   const username = localStorage.getItem("username");
@@ -15,9 +16,7 @@ const Navigation = (props) => {
           <Nav.Link href="/bookmarks">Bookmarks</Nav.Link>
           <Nav.Link href="/notifications">Notifications</Nav.Link>
         </Nav>
-        <Form inline>
-          <Form.Control type="text" placeholder="Search Rekr" className="mr-sm-2" />
-        </Form>
+        <Search />
         <Dropdown>
           <Dropdown.Toggle as="div" >
             <img src={profilePic} alt="avatar" className="rounded-circle" width="35px"/>
