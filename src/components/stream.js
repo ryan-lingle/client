@@ -15,16 +15,28 @@ const createStream = (Component) => {
     fetchMore = async () => {
       const { query, variables } = this.props;
       let { n } = this.state;
-      const res = await this.props.client.query({
+      const { data } = await this.props.client.query({
         query,
         variables: { n, ...variables }
       });
-      const { more, stream } = res.data.reks || res.data.bookmarks || res.data.users || res.data.search.user || res.data.search.podcast;
+      const { more, stream } = this.findStream(data);
       this.setState(prevState => {
         const newStream = prevState.stream.concat(stream);
         n += 1;
         return { stream: newStream, more, n, loading: false }
       })
+    }
+
+    findStream(data) {
+      const keys = Object.keys(data);
+      for (let i = 0; i < keys.length; i++) {
+        const childData = data[keys[i]];
+        if (childData && typeof childData === 'object') {
+          const childChildData = this.findStream(childData);
+          if (childData.stream) return childData;
+          if (childChildData && childChildData.stream) return childChildData;
+        }
+      }
     }
 
     componentDidMount() {

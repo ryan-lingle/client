@@ -8,9 +8,11 @@
 .rekr-brand {
   position: absolute;
   left: 50%;
-  margin-left: -50px !important;  /* 50% of your logo width */
+  margin-left: -35px !important;  /* 50% of your logo width */
   display: block;
   opacity: 1 !important;
+  font-size: 30px;
+  font-weight: 300;
 }
 
 .navbar-nav {

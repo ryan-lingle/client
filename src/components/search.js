@@ -14,6 +14,14 @@ export default class Search extends React.Component {
     this.setState({ term: target.value })
   }
 
+  hashtagResult = ({ name }, i) => {
+    return(
+      <a key={i} className="search-result text-center" href={`/hashtag/${name}`} >
+        {name}
+      </a>
+    )
+  }
+
   podcastResult = (podcast, i) => {
     return(
       <a key={i} className="podcast-result search-result" href={`/podcast/${podcast.slug}`} >
@@ -25,7 +33,7 @@ export default class Search extends React.Component {
 
   userResult = (user, i) => {
     return(
-      <a key={i} className="podcast-result search-result" href={`/u/${user.username}`} >
+      <a key={i} className="search-result" href={`/u/${user.username}`} >
         <img src={user.profilePic} alt={"avatar"} className="rounded-circle" width={"60px"} />
         <div>{user.username}</div>
       </a>
@@ -58,7 +66,7 @@ export default class Search extends React.Component {
                 return (
                   <div>
                     <div id="search-tabs">
-                      {['podcast', 'user', 'hash_tag'].map((tab, i) => {
+                      {['podcast', 'user', 'hashtag'].map((tab, i) => {
                           const current = type === tab;
                           return <span key={i} onClick={() => this.setState({ type: tab })} className={`search-tab ${current ? 'current-search-tab' : null}`} id={`${tab}-search-tab`}>{tab}s</span>
                         }

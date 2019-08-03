@@ -10,7 +10,7 @@ export default class Rek extends React.Component {
   }
 
   render() {
-    const { user, episode, satoshis, id } = this.props;
+    const { user, episode, satoshis, id, hashtags } = this.props;
     const { podcast } = episode;
     return(
       <div className="rek item" id={`rek-${id}`} >
@@ -26,9 +26,14 @@ export default class Rek extends React.Component {
               <div>{episode.title}</div>
             </div>
           </div>
-          <div className="rek-flex" id="rek-flex-2">
-            <div className="rek-satoshis">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats</div>
-            <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+          <div id="rek-flex-2">
+            <div id="rek-flex-2-1">
+              <div className="rek-satoshis">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats</div>
+              <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+            </div>
+            <div id="rek-hashtags">
+              {hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`} className="rek-hashtag">#{hashtag.name}</a>)}
+            </div>
           </div>
         </div>
         <Tooltip tooltip={podcast.title}>

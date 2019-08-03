@@ -25,13 +25,14 @@ export default class FollowButton extends React.Component {
       return(<div className="follow-btn"></div>)
     }
 
-    const userId = parseInt(this.props.userId);
+
+    const { followeeId, hashtagId, type } = this.props;
 
     if (!this.state.following) {
       return(
         <Mutation mutation={TOGGLE_FOLLOW} onCompleted={this.toggle} >
           {(toggleFollow, { error }) => (
-            <div onClick={() => toggleFollow({ variables: { userId } })} className="btn btn-secondary follow-btn">Follow</div>
+            <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} className="btn btn-secondary follow-btn">Follow</div>
           )}
         </Mutation>
       )
@@ -39,7 +40,7 @@ export default class FollowButton extends React.Component {
       return(
         <Mutation mutation={TOGGLE_FOLLOW} onCompleted={this.toggle} >
           {(toggleFollow, { error }) => (
-            <div onClick={() => toggleFollow({ variables: { userId } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
+            <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
           )}
         </Mutation>
       )

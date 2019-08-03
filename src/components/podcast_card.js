@@ -1,6 +1,6 @@
 import React from "react";
 
-const PodcastSmall = ({ title, image, slug}) => {
+const PodcastCard = ({ title, image, slug}) => {
   return(
     <a className="item podcast-small" href={`/podcast/${slug}`} >
       <img src={image} width="80px" alt="podcast art"/>
@@ -9,4 +9,4 @@ const PodcastSmall = ({ title, image, slug}) => {
   )
 }
 
-export default PodcastSmall;
+export default PodcastCard;

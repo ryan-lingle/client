@@ -5,3 +5,4 @@ export {default as CreatePodcast} from './create_podcast.js';
 export {default as UserProfile} from './user_profile.js';
 export {default as PodcastShow} from './podcast_show.js';
 export {default as Search} from './search.js';
+export {default as HashtagFeed} from './hashtag_feed.js';

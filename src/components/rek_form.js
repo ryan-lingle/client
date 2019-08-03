@@ -2,14 +2,15 @@ import React from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
-import SatoshiInput from "./satoshi_input";
+import { SatoshiInput, TagInput } from ".";
 
 class RekForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      satoshis: 10000
+      satoshis: 10000,
+      tags: [],
     }
 
     this.props.client.query({
@@ -22,13 +23,27 @@ class RekForm extends React.Component {
     this.setState({ satoshis })
   }
 
+  handleTagChange = (tags) => {
+    this.setState({ tags });
+  }
+
   handleRekCreate = (createRek) => {
     const invoiceSatoshis = this.state.satoshis - this.currentSats;
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
     if (walletSatoshis <= 0) {
-      createRek({ variables: { episodeId: this.props.id, invoiceSatoshis, walletSatoshis }})
+      createRek({ variables: {
+        episodeId: this.props.id,
+        tags: this.state.tags,
+        invoiceSatoshis,
+        walletSatoshis
+      }})
     } else if (window.confirm(`Okay to Spend ${walletSatoshis} from your Rekr Wallet?`)) {
-      createRek({ variables: { episodeId: this.props.id, invoiceSatoshis, walletSatoshis }})
+      createRek({ variables: {
+        episodeId: this.props.id,
+        tags: this.state.tags,
+        invoiceSatoshis,
+        walletSatoshis
+      }})
     }
   }
 
@@ -50,8 +65,9 @@ class RekForm extends React.Component {
                 <img src={podcast.image} id="rek-form-podcast-art" alt="podcast art"/>
                 <div id="rek-form-episode">{title}</div>
               </div>
+              <TagInput onUpdate={this.handleTagChange} />
+              <SatoshiInput onUpdate={this.handleChange} />
               <Form inline id="rek-form">
-                <SatoshiInput onUpdate={this.handleChange} />
                 <Mutation mutation={CREATE_REK} onCompleted={this.handleInvoice}>
                   {(createRek, {error, data}) => (
                     <FormControl type="submit" value="Rek It" className="btn btn-primary rek-submit" onClick={(e) => {

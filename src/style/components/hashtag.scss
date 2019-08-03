@@ -1,0 +1,50 @@
+#hashtag-box {
+  background: white;
+  border-radius: 2px;
+}
+
+#hashtag-nav {
+  width: 100%;
+  background: white;
+  text-align: center;
+  padding: 5px;
+  color: $primary;
+  border-top: $light-gray 1px solid;
+  position: fixed;
+  top: 56px;
+  z-index: 100;
+  opacity: .95;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hashtag-header {
+  margin-right: 10px;
+  font-weight: 200;
+}
+
+#hashtag-box-heading {
+  text-align: center;
+  font-weight: 200;
+  border-bottom: 1px solid $background;
+  padding: 10px;
+  margin: 0px;
+}
+
+.hashtags {
+  overflow-y: scroll;
+  max-height: 250px;
+}
+
+.hashtag-card {
+  border-top: none;
+  border-bottom: 1px solid $background;
+  padding: 15px;
+  color: black;
+}
+
+.hashtag-card:hover {
+  color: black;
+  text-decoration: none;
+}

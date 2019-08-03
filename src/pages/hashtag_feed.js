@@ -1,0 +1,58 @@
+import React from "react";
+import { createStream, Rek, UserBox, HashtagBox, FollowButton } from "../components";
+import { HASHTAG_FEED, GET_HASHTAG, CURRENT_USER } from '../actions';
+import { Query } from "react-apollo";
+
+
+export default class HashtagFeed extends React.Component {
+  componentDidMount() {
+    document.querySelector(".navbar").style.boxShadow = "none";
+    document.querySelector("#home").style.marginTop = "150px";
+
+  }
+  render() {
+    const Stream = createStream(Rek);
+    return(
+      <div id="home">
+        <Query query={GET_HASHTAG} variables={this.props.match.params} >
+          {({ data, error, loading}) => {
+            if (error || loading) return <div></div>;
+            const { name, followedByCurrentUser, id } = data.hashtag;
+            return (
+              <div id="hashtag-nav">
+                <h3 id="hashtag-header">
+                  {name}
+                </h3>
+                <FollowButton
+                  hashtagId={id}
+                  following={followedByCurrentUser}
+                  type={'hashtag'}
+                />
+              </div>
+            );
+          }}
+        </Query>
+        <Query query={CURRENT_USER} >
+          {({ data, error, loading}) => {
+            if (error || loading) return <div></div>
+            const { currentUser } = data;
+
+            return (
+              <div className="row">
+                <div className="col-md-12 col-lg-3 user-box-col">
+                  <UserBox {...currentUser} />
+                </div>
+                <div className="col-lg-6 col-md-12 feed-col">
+                  <Stream query={HASHTAG_FEED} variables={this.props.match.params} />
+                </div>
+                <div className="col-sm-3 d-sm-none d-md-block hashtag-col">
+                  <HashtagBox hashtags={currentUser.followedHashtags} />
+                </div>
+              </div>
+            )
+          }}
+        </Query>
+      </div>
+    )
+  }
+}

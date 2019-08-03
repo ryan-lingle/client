@@ -20,7 +20,12 @@
 
 .sub-nav-tab {
   padding: 8px 10px;
+  min-width: 100px;
   color: $gray;
+}
+
+.sub-nav-sats {
+  flex-grow: 1;
 }
 
 .sub-nav-tab:hover {
@@ -69,7 +74,6 @@
 .follow-btn {
   border-radius: 15px;
   padding: 1px 10px;
-  margin-left: 250px;
   width: 100px;
 }
 

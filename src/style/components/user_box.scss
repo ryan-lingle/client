@@ -1,9 +1,26 @@
+@media screen and (max-width: 1000px) {
+  body {
+    #user-box {
+      width: 500px;
+      margin: 0px auto 20px auto;
+    }
+
+    .user-box-count {
+      width: 25%;
+    }
+
+    #user-box-profile-pic {
+      width: 100px;
+    }
+  }
+}
+
+
 #user-box {
-  position: fixed;
-  top: 80px;
-  left: 17px;
   background: white;
   border-radius: 2px;
+  width: 100%;
+  margin-left: 15px;
 }
 
 #user-box-flex {
@@ -13,6 +30,9 @@
   padding: 10px 20px;
 }
 
+#user-box-profile-pic {
+  width: 65px;
+}
 .profile-pic:hover {
   cursor: pointer;
   filter: brightness(95%);
@@ -35,19 +55,19 @@
 
 .user-box-count {
   padding: 5px 0px;
-  border-top: 1px solid $light-gray;
-  border-left: 1px solid $light-gray;
+  border-top: 1px solid $background;
+  border-left: 1px solid $background;
   text-align: center;
-  font-size: 14px;
-  width: 85px;
+  font-size: 13px;
+  width: 75px;
   color: black;
 }
 
 #user-box-satoshis {
   display: block;
-  border-top: 1px solid $light-gray;
+  border-top: 1px solid $background;
   padding: 10px;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   color: black;
 }

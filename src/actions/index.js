@@ -25,6 +25,11 @@ const CURRENT_USER = gql`
       username
       profilePic
       satoshis
+      followedHashtags {
+        id
+        name
+        followedByCurrentUser
+      }
       bookmarks {
         count
       }
@@ -79,6 +84,10 @@ const FEED_STREAM = gql`
             image
             slug
           }
+        }
+        hashtags {
+          name
+          id
         }
       }
     }
@@ -182,6 +191,15 @@ const SEARCH = gql`
           id
           username
           profilePic
+          followedByCurrentUser
+        }
+      }
+      hashtag {
+        more
+        stream {
+          id
+          name
+          followedByCurrentUser
         }
       }
     }
@@ -227,8 +245,8 @@ const LOGIN_USER = gql`
 `
 
 const CREATE_REK = gql`
-  mutation CreateRek($episodeId: String!, $walletSatoshis: Int, $invoiceSatoshis: Int) {
-    createRek(episodeId: $episodeId, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
+  mutation CreateRek($episodeId: String!, $tags: [TagInput], $walletSatoshis: Int, $invoiceSatoshis: Int) {
+    createRek(episodeId: $episodeId, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
       invoice
       satoshis
     }
@@ -245,8 +263,8 @@ const SUBSRIBE_INVOICE = gql`
 `
 
 const TOGGLE_FOLLOW = gql`
-  mutation ToggleFollow($userId: Int!) {
-    toggleFollow(userId: $userId)
+  mutation ToggleFollow($followeeId: String, $hashtagId: String, $type: String) {
+    toggleFollow(followeeId: $followeeId, hashtagId: $hashtagId, type: $type)
   }
 `
 
@@ -348,6 +366,10 @@ const REK_STREAM = gql`
             slug
           }
         }
+        hashtags {
+          name
+          id
+        }
       }
     }
   }
@@ -368,6 +390,47 @@ const BOOKMARK_STREAM = gql`
             title
             image
           }
+        }
+      }
+    }
+  }
+`
+
+const GET_HASHTAG = gql`
+  query GetHashtag($name: String!) {
+    hashtag(name: $name) {
+      id
+      name
+      followedByCurrentUser
+    }
+  }
+`
+
+const HASHTAG_FEED = gql`
+  query HashtagFeed($name: String!, $n: Int!) {
+    hashtagFeed(name: $name, n: $n) {
+      more
+      stream {
+        id
+        satoshis
+        user {
+          id
+          profilePic
+          username
+        }
+        episode {
+          title
+          id
+          bookmarked
+          podcast {
+            title
+            image
+            slug
+          }
+        }
+        hashtags {
+          name
+          id
         }
       }
     }
@@ -399,5 +462,7 @@ export {
   FOLLOWER_STREAM,
   FOLLOWING_STREAM,
   BOOKMARK_STREAM,
-  REK_STREAM
+  REK_STREAM,
+  GET_HASHTAG,
+  HASHTAG_FEED
 };

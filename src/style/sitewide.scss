@@ -23,7 +23,7 @@
   background: white;
   border-top: $background 1px solid;
   padding: 5px 25px;
-  width: 525px;
+  width: 500px;
   margin: auto;
 }
 
@@ -37,4 +37,13 @@
 
 .loader-padding {
   padding: 50px 0px;
+}
+
+.x {
+  color: $primary;
+}
+
+.x:hover {
+  color: $primary-hover;
+  cursor: pointer;
 }
