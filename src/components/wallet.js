@@ -2,8 +2,9 @@ import React from "react";
 import { Modal } from "react-bootstrap"
 import SatoshiInput from "./satoshi_input";
 import Invoice from "./invoice"
+import { ErrorMessage } from ".";
 import { Mutation, withApollo } from "react-apollo";
-import { WITHDRAW, CURRENT_SATS } from "../actions";
+import { DEPOSIT, WITHDRAW, CURRENT_SATS } from "../actions";
 import { NotificationManager } from 'react-notifications';
 import { requestProvider } from 'webln'
 
@@ -24,6 +25,7 @@ class Wallet extends React.Component {
       withdraw: false,
       deposit: false,
       invoice: null,
+      error: null
     }
   }
 
@@ -37,11 +39,20 @@ class Wallet extends React.Component {
     try {
       const webln = await requestProvider();
       const { paymentRequest } = await webln.makeInvoice({
-        defaultAmount: this.state.satoshis
+        defaultAmount: this.state.satoshis,
+        defaultMemo: "Rekr Widthdrawal"
       })
-      console.log(paymentRequest)
-    } catch(err) {
-      console.log("handle no webln error")
+      const { data } = await this.props.client.mutate({
+        mutation: WITHDRAW,
+        variables: {
+          invoice: paymentRequest
+        }
+      });
+
+      if (data.withdraw.success) window.location.reload();
+
+    } catch(error) {
+      this.setState({ error })
     }
   }
 
@@ -49,8 +60,8 @@ class Wallet extends React.Component {
     this.setState({ withdraw: false, deposit: false, invoice: null })
   }
 
-  handleInvoice = ({ withdrawInvoice }) => {
-    const { invoice, satoshis } = withdrawInvoice;
+  handleInvoice = ({ deposit }) => {
+    const { invoice, satoshis } = deposit;
     this.setState({ invoice, satoshis, withdraw: false, deposit: false })
   }
 
@@ -69,7 +80,7 @@ class Wallet extends React.Component {
   }
 
   buildModal = () => {
-    const { invoice, withdraw, deposit, satoshis } = this.state;
+    const { invoice, withdraw, deposit, satoshis, error } = this.state;
     let modalContent;
 
     if (invoice) {
@@ -88,7 +99,7 @@ class Wallet extends React.Component {
           </Modal.Header>
           <div id="deposit-modal">
             <SatoshiInput onUpdate={this.handleSatoshiUpdate} />
-            <Mutation mutation={WITHDRAW} onCompleted={this.handleInvoice}>
+            <Mutation mutation={DEPOSIT} onCompleted={this.handleInvoice}>
               {(withdrawInvoice, {error, data}) => (
                 <input type="submit" value="Deposit" className="btn btn-primary rek-submit" onClick={(e) => {
                   e.preventDefault()
@@ -106,6 +117,7 @@ class Wallet extends React.Component {
             <Modal.Title>Withdraw</Modal.Title>
           </Modal.Header>
           <div id="deposit-modal">
+            <ErrorMessage error={error} />
             <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
             <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
               this.requestInvoice(this.state.satoshis)

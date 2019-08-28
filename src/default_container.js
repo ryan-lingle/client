@@ -9,7 +9,9 @@ import {
   PodcastShow,
   CreatePodcast,
   Search,
-  HashtagFeed
+  HashtagFeed,
+  EmailUnconfirmed,
+  ConfirmEmail
 } from "./pages";
 import { PrivateRoute } from "./auth";
 
@@ -18,12 +20,14 @@ import 'react-notifications/lib/notifications.css';
 const DefaultContainer = () => (
   <div>
     <Navigation />
-    <PrivateRoute path="/u/:username" component={UserProfile} />
-    <PrivateRoute path="/search" component={Search} />
+    <PrivateRoute path="/u/:username" exact component={UserProfile} />
+    <PrivateRoute path="/search" exact component={Search} />
     <PrivateRoute path="/" exact component={Home} />
     <PrivateRoute path="/hashtag/:name" component={HashtagFeed} />
     <div className="container">
       <NotificationContainer />
+      <PrivateRoute path="/email_unconfirmed" exact component={EmailUnconfirmed} />
+      <PrivateRoute path="/confirm_email/:token" component={ConfirmEmail} />
       <PrivateRoute path="/podcast/:slug" component={PodcastShow} />
       <PrivateRoute path="/bookmarks" component={Bookmarks} />
       <PrivateRoute path="/notifications" exact component={Notifications} />

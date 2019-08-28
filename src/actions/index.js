@@ -25,6 +25,7 @@ const CURRENT_USER = gql`
       username
       profilePic
       satoshis
+      walletPermission
       followedHashtags {
         id
         name
@@ -50,6 +51,8 @@ const CURRENT_SATS = gql`
   query CurrentSats {
     currentUser {
       satoshis
+      paymentMethod
+      walletPermission
     }
   }
 `
@@ -120,8 +123,8 @@ const GET_USER = gql`
 `
 
 const GET_PODCAST = gql`
-  query GetPodcast($slug: String!) {
-    podcast(slug: $slug) {
+  query GetPodcast($slug: String, $id: String) {
+    podcast(slug: $slug, id: $id) {
       id
       title
       description
@@ -129,6 +132,7 @@ const GET_PODCAST = gql`
       email
       image
       website
+      emailVerified
       episodes {
         id
         title
@@ -229,6 +233,7 @@ const SIGN_UP_USER = gql`
       token
       username
       profilePic
+      email
     }
   }
 `
@@ -240,6 +245,7 @@ const LOGIN_USER = gql`
       token
       username
       profilePic
+      email
     }
   }
 `
@@ -305,11 +311,20 @@ const BOOKMARKS = gql`
   }
 `
 
-const WITHDRAW = gql`
-  mutation WITHDRAW($satoshis: Int!) {
-    withdrawInvoice(satoshis: $satoshis) {
+const DEPOSIT = gql`
+  mutation Deposit($satoshis: Int!) {
+    deposit(satoshis: $satoshis) {
       satoshis
       invoice
+    }
+  }
+`
+
+const WITHDRAW = gql`
+  mutation Withdraw($invoice: String!) {
+    withdraw(invoice: $invoice) {
+      success
+      error
     }
   }
 `
@@ -401,6 +416,7 @@ const GET_HASHTAG = gql`
     hashtag(name: $name) {
       id
       name
+      followers
       followedByCurrentUser
     }
   }
@@ -437,6 +453,31 @@ const HASHTAG_FEED = gql`
   }
 `
 
+const CONFIRM_EMAIL = gql`
+  mutation ConfirmEmail($token: String!) {
+    confirmEmail(token: $token) {
+      podcast {
+        id
+      }
+      user {
+        id
+      }
+    }
+  }
+`
+
+const RESEND_USER_EMAIL = gql`
+  mutation ResendUserEmail {
+    resendUserEmail
+  }
+`
+
+const RESEND_PODCAST_EMAIL = gql`
+  mutation ResendPodcastEmail($podcastId: String!) {
+    resendPodcastEmail(podcastId: $podcastId)
+  }
+`
+
 export {
   PARSE_PODCAST,
   CURRENT_USER,
@@ -458,11 +499,15 @@ export {
   CREATE_BOOKMARK,
   DESTROY_BOOKMARK,
   BOOKMARKS,
+  DEPOSIT,
   WITHDRAW,
   FOLLOWER_STREAM,
   FOLLOWING_STREAM,
   BOOKMARK_STREAM,
   REK_STREAM,
   GET_HASHTAG,
-  HASHTAG_FEED
+  HASHTAG_FEED,
+  CONFIRM_EMAIL,
+  RESEND_USER_EMAIL,
+  RESEND_PODCAST_EMAIL
 };

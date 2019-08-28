@@ -2,7 +2,7 @@ import React from 'react';
 import QRCode from 'qrcode.react'
 import { requestProvider } from 'webln'
 import { withApollo } from 'react-apollo'
-import { SUBSRIBE_INVOICE } from '../actions'
+import { SUBSRIBE_INVOICE, CURRENT_SATS } from '../actions'
 import Tooltip from "./tooltip";
 
 class Invoice extends React.Component {
@@ -11,14 +11,25 @@ class Invoice extends React.Component {
     this.state = {
       showQR: false
     }
+
+    this.props.client.query({
+      query: CURRENT_SATS
+    }).then(({ data }) => this.paymentMethod = data.currentUser.paymentMethod);
+
     this.subscribe();
+    this.joule();
   }
 
   joule = () => {
-    requestProvider().then((webln) => {
-      webln.sendPayment(this.props.invoice)
-    })
-  }
+    // if (window.confirm("Use Your Browser Wallet by Default Going Forward?")) {
+    try {
+      requestProvider().then((webln) => {
+        webln.sendPayment(this.props.invoice)
+      })
+    } catch(err) {
+      console.log(err)
+    }
+   }
 
   showQR = () => {
     this.setState({
@@ -28,7 +39,6 @@ class Invoice extends React.Component {
 
   qrCode = () => {
     const { satoshis, invoice } = this.props;
-
     return(
       <div className="text-center">
         <div className="back-btn fa fa-arrow-left" onClick={() => { this.setState({ showQR: false })}}></div>

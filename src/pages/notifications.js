@@ -3,7 +3,7 @@ import React from "react";
 const Notifications = ({ match }) => {
   return(
     <div>
-      hello world - notifications
+      <a href="http://localhost:3000/confirm_email/token" >verify email</a>
     </div>
   )
 }

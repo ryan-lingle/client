@@ -17,6 +17,7 @@ class AuthContainer extends React.Component {
     localStorage.setItem('token', data.token);
     localStorage.setItem('username', data.username);
     localStorage.setItem('profilePic', data.profilePic);
+    localStorage.setItem('email', data.email);
     try {
       window.location.href = this.props.location.state.from;
     } catch {

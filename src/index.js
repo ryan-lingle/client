@@ -23,6 +23,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (message === "AUTH") {
         localStorage.removeItem('token');
         window.location.reload();
+      } else if (message === "UNCONFIRMED") {
+        window.location.href = "/email_unconfirmed";
       }
       return "stf";
     });

@@ -15,7 +15,10 @@ class RekForm extends React.Component {
 
     this.props.client.query({
       query: CURRENT_SATS
-    }).then(({ data }) => this.currentSats = data.currentUser.satoshis)
+    }).then(({ data }) => {
+      this.walletPermission = data.currentUser.walletPermission;
+      this.currentSats = data.currentUser.satoshis;
+    })
   }
 
 
@@ -30,14 +33,13 @@ class RekForm extends React.Component {
   handleRekCreate = (createRek) => {
     const invoiceSatoshis = this.state.satoshis - this.currentSats;
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
-    if (walletSatoshis <= 0) {
-      createRek({ variables: {
-        episodeId: this.props.id,
-        tags: this.state.tags,
-        invoiceSatoshis,
-        walletSatoshis
-      }})
-    } else if (window.confirm(`Okay to Spend ${walletSatoshis} from your Rekr Wallet?`)) {
+    if (
+        walletSatoshis <= 0 ||
+        (
+          !this.walletPermission ||
+          window.confirm(`Okay to Spend ${walletSatoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satohsis from your Rekr Wallet?`)
+        )
+      ) {
       createRek({ variables: {
         episodeId: this.props.id,
         tags: this.state.tags,

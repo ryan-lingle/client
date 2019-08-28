@@ -89,7 +89,12 @@ export default class UserNav extends React.Component {
                 </div>
               )
             })}
-            <FollowButton current={this.props.current} userId={this.props.id} following={this.props.followedByCurrentUser} />
+            <FollowButton
+              current={this.props.current}
+              followeeId={this.props.id}
+              following={this.props.followedByCurrentUser}
+              type={'user'}
+            />
             <img
               src={this.props.profilePic}
               id="user-profile-avatar"

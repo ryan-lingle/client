@@ -17,6 +17,7 @@ class RssParser extends React.Component {
 
 
   handlePodcast = ({ parsePodcast }) => {
+    console.log(parsePodcast)
     this.setState({ podcast: parsePodcast, loading: false })
   }
 
@@ -25,7 +26,7 @@ class RssParser extends React.Component {
     return { title, description, released }
   }
 
-  handleEpisodeCreate = async (episodes, podcastId, slug) => {
+  handleEpisodeCreate = async (episodes, podcastId, email) => {
     const payload = [];
     episodes.forEach((episode, i) => {
       const { title, description, released } = episode;
@@ -47,7 +48,7 @@ class RssParser extends React.Component {
         podcastId,
         episodes: payload
       }
-    }).then(window.location.href = `/podcast/${slug}`)
+    }).then(window.location.href = `/email_unconfirmed?email=${email}&id=${podcastId}`)
   }
 
   handlePodcastCreate = async (createPodcast, podcast) => {
@@ -56,7 +57,7 @@ class RssParser extends React.Component {
       title, image, description,
       email, website, rss
     }})
-    this.handleEpisodeCreate(episodes, data.createPodcast.id, data.createPodcast.slug);
+    this.handleEpisodeCreate(episodes, data.createPodcast.id, data.createPodcast.email);
   }
 
   render() {
@@ -97,7 +98,7 @@ class RssParser extends React.Component {
           </Mutation>
         </div>
         {loading ? <Loader /> : null}
-        {podcast ? <Podcast {...podcast} /> : null}
+        {podcast ? <Podcast {...podcast} hideUnverifiedMessage={true} /> : null}
       </div>
     )
   }
