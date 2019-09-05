@@ -15,7 +15,6 @@ export default class BookmarkButton extends React.Component {
   render() {
     const { bookmarked } = this.state;
     const ACTION = bookmarked ? DESTROY_BOOKMARK : CREATE_BOOKMARK;
-    const episodeId = parseInt(this.props.episodeId);
 
     return(
       <Mutation mutation={ACTION} onCompleted={this.handleResponse} >
@@ -23,7 +22,10 @@ export default class BookmarkButton extends React.Component {
           <i
             className={`fa-bookmark bookmark ${bookmarked ? 'fa bookmarked' : 'far'}`}
             onClick={() => {
-              action({ variables: { episodeId }})
+              action({ variables: {
+                episodeId: this.props.episodeId,
+                rekId: this.props.rekId
+              }})
             }}
           >
           </i>

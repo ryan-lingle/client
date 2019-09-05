@@ -276,16 +276,16 @@ const TOGGLE_FOLLOW = gql`
 `
 
 const CREATE_BOOKMARK = gql`
-  mutation CreateBookmark($episodeId: Int!) {
-    createBookmark(episodeId: $episodeId) {
+  mutation CreateBookmark($episodeId: String!, $rekId: String) {
+    createBookmark(episodeId: $episodeId, rekId: $rekId) {
       bookmarkExists
     }
   }
 `
 
 const DESTROY_BOOKMARK = gql`
-  mutation DestroyBookmark($episodeId: Int!) {
-    destroyBookmark(episodeId: $episodeId) {
+  mutation DestroyBookmark($episodeId: String!, $rekId: String) {
+    destroyBookmark(episodeId: $episodeId, rekId: $rekId) {
       bookmarkExists
     }
   }
@@ -306,6 +306,32 @@ const BOOKMARKS = gql`
             title
             image
             emailVerified
+          }
+        }
+      }
+    }
+  }
+`
+
+const NOTIFICATIONS = gql`
+  query NotificationStream($n: Int!) {
+    notifications(n: $n) {
+      more
+      stream {
+        id
+        type
+        satoshis
+        notifier {
+          username
+          profilePic
+        }
+        rek {
+          episode {
+            title
+            podcast {
+              title
+              slug
+            }
           }
         }
       }
@@ -519,6 +545,7 @@ export {
   CREATE_BOOKMARK,
   DESTROY_BOOKMARK,
   BOOKMARKS,
+  NOTIFICATIONS,
   DEPOSIT,
   WITHDRAW,
   FOLLOWER_STREAM,

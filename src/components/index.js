@@ -18,3 +18,4 @@ export {default as SatoshiInput} from "./satoshi_input";
 export {default as TagInput} from "./tag_input";
 export {default as TwitterSignIn} from "./twitter_sign_in";
 export {default as Toggle} from "./toggle";
+export {default as Notification} from "./notification";

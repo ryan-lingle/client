@@ -29,7 +29,7 @@ export default class Rek extends React.Component {
           <div id="rek-flex-2">
             <div id="rek-flex-2-1">
               <div className="rek-satoshis">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats</div>
-              <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+              <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={id} />
             </div>
             <div id="rek-hashtags">
               {hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`} className="rek-hashtag">#{hashtag.name}</a>)}
