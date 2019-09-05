@@ -8,3 +8,15 @@
   margin-top: 20px;
   border-top: 2px solid $gray;
 }
+
+#twitter-sign-in {
+  background: white;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding: 5px 12px;
+}
+
+#twitter-sign-in:hover {
+  border: 1px solid $gray;
+}

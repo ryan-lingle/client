@@ -5,6 +5,7 @@ import {
   Home,
   Bookmarks,
   Notifications,
+  ModalMounter,
   UserProfile,
   PodcastShow,
   CreatePodcast,
@@ -20,6 +21,7 @@ import 'react-notifications/lib/notifications.css';
 const DefaultContainer = () => (
   <div>
     <Navigation />
+    <PrivateRoute component={ModalMounter} />
     <PrivateRoute path="/u/:username" exact component={UserProfile} />
     <PrivateRoute path="/search" exact component={Search} />
     <PrivateRoute path="/" exact component={Home} />

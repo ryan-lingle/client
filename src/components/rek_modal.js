@@ -8,9 +8,9 @@ import Invoice from "./invoice";
 
 export default class RekModal extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      isOpen: false,
+      isOpen: this.props.isOpen || false,
       step: 1,
       episodeId: null,
       satoshis: null,
@@ -19,7 +19,7 @@ export default class RekModal extends React.Component {
 
     if (this.props.episodeId) {
       this.state = {
-        isOpen: false,
+        isOpen: this.props.isOpen || false,
         step: 2,
         episodeId: this.props.episodeId,
         satoshis: null,

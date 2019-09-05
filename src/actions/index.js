@@ -20,7 +20,7 @@ const PARSE_PODCAST = gql`
 `
 
 const CURRENT_USER = gql`
-  query CurrentSats {
+  query CurrentUser {
     currentUser {
       username
       profilePic
@@ -53,6 +53,7 @@ const CURRENT_SATS = gql`
       satoshis
       paymentMethod
       walletPermission
+      canTweet
     }
   }
 `
@@ -251,8 +252,8 @@ const LOGIN_USER = gql`
 `
 
 const CREATE_REK = gql`
-  mutation CreateRek($episodeId: String!, $tags: [TagInput], $walletSatoshis: Int, $invoiceSatoshis: Int) {
-    createRek(episodeId: $episodeId, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
+  mutation CreateRek($episodeId: String!, $tweetRek: Boolean!, $tags: [TagInput], $walletSatoshis: Int, $invoiceSatoshis: Int) {
+    createRek(episodeId: $episodeId, tweetRek: $tweetRek, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
       invoice
       satoshis
     }
@@ -304,6 +305,7 @@ const BOOKMARKS = gql`
             slug
             title
             image
+            emailVerified
           }
         }
       }
@@ -478,6 +480,24 @@ const RESEND_PODCAST_EMAIL = gql`
   }
 `
 
+const TWITTER_TOKEN = gql`
+  mutation TwitterToken {
+    twitterToken
+  }
+`
+
+const TWITTER_ACCESS_TOKEN = gql`
+  mutation TwitterAccessToken($requestToken: String!, $oathVerifier: String!) {
+    twitterAccessToken(requestToken: $requestToken, oathVerifier: $oathVerifier) {
+      username
+      profilePic
+      id
+      token
+      signIn
+    }
+  }
+`
+
 export {
   PARSE_PODCAST,
   CURRENT_USER,
@@ -509,5 +529,7 @@ export {
   HASHTAG_FEED,
   CONFIRM_EMAIL,
   RESEND_USER_EMAIL,
-  RESEND_PODCAST_EMAIL
+  RESEND_PODCAST_EMAIL,
+  TWITTER_TOKEN,
+  TWITTER_ACCESS_TOKEN
 };

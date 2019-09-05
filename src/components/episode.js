@@ -21,7 +21,7 @@ const Episode = ({ episode, podcast }) => {
         </div>
       </div>
       {podcast.emailVerified ?
-          <RekModal episodeId={episode.id} >
+          <RekModal episodeId={episode.id}>
             <div href="#" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
           </RekModal>
         : null}

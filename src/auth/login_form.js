@@ -25,7 +25,7 @@ const SignUpForm = (props) => {
         className="mr-sm-2"
         ref={node => { password = node }}
       />
-      <button className="btn btn-primary">Login</button>
+      <button className="btn btn-primary">Sign In</button>
     </Form>
   )
 }

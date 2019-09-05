@@ -4,7 +4,7 @@ import { Mutation } from "react-apollo";
 import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
 import { SIGN_UP_USER, LOGIN_USER } from '../actions';
-import ErrorMessage from '../components/error_msg';
+import { ErrorMessage, TwitterSignIn } from '../components';
 
 class AuthContainer extends React.Component {
   state = {
@@ -24,6 +24,8 @@ class AuthContainer extends React.Component {
       window.location.href = "/";
     }
   }
+
+
 
   render() {
 
@@ -47,9 +49,11 @@ class AuthContainer extends React.Component {
           </Mutation>
         </Navbar>
         <div className="container">
-          {this.state.error
-            ? <div>{this.state.error}</div>
-            : null}
+          <TwitterSignIn>
+            {(requestTwitterToken) => (
+              <button onClick={requestTwitterToken}>Sign In with Twitter</button>
+            )}
+          </TwitterSignIn>
           <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >
             {(logIn, { error }) => (
               <div>
