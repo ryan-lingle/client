@@ -1,7 +1,6 @@
 /* The switch - the box around the toggle */
 .switch {
   position: relative;
-  display: inline-block;
   width: 60px;
   height: 34px;
   margin: auto;
@@ -22,7 +21,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: $light-gray;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -39,12 +38,24 @@
   transition: .4s;
 }
 
-input:checked + .toggle {
-  background-color: $twitter;
+.twitter-toggle {
+  input:checked + .toggle {
+    background-color: $twitter;
+  }
+
+  input:focus {
+    box-shadow: 0 0 1px $twitter;
+  }
 }
 
-input:focus + .toggle {
-  box-shadow: 0 0 1px $twitter;
+.guest-toggle {
+  input:checked + .toggle {
+    background-color: $primary;
+  }
+
+  input:focus {
+    box-shadow: 0 0 1px $primary;
+  }
 }
 
 input:checked + .toggle:before {

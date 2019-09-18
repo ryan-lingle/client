@@ -20,11 +20,11 @@ const Podcast = (podcast) => {
             )}
           </Mutation>
         </div>}
-      <div id="podcast">
-        <div>
+      <div className="row" id="podcast">
+        <div className="col-md-6">
           <img src={image} alt="podcast art" width="325px" className="podcast-artwork-lg"/>
         </div>
-        <div id="podcast-details-1">
+        <div id="podcast-details-1" className="col-md-6">
           <div className="podcast-detail">
             <h4>Title</h4>
             <h4 className="thin" >{title || "No Title Found"}</h4>
@@ -43,8 +43,8 @@ const Podcast = (podcast) => {
           </div>
         </div>
       </div>
-      {episodes.map((episode, i) => {
-        return <Episode episode={episode} podcast={podcast} key={i} />
+      {episodes.map(episode => {
+        return <Episode episode={episode} podcast={podcast} key={episode.id} />
       })}
     </div>
   )

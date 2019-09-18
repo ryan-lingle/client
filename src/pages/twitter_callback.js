@@ -21,6 +21,7 @@ class TwitterCallback extends React.Component {
       localStorage.setItem('username', data.twitterAccessToken.username);
       localStorage.setItem('profilePic', data.twitterAccessToken.profilePic);
       localStorage.setItem('email', data.twitterAccessToken.email);
+      localStorage.setItem('hasPodcast', data.twitterAccessToken.hasPodcast);
     }
     window.location.href = "/";
   }

@@ -21,7 +21,7 @@ const Home = ({ match }) => {
               <div className="col-lg-6 col-md-12 feed-col">
                 <Stream query={FEED_STREAM} />
               </div>
-              <div className="col-sm-3 d-sm-none d-md-block hashtag-col">
+              <div className="col-sm-3 d-none d-lg-block hashtag-col">
                 <HashtagBox hashtags={currentUser.followedHashtags} />
               </div>
             </div>

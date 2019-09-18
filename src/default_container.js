@@ -12,8 +12,10 @@ import {
   Search,
   HashtagFeed,
   EmailUnconfirmed,
-  ConfirmEmail
+  ConfirmEmail,
+  PodcastDashboard
 } from "./pages";
+import { Route } from 'react-router-dom';
 import { PrivateRoute } from "./auth";
 
 import 'react-notifications/lib/notifications.css';
@@ -25,7 +27,8 @@ const DefaultContainer = () => (
     <PrivateRoute path="/u/:username" exact component={UserProfile} />
     <PrivateRoute path="/search" exact component={Search} />
     <PrivateRoute path="/" exact component={Home} />
-    <PrivateRoute path="/hashtag/:name" component={HashtagFeed} />
+    <Route path="/hashtag/:name" component={HashtagFeed} />
+    <PrivateRoute path="/podcast-dashboard" exact component={PodcastDashboard} />
     <div className="container">
       <NotificationContainer />
       <PrivateRoute path="/email_unconfirmed" exact component={EmailUnconfirmed} />

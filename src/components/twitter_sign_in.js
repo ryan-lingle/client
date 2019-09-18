@@ -14,8 +14,8 @@ const TwitterSignIn = () => {
       {(requestTwitterToken, { error }) => (
         <div>
           <ErrorMessage error={error} />
-          <button id="twitter-sign-in" onClick={requestTwitterToken}>
-            <img src={TwitterLogo} width={'30px'} />
+          <button className="sign-in-btn" onClick={requestTwitterToken}>
+            <img src={TwitterLogo} width={'30px'} alt="twitter-logo" />
             Sign In with Twitter
           </button>
         </div>

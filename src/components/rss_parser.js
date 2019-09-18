@@ -17,7 +17,6 @@ class RssParser extends React.Component {
 
 
   handlePodcast = ({ parsePodcast }) => {
-    console.log(parsePodcast)
     this.setState({ podcast: parsePodcast, loading: false })
   }
 

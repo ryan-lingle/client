@@ -235,6 +235,7 @@ const SIGN_UP_USER = gql`
       username
       profilePic
       email
+      hasPodcast
     }
   }
 `
@@ -247,6 +248,7 @@ const LOGIN_USER = gql`
       username
       profilePic
       email
+      hasPodcast
     }
   }
 `
@@ -520,6 +522,59 @@ const TWITTER_ACCESS_TOKEN = gql`
       id
       token
       signIn
+      hasPodcast
+    }
+  }
+`
+
+const PODCAST_DASHBOARD = gql`
+  query PodcastDashboard {
+    currentUser {
+      podcasts {
+        id
+        title
+        image
+        description
+        donationCount
+        donationSum
+        guestShare
+        episodes {
+          id
+          title
+          description
+          released
+          donationSum
+          podcast {
+            title
+            image
+            slug
+          }
+        }
+      }
+    }
+  }
+`
+
+const GUEST_SHARE = gql`
+  mutation GuestShare($percentage: Float!, $podcastId: String!) {
+    guestShare(percentage: $percentage, podcastId: $podcastId)
+  }
+`
+
+const TAG_GUEST = gql`
+  mutation TagGuest($userIds: [String!], $episodeIds: [String!], $podcastId: String!) {
+    tagGuest(userIds: $userIds, episodeIds: $episodeIds, podcastId: $podcastId)
+  }
+`
+
+const EPISODE_GUESTS = gql`
+  query EpisodeGuests($episodeId: Int!) {
+    episode(id: $episodeId) {
+      guests {
+        id
+        username
+        profilePic
+      }
     }
   }
 `
@@ -558,5 +613,9 @@ export {
   RESEND_USER_EMAIL,
   RESEND_PODCAST_EMAIL,
   TWITTER_TOKEN,
-  TWITTER_ACCESS_TOKEN
+  TWITTER_ACCESS_TOKEN,
+  PODCAST_DASHBOARD,
+  GUEST_SHARE,
+  TAG_GUEST,
+  EPISODE_GUESTS
 };

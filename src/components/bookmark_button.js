@@ -1,5 +1,6 @@
 import React from "react";
 import { CREATE_BOOKMARK, DESTROY_BOOKMARK } from "../actions";
+import { NotificationManager } from 'react-notifications';
 import { Mutation } from "react-apollo";
 
 export default class BookmarkButton extends React.Component {
@@ -8,6 +9,7 @@ export default class BookmarkButton extends React.Component {
   }
 
   handleResponse = ({ createBookmark, destroyBookmark }) => {
+    if (createBookmark) NotificationManager.info('Rek Bookmarked');
     const res = createBookmark || destroyBookmark;
     this.setState({ bookmarked: res.bookmarkExists })
   }

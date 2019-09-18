@@ -24,9 +24,12 @@ class Wallet extends React.Component {
       satoshis: 10000,
       withdraw: false,
       deposit: false,
+      joule: true,
       invoice: null,
       error: null
     }
+
+    this.invoice = React.createRef();
   }
 
 
@@ -42,10 +45,20 @@ class Wallet extends React.Component {
         defaultAmount: this.state.satoshis,
         defaultMemo: "Rekr Widthdrawal"
       })
+
+      this.submitInvoice(paymentRequest);
+
+    } catch(error) {
+      this.setState({ joule: false });
+    }
+  }
+
+  submitInvoice = async (invoice) => {
+    try {
       const { data } = await this.props.client.mutate({
         mutation: WITHDRAW,
         variables: {
-          invoice: paymentRequest
+          invoice
         }
       });
 
@@ -80,7 +93,7 @@ class Wallet extends React.Component {
   }
 
   buildModal = () => {
-    const { invoice, withdraw, deposit, satoshis, error } = this.state;
+    const { invoice, withdraw, deposit, satoshis, error, joule } = this.state;
     let modalContent;
 
     if (invoice) {
@@ -117,11 +130,26 @@ class Wallet extends React.Component {
             <Modal.Title>Withdraw</Modal.Title>
           </Modal.Header>
           <div id="deposit-modal">
-            <ErrorMessage error={error} />
-            <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
-            <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
-              this.requestInvoice(this.state.satoshis)
-            }} />
+            {joule ?
+              <div>
+                <ErrorMessage error={error} />
+                <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
+                <br></br>
+                <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
+                  this.requestInvoice(this.state.satoshis)
+                }} />
+              </div>
+              : <div>
+                  <div id="joule-msg">We recommend getting the <a target="_blank" href="https://lightningjoule.com/">Joule Chrome Extension</a> for a Better User Experience.</div>
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    this.submitInvoice(this.invoice.current.value);
+                  }}>
+                    <input ref={this.invoice} className="form-control" placeholder="Enter a Lightning Invoice..." />
+                    <br></br>
+                    <input type="submit" value="Withdraw" className="btn btn-primary" />
+                  </form>
+                </div>}
           </div>
         </div>
       )

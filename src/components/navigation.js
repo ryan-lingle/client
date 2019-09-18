@@ -6,6 +6,7 @@ import Search from "./search";
 const Navigation = (props) => {
   const username = localStorage.getItem("username");
   const profilePic = localStorage.getItem("profilePic");
+  const hasPodcast = localStorage.getItem("hasPodcast");
   return(
     <Navbar bg="white" expand="md" fixed={"top"} >
       <Navbar.Brand href="/" className="text-primary rekr-brand">REKR</Navbar.Brand>
@@ -23,7 +24,9 @@ const Navigation = (props) => {
           </Dropdown.Toggle>
           <Dropdown.Menu alignRight={true}>
             <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>
-            <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>
+            {hasPodcast === "true" ?
+              <Dropdown.Item href="/podcast-dashboard">Podcast Dashboard</Dropdown.Item>
+              : <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>}
             <Dropdown.Item onClick={() => {
               localStorage.clear();
               window.location.reload();

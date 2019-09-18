@@ -1,12 +1,26 @@
 import React from "react";
 
-const Toggle = ({ onChange }) => {
-  return(
-    <label className="switch">
-      <input type="checkbox" onChange={onChange} />
-      <span className="toggle round"></span>
-    </label>
-  )
-}
+export default class Toggle extends React.Component {
+  state = {
+    on: this.props.on
+  }
 
-export default Toggle;
+  componentWillReceiveProps({ on }) {
+    this.setState({ on });
+  }
+
+  onChange = ({ target: { checked }}) => {
+    this.props.onChange(checked);
+    this.setState({ on: checked })
+  }
+
+  render() {
+    const { customeClass } = this.props;
+    return(
+      <label className={`switch ${customeClass}`}>
+        <input type="checkbox" onChange={this.onChange} checked={this.state.on} />
+        <span className="toggle round"></span>
+      </label>
+    )
+  }
+}

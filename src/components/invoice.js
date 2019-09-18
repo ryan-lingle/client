@@ -20,16 +20,15 @@ class Invoice extends React.Component {
     this.joule();
   }
 
-  joule = () => {
+  joule = async () => {
     // if (window.confirm("Use Your Browser Wallet by Default Going Forward?")) {
     try {
-      requestProvider().then((webln) => {
-        webln.sendPayment(this.props.invoice)
-      })
+      const webln = await requestProvider();
+      webln.sendPayment(this.props.invoice)
     } catch(err) {
       console.log(err)
     }
-   }
+  }
 
   showQR = () => {
     this.setState({

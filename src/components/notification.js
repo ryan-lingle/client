@@ -31,7 +31,7 @@ const Notification = ({ notifier, rek: { episode }, type, satoshis }) => {
 
           <span className="font-weight-bold"> {episode.title}</span>
         </div>
-        {type == "rek" ?
+        {type === "rek" ?
           <div className="sats-stacked">
             You stacked
             <span className="font-weight-bold"> {satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</span> Sats

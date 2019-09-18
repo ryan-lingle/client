@@ -5,6 +5,8 @@ import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
 import { SIGN_UP_USER, LOGIN_USER } from '../actions';
 import { ErrorMessage, TwitterSignIn } from '../components';
+import { requestProvider } from 'webln'
+
 
 class AuthContainer extends React.Component {
   state = {
@@ -18,10 +20,20 @@ class AuthContainer extends React.Component {
     localStorage.setItem('username', data.username);
     localStorage.setItem('profilePic', data.profilePic);
     localStorage.setItem('email', data.email);
+    localStorage.setItem('hasPodcast', data.hasPodcast);
     try {
       window.location.href = this.props.location.state.from;
     } catch {
       window.location.href = "/";
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      const webln = await requestProvider();
+      console.log(webln);
+    } catch(err) {
+      console.log(err);
     }
   }
 
@@ -49,11 +61,9 @@ class AuthContainer extends React.Component {
           </Mutation>
         </Navbar>
         <div className="container">
-          <TwitterSignIn>
-            {(requestTwitterToken) => (
-              <button onClick={requestTwitterToken}>Sign In with Twitter</button>
-            )}
-          </TwitterSignIn>
+          <div id="sign-in-btns">
+            <TwitterSignIn />
+          </div>
           <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >
             {(logIn, { error }) => (
               <div>

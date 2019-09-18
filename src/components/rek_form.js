@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
-import { SatoshiInput, TagInput, TwitterSignIn, Toggle } from ".";
+import { SatoshiInput, TagInput, TwitterSignIn, Toggle, ErrorMessage } from ".";
 
 class RekForm extends React.Component {
   constructor(props) {
@@ -93,15 +93,18 @@ class RekForm extends React.Component {
               <SatoshiInput onUpdate={this.handleChange} />
               <Form inline id="rek-form">
                 <div id="twitter-toggle">
-                  <Toggle onChange={this.tweetRek} />
+                  <Toggle onChange={this.tweetRek} customeClass={"twitter-toggle"}/>
                   <div id="twitter-toggle-label">Tweet It</div>
                 </div>
                 <Mutation mutation={CREATE_REK} onCompleted={this.handleInvoice}>
                   {(createRek, {error, data}) => (
-                    <input type="submit" value="Rek It" className="btn btn-primary rek-submit" onClick={(e) => {
-                      e.preventDefault()
-                      this.handleRekCreate(createRek)
-                    }}/>
+                    <div>
+                      <ErrorMessage error={error} />
+                      <input type="submit" value="Rek It" className="btn btn-primary rek-submit" onClick={(e) => {
+                        e.preventDefault()
+                        this.handleRekCreate(createRek)
+                      }}/>
+                    </div>
                   )}
                 </Mutation>
               </Form>
