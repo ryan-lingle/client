@@ -26,7 +26,7 @@ const EpisodeShow = ({ match: { params }, location: { search } }) => {
 
 function parseParams(params) {
   const res = {};
-  params.split('&').forEach(pair => {
+  params && params.split('&').forEach(pair => {
     const split = pair.split("=");
     res[split[0]] = split[1];
   })

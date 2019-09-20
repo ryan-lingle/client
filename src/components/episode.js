@@ -14,22 +14,20 @@ const Episode = ({ episode, podcast }) => {
           <img className="podcast-art" alt="podcast art" src={podcast.image} width={"70px"} />
         </a>
       </Tooltip>
-      <div className="episode-details">
+      <a className="episode-details" href={`/episode/${episode.id}`}>
         <div>
           {podcast.title}
         </div>
         <div>
           {episode.title}
         </div>
-      </div>
+      </a>
       {podcast.emailVerified ?
           <RekModal episodeId={episode.id}>
             <div href="#" id="rek-btn" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
           </RekModal>
         : null}
-      {podcast.emailVerified ?
-          <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
-        : null}
+      <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
     </div>
   )
 }

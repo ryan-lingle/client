@@ -16,6 +16,7 @@
 .rek-middle {
   flex-grow: 1;
   padding: 0px 20px;
+  text-align: left;
 }
 
 .rek-profile-pic {
@@ -39,8 +40,17 @@
   color: black;
 }
 
-.rek a:hover {
-  text-decoration: none;
+.rek-username:hover {
+  text-decoration: none !important;
+  color: black;
+}
+
+.rek-episode-details {
+  color: black;
+}
+
+.rek-episode-details:hover {
+  color: black;
 }
 
 .rek-podcast-art {

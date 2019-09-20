@@ -1,6 +1,6 @@
 import React from "react";
 import { CONFIRM_EMAIL } from "../actions";
-import { ErrorMessage, Loader } from "../components";
+import { Loader } from "../components";
 import { withApollo } from "react-apollo";
 
 class ConfirmEmail extends React.Component {
@@ -13,6 +13,7 @@ class ConfirmEmail extends React.Component {
     if (confirmEmail.user) {
       this.setState({ loading: false, type: "user" });
     } else if (confirmEmail.podcast) {
+      localStorage.setItem('hasPodcast', "true" );
       this.setState({ loading: false, type: "podcast" });
     }
   }

@@ -59,8 +59,8 @@ const CURRENT_SATS = gql`
 `
 
 const UPDATE_USER = gql`
-  mutation UpdateUser($email: String, $username: String, $password: String, $profilePic: Upload) {
-    updateUser(email: $email, username: $username, password: $password, profilePic: $profilePic) {
+  mutation UpdateUser($email: String, $username: String, $password: String, $profilePic: Upload, $bio: String) {
+    updateUser(email: $email, username: $username, password: $password, profilePic: $profilePic, bio: $bio) {
       username
       profilePic
     }
@@ -176,6 +176,7 @@ const EPISODE_SHOW = gql`
           title
         }
         title
+        released
         description
       }
     }

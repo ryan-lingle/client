@@ -17,19 +17,19 @@ export default class Rek extends React.Component {
 
   render() {
     const { user, episode, satoshis, id, hashtags } = this.props;
+    console.log(id);
     const { podcast } = episode;
     return(
-      <div className="rek item" id={`rek-${id}`} onClick={this.handleClick}>
+      <div className="rek item" id={`rek-${id}`}>
         <div>
           <div className="rek-flex" id="rek-flex-1">
             <a href={"/u/" + user.username}>
               <img src={user.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"60px"} />
             </a>
             <div className="rek-middle">
-              <a href={"/u/" + user.username}>
-                <div className="rek-username">{user.username}</div>
-              </a>
-              <div>{episode.title}</div>
+              <a className="rek-username" href={"/u/" + user.username}>{user.username}</a>
+              <br></br>
+              <a className="rek-episode-details" href={`/episode/${this.props.episode.id}?rekId=${this.props.id}`}>{episode.title}</a>
             </div>
           </div>
           <div id="rek-flex-2">

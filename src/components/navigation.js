@@ -4,7 +4,6 @@ import RekModal from './rek_modal';
 import Search from "./search";
 
 const Navigation = (props) => {
-  const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
   const profilePic = localStorage.getItem("profilePic");
   const hasPodcast = localStorage.getItem("hasPodcast");

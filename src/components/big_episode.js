@@ -25,7 +25,7 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
       <div className="be-tags"></div>
     )
   }
-
+  const date = new Date(episode.released);
   return(
     <div className="big-episode-wrapper">
       <Helmet>
@@ -43,7 +43,10 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
               <img className="be-podcast-art" alt={"podcast art"} src={episode.podcast.image} />
             </a>
           </Tooltip>
-          <div className="be-title">{episode.title}</div>
+          <div>
+            <div className="be-title">{episode.title}</div>
+            <div className="be-released">{date.toDateString()}</div>
+          </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: episode.description }}></div>
       </div>

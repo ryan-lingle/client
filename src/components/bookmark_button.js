@@ -2,7 +2,7 @@ import React from "react";
 import { CREATE_BOOKMARK, DESTROY_BOOKMARK } from "../actions";
 import { NotificationManager } from 'react-notifications';
 import { Mutation } from "react-apollo";
-import { ErrorMessage, Tooltip } from ".";
+import { ErrorMessage } from ".";
 
 export default class BookmarkButton extends React.Component {
   state = {

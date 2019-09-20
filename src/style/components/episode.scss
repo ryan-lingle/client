@@ -5,6 +5,11 @@
 .episode-details {
   flex-grow: 1;
   padding: 0px 20px;
+  color: black;
+}
+
+.episode-details:hover {
+  color: black;
 }
 
 .episode-rek-btn {
@@ -55,4 +60,9 @@
 
 .be-tags {
   background: white;
+}
+
+.be-released {
+  margin-top: 10px;
+  padding-left: 50px;
 }
