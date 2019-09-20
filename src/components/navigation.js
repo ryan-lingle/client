@@ -4,6 +4,7 @@ import RekModal from './rek_modal';
 import Search from "./search";
 
 const Navigation = (props) => {
+  const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
   const profilePic = localStorage.getItem("profilePic");
   const hasPodcast = localStorage.getItem("hasPodcast");
@@ -19,19 +20,21 @@ const Navigation = (props) => {
         </Nav>
         <Search />
         <Dropdown>
-          <Dropdown.Toggle as="div" >
-            <img src={profilePic} alt="avatar" className="rounded-circle" width="35px"/>
-          </Dropdown.Toggle>
-          <Dropdown.Menu alignRight={true}>
-            <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>
-            {hasPodcast === "true" ?
-              <Dropdown.Item href="/podcast-dashboard">Podcast Dashboard</Dropdown.Item>
-              : <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>}
-            <Dropdown.Item onClick={() => {
-              localStorage.clear();
-              window.location.reload();
-            }}>Sign Out</Dropdown.Item>
-          </Dropdown.Menu>
+          <div>
+            <Dropdown.Toggle as="div" >
+              <img src={profilePic} alt="avatar" className="rounded-circle" width="35px"/>
+            </Dropdown.Toggle>
+            <Dropdown.Menu alignRight={true}>
+              <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>
+              {hasPodcast === "true" ?
+                <Dropdown.Item href="/podcast-dashboard">Podcast Dashboard</Dropdown.Item>
+                : <Dropdown.Item href="/create-podcast">Have a Podcast?</Dropdown.Item>}
+              <Dropdown.Item onClick={() => {
+                localStorage.clear();
+                window.location.href = "/login";
+              }}>Sign Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </div>
         </Dropdown>
         <RekModal>
           <div href="#" className="rek-btn btn btn-secondary">Rek</div>

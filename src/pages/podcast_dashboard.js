@@ -13,9 +13,10 @@ class PodcastDashboard extends React.Component {
     return(
       <div id="home">
         <Query query={PODCAST_DASHBOARD}>
-          {({ data: { currentUser }, error, loading }) => {
+          {({ data, error, loading }) => {
             if (error) return <ErrorMessage error={error} />;
             if (loading) return <Loader />;
+            const { currentUser } = data;
             return(
               <div id="pd-wrapper">
                 <h2>Podcast Dashboard</h2>

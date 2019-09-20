@@ -6,14 +6,20 @@ import Tooltip from "./tooltip";
 export default class Rek extends React.Component {
   componentDidMount() {
     const rek = document.getElementById(`rek-${this.props.id}`);
-    observer.observe(rek);
+    if (localStorage.getItem('token')) observer.observe(rek);
+  }
+
+  handleClick = ({ target }) => {
+    if (target.id !== "bookmark-btn") {
+      window.location.href = `/episode/${this.props.episode.id}?rekId=${this.props.id}`;
+    }
   }
 
   render() {
     const { user, episode, satoshis, id, hashtags } = this.props;
     const { podcast } = episode;
     return(
-      <div className="rek item" id={`rek-${id}`} >
+      <div className="rek item" id={`rek-${id}`} onClick={this.handleClick}>
         <div>
           <div className="rek-flex" id="rek-flex-1">
             <a href={"/u/" + user.username}>

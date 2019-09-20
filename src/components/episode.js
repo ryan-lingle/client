@@ -5,8 +5,10 @@ import Tooltip from "./tooltip";
 
 const Episode = ({ episode, podcast }) => {
   if (!podcast) podcast = episode.podcast;
+
+
   return(
-    <div className="episode item" >
+    <div className="episode item">
       <Tooltip tooltip={podcast.title}>
         <a href={"/podcast/" + podcast.slug}>
           <img className="podcast-art" alt="podcast art" src={podcast.image} width={"70px"} />
@@ -22,7 +24,7 @@ const Episode = ({ episode, podcast }) => {
       </div>
       {podcast.emailVerified ?
           <RekModal episodeId={episode.id}>
-            <div href="#" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
+            <div href="#" id="rek-btn" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
           </RekModal>
         : null}
       {podcast.emailVerified ?

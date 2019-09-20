@@ -1,6 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { TOGGLE_FOLLOW } from "../actions";
+import { ErrorMessage } from ".";
 
 export default class FollowButton extends React.Component {
 
@@ -32,7 +33,10 @@ export default class FollowButton extends React.Component {
       return(
         <Mutation mutation={TOGGLE_FOLLOW} onCompleted={this.toggle} >
           {(toggleFollow, { error }) => (
-            <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} className="btn btn-secondary follow-btn">Follow</div>
+            <div>
+              <ErrorMessage error={error} />
+              <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} className="btn btn-secondary follow-btn">Follow</div>
+            </div>
           )}
         </Mutation>
       )
@@ -40,7 +44,10 @@ export default class FollowButton extends React.Component {
       return(
         <Mutation mutation={TOGGLE_FOLLOW} onCompleted={this.toggle} >
           {(toggleFollow, { error }) => (
-            <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
+            <div>
+              <ErrorMessage error={error} />
+              <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
+            </div>
           )}
         </Mutation>
       )

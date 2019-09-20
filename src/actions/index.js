@@ -99,7 +99,7 @@ const FEED_STREAM = gql`
 `
 
 const GET_USER = gql`
-  query GetUser($username: String) {
+  query GetUser($username: String!) {
     user(username: $username) {
       id
       profilePic
@@ -128,6 +128,7 @@ const GET_PODCAST = gql`
     podcast(slug: $slug, id: $id) {
       id
       title
+      slug
       description
       rss
       email
@@ -156,6 +157,31 @@ const GET_EPISODE = gql`
     }
   }
 `
+
+const EPISODE_SHOW = gql`
+  query EpisodeShow($episodeId: String!, $rekId: String) {
+    episodeShow(episodeId: $episodeId, rekId: $rekId) {
+      rek {
+        id
+        user {
+          username
+          profilePic
+        }
+        satoshis
+      }
+      episode {
+        podcast {
+          image
+          slug
+          title
+        }
+        title
+        description
+      }
+    }
+  }
+`
+
 const CREATE_PODCAST = gql`
   mutation CreatePodcast($title: String!, $rss: String!, $description: String, $email: String!, $website: String, $image: String!) {
     createPodcast(title: $title, rss: $rss, description: $description, email: $email, website: $website, image: $image) {
@@ -228,8 +254,8 @@ const SEARCH_EPISODES = gql`
 `
 
 const SIGN_UP_USER = gql`
-  mutation SignUp($email: String!, $username: String!, $password: String!) {
-    createUser(email: $email, username: $username, password: $password) {
+  mutation SignUp($email: String!, $username: String!, $password: String!, $rekId: String) {
+    createUser(email: $email, username: $username, password: $password, rekId: $rekId) {
       id
       token
       username
@@ -617,5 +643,6 @@ export {
   PODCAST_DASHBOARD,
   GUEST_SHARE,
   TAG_GUEST,
-  EPISODE_GUESTS
+  EPISODE_GUESTS,
+  EPISODE_SHOW
 };

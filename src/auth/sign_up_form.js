@@ -2,8 +2,8 @@ import React from "react";
 import { Form } from "react-bootstrap"
 
 const SignUpForm = (props) => {
-  let email, username, password;
-
+  let email, username, password, rek;
+  const rekId = localStorage.getItem('rekId');
   return(
     <div>
       <h2>Sign Up</h2>
@@ -12,7 +12,8 @@ const SignUpForm = (props) => {
         const variables = {
           email: email.value,
           username: username.value,
-          password: password.value
+          password: password.value,
+          rekId: rek.value
         };
         props.logIn({ variables })
       }}>
@@ -30,6 +31,7 @@ const SignUpForm = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" ref={node => { password = node }} />
         </Form.Group>
+        <input type="hidden" value={rekId} ref={node => { rek = node }} />
         <button className="btn btn-primary" type="submit">
           Submit
         </button>

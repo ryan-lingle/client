@@ -1,7 +1,9 @@
 import React from 'react';
 
 const ErrorMessage = ({ error, position}) => {
-  if (error && error.graphQLErrors) {
+  if (error && (error.message === "GraphQL error: AUTH")) {
+    window.location.href = "/login?warning=1";
+  } else if (error && error.graphQLErrors) {
     const split = error.message.split(": ");
     const abs = position ? {
       position: "absolute",

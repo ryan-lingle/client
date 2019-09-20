@@ -1,11 +1,10 @@
 import React from 'react';
-import { Navigation } from "./components";
+import { Navigation, NoAuthNav } from "./components";
 import { NotificationContainer } from 'react-notifications';
 import {
   Home,
   Bookmarks,
   Notifications,
-  ModalMounter,
   UserProfile,
   PodcastShow,
   CreatePodcast,
@@ -13,27 +12,30 @@ import {
   HashtagFeed,
   EmailUnconfirmed,
   ConfirmEmail,
-  PodcastDashboard
+  PodcastDashboard,
+  EpisodeShow
 } from "./pages";
 import { Route } from 'react-router-dom';
 import { PrivateRoute } from "./auth";
 
 import 'react-notifications/lib/notifications.css';
 
+const token = localStorage.getItem('token');
+
 const DefaultContainer = () => (
   <div>
-    <Navigation />
-    <PrivateRoute component={ModalMounter} />
-    <PrivateRoute path="/u/:username" exact component={UserProfile} />
-    <PrivateRoute path="/search" exact component={Search} />
+    {token ? <Navigation /> : <NoAuthNav />}
+    <Route path="/u/:username" exact component={UserProfile} />
+    <Route path="/search" exact component={Search} />
     <PrivateRoute path="/" exact component={Home} />
     <Route path="/hashtag/:name" component={HashtagFeed} />
+    <Route path="/episode/:episodeId" component={EpisodeShow} />
     <PrivateRoute path="/podcast-dashboard" exact component={PodcastDashboard} />
     <div className="container">
       <NotificationContainer />
       <PrivateRoute path="/email_unconfirmed" exact component={EmailUnconfirmed} />
       <PrivateRoute path="/confirm_email/:token" component={ConfirmEmail} />
-      <PrivateRoute path="/podcast/:slug" component={PodcastShow} />
+      <Route path="/podcast/:slug" component={PodcastShow} />
       <PrivateRoute path="/bookmarks" component={Bookmarks} />
       <PrivateRoute path="/notifications" exact component={Notifications} />
       <PrivateRoute path="/create-podcast" exact component={CreatePodcast} />

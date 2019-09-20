@@ -57,9 +57,9 @@ class RekForm extends React.Component {
     this.props.handleInvoice(createRek)
   }
 
-  tweetRek = ({ target }) => {
+  tweetRek = (checked) => {
     if (this.canTweet) {
-      this.setState({ tweetRek: target.checked })
+      this.setState({ tweetRek: checked })
     } else {
       this.setState({ twitterSignIn: true })
     }

@@ -4,9 +4,11 @@ import FollowButton from "./follow_button";
 const User = ({ id, current, followedByCurrentUser, username, profilePic }) => {
   return(
     <div className="user item">
-      <img src={profilePic} className="rounded-circle" alt="avatar" width="60px" />
       <a href={"/u/" + username}>
-        <div className="user-username">{username}</div>
+        <img src={profilePic} alt={"avatar"} className="rounded-circle user-profile-pic profile-pic" width={"60px"} />
+      </a>
+      <a className="user-username" href={"/u/" + username}>
+        {username}
       </a>
       <FollowButton
         current={current}

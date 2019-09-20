@@ -1,44 +1,54 @@
 import React from "react";
 import { CONFIRM_EMAIL } from "../actions";
 import { ErrorMessage, Loader } from "../components";
-import { Mutation } from "react-apollo";
+import { withApollo } from "react-apollo";
 
-export default class ConfirmEmail extends React.Component {
+class ConfirmEmail extends React.Component {
   state = {
-    res: null,
+    loading: true,
     type: null,
   }
 
   onCompleted = ({ confirmEmail }) => {
     if (confirmEmail.user) {
-      this.setState({ res: confirmEmail.user, type: "user" });
+      this.setState({ loading: false, type: "user" });
     } else if (confirmEmail.podcast) {
-      this.setState({ res: confirmEmail.podcast, type: "podcast" });
+      this.setState({ loading: false, type: "podcast" });
     }
   }
 
-  componentDidMount() {
-    this.confirmEmail({ variables: this.props.match.params })
+  async componentDidMount() {
+    const { data } = await this.props.client.mutate({
+      mutation: CONFIRM_EMAIL,
+      variables: this.props.match.params
+    });
+    this.onCompleted(data);
   }
 
   render() {
-    const { res } = this.state;
-    return(
-      <Mutation mutation={CONFIRM_EMAIL} onCompleted={this.onCompleted} >
-        {(confirmEmail, { error }) => {
-          this.confirmEmail = confirmEmail;
-          console.log(error)
-          if (error) return <ErrorMessage error={error} />;
-          if (!res) return <Loader />;
-          return(
-            <div id="confirm-email">
-              <h1>Your email has been confirmed.</h1>
-              <br></br>
-              <a href="/">Check out your Feed</a>
-            </div>
-          )
-        }}
-      </Mutation>
-    )
+    const { loading, type } = this.state;
+    if (loading) return <div id="confirm-email"><Loader /></div>;
+
+    if (type === "user") {
+      return(
+        <div id="confirm-email">
+          <h1>Your email has been confirmed.</h1>
+          <br></br>
+          <a href="/">Check out your Feed</a>
+        </div>
+      )
+    }
+
+    if (type === "podcast") {
+      return(
+        <div id="confirm-email">
+          <h1>Your email has been confirmed.</h1>
+          <br></br>
+          <a href="/podcast-dashboard">Check out your Podcast Dashboard</a>
+        </div>
+      )
+    }
   }
 }
+
+export default withApollo(ConfirmEmail);

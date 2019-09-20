@@ -40,7 +40,7 @@ class AuthContainer extends React.Component {
 
 
   render() {
-
+    const warning = this.props.location.search.split('warning=')[1];
     return (
       <div>
         <Navbar bg="white" expand="md">
@@ -60,6 +60,7 @@ class AuthContainer extends React.Component {
             )}
           </Mutation>
         </Navbar>
+        {warning ? <div id="auth-warning" className="error" >You must be logged in to do that.</div> : null}
         <div className="container">
           <div id="sign-in-btns">
             <TwitterSignIn />

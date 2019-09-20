@@ -1,5 +1,5 @@
 import React from "react";
-import { createStream, Rek, UserBox, HashtagBox, FollowButton } from "../components";
+import { createStream, Rek, UserBox, HashtagBox, FollowButton, Loader, ErrorMessage } from "../components";
 import { HASHTAG_FEED, GET_HASHTAG, CURRENT_USER } from '../actions';
 import { Query } from "react-apollo";
 
@@ -11,6 +11,7 @@ export default class HashtagFeed extends React.Component {
 
   }
   render() {
+    const isLoggedIn = localStorage.getItem('token');
     const Stream = createStream(Rek);
     return(
       <div id="home">
@@ -32,9 +33,11 @@ export default class HashtagFeed extends React.Component {
             );
           }}
         </Query>
-        <Query query={CURRENT_USER} >
+        {isLoggedIn ? <Query query={CURRENT_USER} >
           {({ data, error, loading}) => {
-            if (error || loading) return <div></div>
+            if (loading) return <Loader />;
+            if (error) return <ErrorMessage error={error} />;
+
             const { currentUser } = data;
 
             return (
@@ -52,6 +55,9 @@ export default class HashtagFeed extends React.Component {
             )
           }}
         </Query>
+        : <div className="col-lg-6 col-md-12 offset-md-3 feed-col">
+            <Stream query={HASHTAG_FEED} variables={this.props.match.params} />
+          </div>}
       </div>
     )
   }

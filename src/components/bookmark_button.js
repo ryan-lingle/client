@@ -2,6 +2,7 @@ import React from "react";
 import { CREATE_BOOKMARK, DESTROY_BOOKMARK } from "../actions";
 import { NotificationManager } from 'react-notifications';
 import { Mutation } from "react-apollo";
+import { ErrorMessage, Tooltip } from ".";
 
 export default class BookmarkButton extends React.Component {
   state = {
@@ -21,16 +22,20 @@ export default class BookmarkButton extends React.Component {
     return(
       <Mutation mutation={ACTION} onCompleted={this.handleResponse} >
         {(action, { error }) => (
-          <i
-            className={`fa-bookmark bookmark ${bookmarked ? 'fa bookmarked' : 'far'}`}
-            onClick={() => {
-              action({ variables: {
-                episodeId: this.props.episodeId,
-                rekId: this.props.rekId
-              }})
-            }}
-          >
-          </i>
+          <div>
+            <ErrorMessage error={error} />
+            <i
+              className={`fa-bookmark bookmark ${bookmarked ? 'fa bookmarked' : 'far'}`}
+              id="bookmark-btn"
+              onClick={() => {
+                action({ variables: {
+                  episodeId: this.props.episodeId,
+                  rekId: this.props.rekId
+                }})
+              }}
+            >
+            </i>
+          </div>
         )}
       </Mutation>
     )

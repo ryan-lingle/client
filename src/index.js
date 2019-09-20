@@ -22,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.map(({ message }) => {
       if (message === "AUTH") {
         localStorage.removeItem('token');
-        window.location.reload();
+        // window.location.href = "/login";
       } else if (message === "UNCONFIRMED") {
         window.location.href = "/email_unconfirmed";
       }
