@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
-import Search from "./search";
+import Search from "./nav_search";
 
 const Navigation = (props) => {
   const username = localStorage.getItem("username");

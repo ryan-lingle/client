@@ -25,7 +25,7 @@
 
 .big-episode {
   background: white;
-  padding: 50px 50px;
+  padding: 25px 40px;
 }
 
 #big-episode-info {
@@ -43,7 +43,7 @@
   background: $primary;
   color: white;
 
-  a {
+  .profile-pic {
     margin-right: 15px;
   }
 }
@@ -58,11 +58,26 @@
   padding-left: 50px;
 }
 
-.be-tags {
-  background: white;
+#be-tags {
+  text-align: center;
+  padding-top: 5px;
+  a {
+    color: white;
+    margin-right: 5px;
+  }
 }
 
 .be-released {
   margin-top: 10px;
   padding-left: 50px;
+}
+
+#be-left {
+  display: flex;
+  align-items: center;
+  min-width: 400px;
+  justify-content: space-between;
+  i {
+    font-size: 25px;
+  }
 }

@@ -23,3 +23,5 @@ export {default as Table} from "./table";
 export {default as Tooltip} from "./tooltip";
 export {default as BigEpisode} from "./big_episode";
 export {default as NoAuthNav} from "./no_auth_nav";
+export {default as Search} from "./search";
+export {default as HashtagSearch} from "./hashtag_search";

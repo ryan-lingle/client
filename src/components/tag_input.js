@@ -1,20 +1,18 @@
 import React from "react";
+import { ErrorMessage, Loader, Search } from ".";
 
 export default class TagInput extends React.Component {
-  tag = React.createRef()
-
   state = {
+    term: "",
     tags: []
   }
 
-  addTag = (e) => {
-    e.preventDefault();
-    const _name_ = this.tag.current.value;
+  addTag = (tag = this.state.term) => {
     this.setState(prevState => {
-      if (!prevState.tags.find(({ name }) => name === _name_ )) {
-        prevState.tags.push({ name: _name_ });
+      if (!prevState.tags.find(({ name }) => name === tag )) {
+        prevState.tags.push({ name: tag });
         this.props.onUpdate(prevState.tags);
-        this.tag.current.value = "";
+        prevState.term = "";
       }
       return prevState;
     });
@@ -28,6 +26,31 @@ export default class TagInput extends React.Component {
     });
   }
 
+  tagSuggestions = () => {
+    const { term } = this.state;
+    if (term) {
+      return(
+        <Search term={term} type={"hashtag"}>
+          {({ results, loading, error }) => {
+            if (loading) return <Loader />;
+            if (error) return <ErrorMessage error={error} />;
+            return (
+              <div id="tag-suggestions-wrapper">
+                <div id="tag-suggestions">
+                  {results.map(({ id, name }) =>
+                    <div key={id} onClick={() => this.addTag(name)}>
+                      {name}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          }}
+        </Search>
+      )
+    }
+  }
+
   render() {
     return(
       <div id="tags">
@@ -38,10 +61,14 @@ export default class TagInput extends React.Component {
           </span>
         ))}
         {this.state.tags.length < 3 ?
-          <form onSubmit={this.addTag} id="tag-form" >
-            <input id="tag-input" ref={this.tag} placeholder="Add a topic..." />
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            this.addTag()
+          }} id="tag-form" >
+            <input autoComplete="off" id="tag-input" value={this.state.term} onChange={({ target }) => this.setState({ term: target.value })} placeholder="Add a topic..." />
           </form>
           : null}
+        {this.tagSuggestions()}
       </div>
     )
   }

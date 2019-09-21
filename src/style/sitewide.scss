@@ -68,3 +68,14 @@
   color: $primary-hover;
   cursor: pointer;
 }
+
+.nothing-message {
+  background: white;
+  border: $background 1px solid;
+  margin: auto;
+  width: 500px;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 20px;
+  font-weight: 300;
+}

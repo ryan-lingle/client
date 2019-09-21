@@ -1,16 +1,28 @@
 import React from "react";
-import { createStream, Rek, UserBox, HashtagBox } from "../components";
+import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage } from "../components";
 import { FEED_STREAM, CURRENT_USER } from '../actions';
-import { Query } from "react-apollo";
-
+import { Query } from 'react-apollo';
 
 const Home = ({ match }) => {
   const Stream = createStream(Rek);
+
+  const onEmpty = () => {
+
+    return(
+      <div className="nothing-message">
+        Follow other Users and you will see their Reks here!
+        <br></br><br></br>
+        In the mean time...
+        <HashtagSearch />
+      </div>
+    )
+  }
   return(
     <div>
       <Query query={CURRENT_USER} >
         {({ data, error, loading}) => {
-          if (error || loading) return <div></div>
+          if (loading) return <div></div>;
+          if (error) return <div id="home"><ErrorMessage error={error} /></div>;
           const { currentUser } = data;
 
           return (
@@ -19,7 +31,7 @@ const Home = ({ match }) => {
                 <UserBox {...currentUser} />
               </div>
               <div className="col-lg-6 col-md-12 feed-col">
-                <Stream query={FEED_STREAM} />
+                <Stream query={FEED_STREAM} onEmpty={onEmpty} />
               </div>
               <div className="col-sm-3 d-none d-lg-block hashtag-col">
                 <HashtagBox hashtags={currentUser.followedHashtags} />

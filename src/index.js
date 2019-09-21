@@ -42,7 +42,11 @@ const uploadLink = createUploadLink({
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/graphql`,
   options: {
-    reconnect: true
+    reconnect: true,
+    connectionParams: {
+      id: localStorage.getItem('id'),
+      token: localStorage.getItem('token'),
+    }
   }
 });
 

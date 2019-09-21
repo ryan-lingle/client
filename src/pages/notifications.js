@@ -4,9 +4,15 @@ import { NOTIFICATIONS } from '../actions';
 
 const Notifications = ({ match }) => {
   const Stream = createStream(Notification);
+
+  const onEmpty = () => (
+    <div className="nothing-message">
+      No Notifications Yet 🙃
+    </div>
+  )
   return(
     <div id="home" >
-      <Stream query={NOTIFICATIONS} />
+      <Stream query={NOTIFICATIONS} onEmpty={onEmpty} />
     </div>
   )
 }

@@ -91,7 +91,7 @@ export default class UserNav extends React.Component {
                   ref={node => { bio = node }}
                   defaultValue={this.props.bio}
                   as="textarea"
-                  maxLength="60"
+                  maxLength="150"
                   rows="3"
                   placeholder="Write a Bio..."
                 />

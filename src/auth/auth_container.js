@@ -28,16 +28,6 @@ class AuthContainer extends React.Component {
     }
   }
 
-  async componentDidMount() {
-    try {
-      const webln = await requestProvider();
-      console.log(webln);
-    } catch(err) {
-      console.log(err);
-    }
-  }
-
-
 
   render() {
     const warning = this.props.location.search.split('warning=')[1];

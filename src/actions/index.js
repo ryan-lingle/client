@@ -164,6 +164,10 @@ const EPISODE_SHOW = gql`
     episodeShow(episodeId: $episodeId, rekId: $rekId) {
       rek {
         id
+        hashtags {
+          id
+          name
+        }
         user {
           username
           profilePic
@@ -171,11 +175,13 @@ const EPISODE_SHOW = gql`
         satoshis
       }
       episode {
+        id
         podcast {
           image
           slug
           title
         }
+        bookmarked
         title
         released
         description
@@ -295,6 +301,19 @@ const SUBSRIBE_INVOICE = gql`
     invoicePaid(invoice: $invoice) {
       userId
       invoice
+    }
+  }
+`
+
+const SUBSRIBE_HASHTAGS = gql`
+  subscription SubscribeHashtags {
+    hashtags {
+      hashtag {
+        id
+        name
+        followedByCurrentUser
+      }
+      follow
     }
   }
 `
@@ -624,6 +643,7 @@ export {
   LOGIN_USER,
   CREATE_REK,
   SUBSRIBE_INVOICE,
+  SUBSRIBE_HASHTAGS,
   TOGGLE_FOLLOW,
   CREATE_BOOKMARK,
   DESTROY_BOOKMARK,

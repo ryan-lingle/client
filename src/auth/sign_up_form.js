@@ -31,7 +31,7 @@ const SignUpForm = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" ref={node => { password = node }} />
         </Form.Group>
-        <input type="hidden" value={rekId} ref={node => { rek = node }} />
+        <input type="hidden" value={rekId || undefined} ref={node => { rek = node }} />
         <button className="btn btn-primary" type="submit">
           Submit
         </button>

@@ -19,6 +19,7 @@ const createStream = (Component) => {
         query,
         variables: { n, ...variables }
       });
+      console.log(data);
       const { more, stream } = this.findStream(data);
       this.setState(prevState => {
         const newStream = prevState.stream.concat(stream);
@@ -65,9 +66,11 @@ const createStream = (Component) => {
       setTimeout(this.addListener, 100)
       return(
         <div>
-          <div className="stream">
-            {this.state.stream.map(item => <Component {...item} key={item.id}/>)}
-          </div>
+          {this.state.stream && this.state.stream.length > 0 ?
+            <div className="stream">
+              {this.state.stream.map(item => <Component {...item} key={item.id}/>)}
+            </div>
+            : this.props.onEmpty ? this.props.onEmpty() : null}
           {this.state.loading ? <Loader /> : null}
         </div>
       )

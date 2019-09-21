@@ -1,8 +1,8 @@
 import React from "react";
-import { Query, Mutation, withApollo } from "react-apollo";
+import { Mutation, withApollo } from "react-apollo";
 import { Modal } from "react-bootstrap";
-import { TAG_GUEST, EPISODE_GUESTS, SEARCH } from "../../actions";
-import { ErrorMessage, Loader } from "../"
+import { TAG_GUEST, EPISODE_GUESTS } from "../../actions";
+import { ErrorMessage, Loader, Search } from "../"
 import { NotificationManager } from 'react-notifications';
 
 class GuestTaggingModal extends React.Component {
@@ -49,19 +49,21 @@ class GuestTaggingModal extends React.Component {
     return(
       <div>
         <input placeholder="Search for a User" className="form-control user-search" type="text" value={this.state.term} onChange={({ target }) => this.setState({ term: target.value })} />
-        {this.state.term ? <Query query={SEARCH} variables={{ type: "user", term: this.state.term }} >
-          {({ data , error, loading }) => {
-            if (error) return <ErrorMessage error={error} />;
-            if (loading) return <Loader />;
-            return(
-              <div id="episode-results">
-                {data.search.user.stream.map(user => (
-                  this.userResult(user)
-                ))}
-              </div>
-            )
-          }}
-        </Query> : <div id="before-search">Search for a User</div>}
+        {this.state.term ?
+          <Search type={"user"} term={this.state.term} >
+            {({ results , error, loading }) => {
+              if (error) return <ErrorMessage error={error} />;
+              if (loading) return <Loader />;
+              return(
+                <div id="episode-results">
+                  {results.map(user => (
+                    this.userResult(user)
+                  ))}
+                </div>
+              )
+            }}
+        </Search>
+        : <div id="before-search">Search for a User</div>}
       </div>
     )
   }

@@ -16,7 +16,7 @@
 
 .user-bio {
   background: white;
-  width: 180px;
+  width: 200px;
   margin: 10px auto;
   border-radius: 3px;
   padding: 10px;
@@ -43,13 +43,14 @@
   padding-top: 10px;
   border-top: 1px solid $gray;
   color: $gray-hover;
+  font-size: 11px;
 }
 
 .edit-user {
   text-align: right;
   float: right;
-  font-size: 12px;
   color: $gray;
+  font-size: 11px;
 }
 
 .edit-user:hover {
@@ -57,7 +58,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 1175px) {
   .pic-and-bio {
     position: static;
     display: flex;
@@ -129,10 +130,6 @@
   background: white;
   border: 1px $primary solid;
   color: $primary;
-}
-
-.user a:hover {
-  text-decoration: none;
 }
 
 #avatar-input {

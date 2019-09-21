@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tooltip } from '.';
 import { Helmet } from "react-helmet";
+import BookmarkButton from './bookmark_button';
 
 const BigEpisode = ({ episode, rek, saveRek }) => {
   if (saveRek) localStorage.setItem('rekId', rek.id);
@@ -15,6 +16,7 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
           donated
           <span className="font-weight-bold"> {rek.satoshis} </span>
           Satoshis
+           {rek.hashtags.length > 0 ? tags() : null}
         </div>
       )
     }
@@ -22,7 +24,10 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
 
   const tags = () => {
     return(
-      <div className="be-tags"></div>
+      <span id="be-tags">
+        <span> | </span>
+        {rek.hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`}>#{hashtag.name}</a>)}
+      </span>
     )
   }
   const date = new Date(episode.released);
@@ -35,7 +40,6 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
         <meta property="og:image" content={episode.podcast.image} />
       </Helmet>
       {buildRek()}
-      {tags()}
       <div className="big-episode">
         <div id="big-episode-info">
           <Tooltip tooltip={episode.podcast.title}>
@@ -43,9 +47,16 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
               <img className="be-podcast-art" alt={"podcast art"} src={episode.podcast.image} />
             </a>
           </Tooltip>
-          <div>
-            <div className="be-title">{episode.title}</div>
-            <div className="be-released">{date.toDateString()}</div>
+          <div id="be-left">
+            <div>
+              <div className="be-title">{episode.title}</div>
+              <div className="be-released">{date.toDateString()}</div>
+            </div>
+            <Tooltip tooltip={"Bookmark Episode"}>
+              <div>
+                <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={rek && rek.id} />
+              </div>
+            </Tooltip>
           </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: episode.description }}></div>

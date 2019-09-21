@@ -17,7 +17,6 @@ export default class Rek extends React.Component {
 
   render() {
     const { user, episode, satoshis, id, hashtags } = this.props;
-    console.log(id);
     const { podcast } = episode;
     return(
       <div className="rek item" id={`rek-${id}`}>
