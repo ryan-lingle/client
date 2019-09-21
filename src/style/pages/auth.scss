@@ -31,6 +31,31 @@
 
 
 #auth-warning {
-  margin: 5px 100px 0px 100px;
+  margin: 5px 0px 20px 0px;
   text-align: center;
+}
+
+#auth-left {
+  background: $primary;
+  color: white;
+  height: 100%;
+  text-align: center;
+  padding-top: 15px;
+  h1 {
+    font-weight: 300;
+    padding-top: 15px;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  img {
+    margin: 10px 0px 100px 0px;
+  }
+}
+
+#auth-right {
+  padding: 30px 50px;
 }

@@ -106,6 +106,7 @@ const GET_USER = gql`
       satoshis
       username
       current
+      bio
       followedByCurrentUser
       bookmarks {
         count

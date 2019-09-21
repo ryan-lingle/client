@@ -77,7 +77,10 @@ export default class UserNav extends React.Component {
                   username: username.value,
                   bio: bio.value
                 }});
-                if (!error) window.location.href = `/u/${data.updateUser.username}`;
+                if (!error) {
+                  localStorage.setItem('username', data.updateUser.username);
+                  window.location.href = `/u/${data.updateUser.username}`;
+                }
               }}>
                 <FormControl
                   type="text"

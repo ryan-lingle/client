@@ -6,7 +6,7 @@ import LogInForm from "./login_form";
 import { SIGN_UP_USER, LOGIN_USER } from '../actions';
 import { ErrorMessage, TwitterSignIn } from '../components';
 import { requestProvider } from 'webln'
-
+import RekrExplained from '../green-rekr-explained.png';
 
 class AuthContainer extends React.Component {
   state = {
@@ -60,19 +60,27 @@ class AuthContainer extends React.Component {
             )}
           </Mutation>
         </Navbar>
-        {warning ? <div id="auth-warning" className="error" >You must be logged in to do that.</div> : null}
-        <div className="container">
-          <div id="sign-in-btns">
-            <TwitterSignIn />
+        <div className="auth-container row">
+          <div id="auth-left" className="col-sm-6">
+            <h1>Rekr helps both
+            <br></br>Podcast <strong>Creators</strong> & <br></br>Podcast <strong>Listeners</strong></h1>
+            <h1><strong> Stack Sats </strong></h1>
+            <img src={RekrExplained} width={"450px"}/>
           </div>
-          <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >
-            {(logIn, { error }) => (
-              <div>
-                <ErrorMessage error={error} />
-                <SignUpForm logIn={logIn} />
-              </div>)
-            }
-          </Mutation>
+          <div id="auth-right" className="col-sm-6">
+            {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}
+            <div id="sign-in-btns">
+              <TwitterSignIn />
+            </div>
+            <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >
+              {(logIn, { error }) => (
+                <div>
+                  <ErrorMessage error={error} />
+                  <SignUpForm logIn={logIn} />
+                </div>)
+              }
+            </Mutation>
+          </div>
         </div>
       </div>
     )
