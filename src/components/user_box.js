@@ -39,7 +39,7 @@ export default class UserBox extends React.Component {
           </a>
         </div>
         <a id="user-box-satoshis" href={`/u/${username}?tab=satoshis`} >
-          {satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satoshis
+          {satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Sats
         </a>
         <div id="user-box-counts">
           <a className="user-box-count" href={`/u/${username}?tab=reks`}>

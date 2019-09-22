@@ -262,8 +262,8 @@ const SEARCH_EPISODES = gql`
 `
 
 const SIGN_UP_USER = gql`
-  mutation SignUp($email: String!, $username: String!, $password: String!, $rekId: String) {
-    createUser(email: $email, username: $username, password: $password, rekId: $rekId) {
+  mutation SignUp($email: String!, $username: String!, $password: String!, $passwordCopy: String!, $rekId: String) {
+    createUser(email: $email, username: $username, password: $password, passwordCopy: $passwordCopy, rekId: $rekId) {
       id
       token
       username
@@ -626,6 +626,17 @@ const EPISODE_GUESTS = gql`
   }
 `
 
+const RESET_PASSWORD_REQUEST = gql`
+  mutation ResetPasswordRequest($email: String!) {
+    resetPasswordRequest(email: $email)
+  }
+`
+const RESET_PASSWORD = gql`
+  mutation ResetPassword($token: String!, $password: String!, $passwordCopy: String!) {
+    resetPassword(token: $token, password: $password, passwordCopy: $passwordCopy)
+  }
+`
+
 export {
   PARSE_PODCAST,
   CURRENT_USER,
@@ -666,5 +677,7 @@ export {
   GUEST_SHARE,
   TAG_GUEST,
   EPISODE_GUESTS,
-  EPISODE_SHOW
+  EPISODE_SHOW,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD
 };

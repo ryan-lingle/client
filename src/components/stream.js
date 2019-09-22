@@ -9,7 +9,8 @@ const createStream = (Component) => {
       stream: [],
       more: true,
       n: 0,
-      loading: true
+      initialLoad: true,
+      loading: false
     };
 
     fetchMore = async () => {
@@ -19,12 +20,16 @@ const createStream = (Component) => {
         query,
         variables: { n, ...variables }
       });
-      console.log(data);
       const { more, stream } = this.findStream(data);
       this.setState(prevState => {
         const newStream = prevState.stream.concat(stream);
         n += 1;
-        return { stream: newStream, more, n, loading: false }
+        return {
+          stream: newStream,
+          more, n,
+          loading: false,
+          initialLoad: false
+        };
       })
     }
 
@@ -44,10 +49,6 @@ const createStream = (Component) => {
       this.fetchMore();
     }
 
-    componentWillReceiveProps({ stream, more }) {
-      this.setState({ stream, more, n: 1 })
-    }
-
     addListener = () => {
       document.addEventListener('scroll', this.endOfStream)
     }
@@ -64,14 +65,17 @@ const createStream = (Component) => {
 
     render() {
       setTimeout(this.addListener, 100)
+      const { stream, loading, initialLoad } = this.state;
+      if (initialLoad) return <Loader />;
+
       return(
         <div>
-          {this.state.stream && this.state.stream.length > 0 ?
+          {stream && stream.length > 0 ?
             <div className="stream">
-              {this.state.stream.map(item => <Component {...item} key={item.id}/>)}
+              {stream.map(item => <Component {...item} key={item.id}/>)}
             </div>
             : this.props.onEmpty ? this.props.onEmpty() : null}
-          {this.state.loading ? <Loader /> : null}
+          {loading ? <Loader /> : null}
         </div>
       )
     }

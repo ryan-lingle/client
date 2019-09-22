@@ -169,7 +169,7 @@ class Wallet extends React.Component {
         {(invoice || withdraw || deposit) ? this.buildModal() : null}
         <div className="satoshi-amount" id="wallet-amount">
           <div className="wallet-satoshis">{this.props.satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
-          <div> Satoshis</div>
+          <div> sats</div>
         </div>
         <div id="wallet-actions">
           <div className="wallet-line">a</div>

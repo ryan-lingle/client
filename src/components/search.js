@@ -1,6 +1,5 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { Form } from "react-bootstrap";
 import { SEARCH } from "../actions";
 
 const Search = ({ term, type, children }) => {

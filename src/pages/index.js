@@ -11,3 +11,4 @@ export {default as EmailUnconfirmed} from "./email_unconfirmed.js";
 export {default as TwitterCallback} from "./twitter_callback";
 export {default as PodcastDashboard} from "./podcast_dashboard";
 export {default as EpisodeShow} from "./episode_show";
+export {default as PasswordReset} from "./password_reset";

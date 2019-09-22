@@ -13,7 +13,8 @@ import {
   EmailUnconfirmed,
   ConfirmEmail,
   PodcastDashboard,
-  EpisodeShow
+  EpisodeShow,
+  PasswordReset
 } from "./pages";
 import { Route } from 'react-router-dom';
 import { PrivateRoute } from "./auth";
@@ -33,6 +34,7 @@ const DefaultContainer = () => (
     <PrivateRoute path="/podcast-dashboard" exact component={PodcastDashboard} />
     <div className="container">
       <NotificationContainer />
+      <Route path="/password-reset/:token" exact component={PasswordReset} />
       <PrivateRoute path="/email_unconfirmed" exact component={EmailUnconfirmed} />
       <PrivateRoute path="/confirm_email/:token" component={ConfirmEmail} />
       <Route path="/podcast/:slug" component={PodcastShow} />

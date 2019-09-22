@@ -43,12 +43,15 @@ const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/graphql`,
   options: {
     reconnect: true,
+    timeout: 60000,
     connectionParams: {
       id: localStorage.getItem('id'),
       token: localStorage.getItem('token'),
     }
   }
 });
+
+wsLink.subscriptionClient.maxConnectTimeGenerator.duration = () => wsLink.subscriptionClient.maxConnectTimeGenerator.max
 
 const link = split(
   // split based on operation type

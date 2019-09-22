@@ -78,7 +78,7 @@ class Podcast extends React.Component {
               </div>
               <div className="pd-item">
                 <h4>$ of Donations</h4>
-                <div className="pd-count">{donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satoshis</div>
+                <div className="pd-count">{donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats</div>
               </div>
             </div>
           </div>

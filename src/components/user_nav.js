@@ -167,7 +167,7 @@ export default class UserNav extends React.Component {
             {this.props.current ?
               <div className={`sub-nav-tab sub-nav-sats ${onSats ? 'current-sub-nav-tab' : null}`} onClick={() => { this.setState({ tab: "satoshis" })}} >
                 <div className="text-center font-weight-bold">{this.props.satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
-                <div>Satoshis</div>
+                <div>Sats</div>
               </div>
               : null}
             {tabs.map((_tab_, i) => {

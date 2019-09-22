@@ -7,7 +7,7 @@ const Notifications = ({ match }) => {
 
   const onEmpty = () => (
     <div className="nothing-message">
-      No Notifications Yet 🙃
+      No Notifications Yet <span role="img" aria-label="upside down face">🙃</span>
     </div>
   )
   return(

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Query } from "react-apollo";
 import { Search, ErrorMessage, Loader, HashtagCard } from "../components";
 
 export default class HashtagSearch extends React.Component {
