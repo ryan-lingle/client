@@ -25,7 +25,6 @@ const CURRENT_USER = gql`
       username
       profilePic
       satoshis
-      walletPermission
       followedHashtags {
         id
         name

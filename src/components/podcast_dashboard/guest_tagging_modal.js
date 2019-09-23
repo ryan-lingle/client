@@ -37,7 +37,6 @@ class GuestTaggingModal extends React.Component {
   updateGuests = (tagGuests) => {
     const userIds = this.extractIds(this.state.episodeGuests)
     const { episodeIds, podcastId } = this.props;
-    console.log(userIds);
     tagGuests({ variables: { userIds, episodeIds, podcastId }})
   }
 
