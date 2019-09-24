@@ -32,7 +32,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: 'https://rekr-server.herokuapp.com/graphql',
+  uri: process.env.REACT_APP_HTTP_ENDPOINT,
   headers: {
     id: localStorage.getItem('id'),
     token: localStorage.getItem('token'),
@@ -40,7 +40,7 @@ const uploadLink = createUploadLink({
 })
 
 const wsLink = new WebSocketLink({
-  uri: `wss://rekr-server.herokuapp.com/graphql`,
+  uri: process.env.REACT_APP_WS_ENDPOINT,
   options: {
     reconnect: true,
     timeout: 60000,
