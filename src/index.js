@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './style/index.scss'
-import App from '/src/app.js';
+import App from 'app.js';
 
 import { ApolloProvider } from 'react-apollo';
 
