@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AuthContainer } from "./auth";
-import DefaultContainer from "./default_container";
-import { TwitterCallback } from "./pages";
+import { AuthContainer } from "../auth";
+import DefaultContainer from "../default_container";
+import { TwitterCallback } from "../pages";
 class App extends Component {
   render() {
     return (
