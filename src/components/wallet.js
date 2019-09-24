@@ -8,9 +8,6 @@ import { DEPOSIT, WITHDRAW, CURRENT_SATS } from "../actions";
 import { NotificationManager } from 'react-notifications';
 import { requestProvider } from 'webln'
 
-
-// import ErrorMessage from "./error_msg";
-
 class Wallet extends React.Component {
 
   constructor(props) {

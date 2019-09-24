@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navigation, NoAuthNav } from "./components";
+import { Navigation, NoAuthNav, MobileNavBottom } from "./components";
+
 import { NotificationContainer } from 'react-notifications';
 import {
   Home,
@@ -25,7 +26,7 @@ const token = localStorage.getItem('token');
 
 const DefaultContainer = () => (
   <div>
-    {token ? <Navigation /> : <NoAuthNav />}
+    {token ? <Route exact component={Navigation} /> : <NoAuthNav />}
     <Route path="/u/:username" exact component={UserProfile} />
     <Route path="/search" exact component={Search} />
     <PrivateRoute path="/" exact component={Home} />

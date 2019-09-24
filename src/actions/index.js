@@ -50,8 +50,6 @@ const CURRENT_SATS = gql`
   query CurrentSats {
     currentUser {
       satoshis
-      paymentMethod
-      walletPermission
       canTweet
     }
   }

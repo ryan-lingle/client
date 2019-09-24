@@ -32,7 +32,7 @@ export default class TagInput extends React.Component {
       return(
         <Search term={term} type={"hashtag"}>
           {({ results, loading, error }) => {
-            if (loading) return <Loader />;
+            if (loading) return <div></div>;
             if (error) return <ErrorMessage error={error} />;
             return (
               <div id="tag-suggestions-wrapper">

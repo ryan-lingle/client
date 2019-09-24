@@ -22,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.map(({ message }) => {
       if (message === "AUTH") {
         localStorage.removeItem('token');
-        // window.location.href = "/login";
+        window.location.href = "/login";
       } else if (message === "UNCONFIRMED") {
         window.location.href = "/email_unconfirmed";
       }
@@ -32,7 +32,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://rekr-server.herokuapp.com/graphql',
   headers: {
     id: localStorage.getItem('id'),
     token: localStorage.getItem('token'),
@@ -40,7 +40,7 @@ const uploadLink = createUploadLink({
 })
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/graphql`,
+  uri: `wss://rekr-server.herokuapp.com/graphql`,
   options: {
     reconnect: true,
     timeout: 60000,

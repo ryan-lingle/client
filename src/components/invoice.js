@@ -2,7 +2,7 @@ import React from 'react';
 import QRCode from 'qrcode.react'
 import { requestProvider } from 'webln'
 import { withApollo } from 'react-apollo'
-import { SUBSRIBE_INVOICE, CURRENT_SATS } from '../actions'
+import { SUBSRIBE_INVOICE } from '../actions'
 import Tooltip from "./tooltip";
 
 class Invoice extends React.Component {
@@ -11,10 +11,6 @@ class Invoice extends React.Component {
     this.state = {
       showQR: false
     }
-
-    this.props.client.query({
-      query: CURRENT_SATS
-    }).then(({ data }) => this.paymentMethod = data.currentUser.paymentMethod);
 
     this.subscribe();
     this.joule();
@@ -77,7 +73,7 @@ class Invoice extends React.Component {
         <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</span> Satoshis</h4>
 
         <button className="btn-secondary invoice-btn" onClick={this.showQR}>Show QR Code</button>
-        <button className="joule-btn invoice-btn" onClick={this.joule} >Pay with Joule</button>
+        <button className="joule-btn invoice-btn" href={`lightning:${invoice}`} >Pay Invoice</button>
         <Tooltip tooltip={"Copy Invoice"} placement="bottom">
           <input className="payment-request invoice-btn" id="payment-request" value={invoice} readOnly={true} onClick={this.copyInvoice} />
         </Tooltip>

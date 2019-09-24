@@ -68,6 +68,7 @@ class RekForm extends React.Component {
   buildTwitterSignIn = () => {
     return(
       <div id="twitter-wrapper">
+        <div className="back-btn fa fa-arrow-left" style={{top: "1px", left: "5px" }} onClick={() => { this.setState({ twitterSignIn: false })}}></div>
         <h2>Looks like you haven't connected your Twitter account!<br></br><br></br>Sign In to Continue.</h2>
         <TwitterSignIn />
       </div>
