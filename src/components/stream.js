@@ -10,7 +10,9 @@ const createStream = (Component) => {
       more: true,
       n: 0,
       initialLoad: true,
-      loading: false
+      loading: false,
+      q: 0,
+      i: 0
     };
 
     fetchMore = async () => {
@@ -56,6 +58,7 @@ const createStream = (Component) => {
 
     endOfStream = () => {
       const { loading, more } = this.state;
+      this.setState({ q: (document.documentElement.scrollTop + window.innerHeight + 500), i: document.documentElement.scrollHeight })
       const atBottom = (document.documentElement.scrollTop + window.innerHeight + 500) >= document.documentElement.scrollHeight;
       if (atBottom && !loading && more) {
         this.fetchMore()
@@ -71,6 +74,7 @@ const createStream = (Component) => {
 
       return(
         <div>
+          <div id="test-box">{this.state.q} - {this.state.i}</div>
           {stream && stream.length > 0 ?
             <div className="stream">
               {stream.map(item => <Component {...item} key={item.id}/>)}
