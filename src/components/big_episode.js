@@ -41,22 +41,26 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
       </Helmet>
       {buildRek()}
       <div className="big-episode">
-        <div id="big-episode-info">
-          <Tooltip tooltip={episode.podcast.title}>
-            <a href={"/podcast/" + episode.podcast.slug}>
-              <img className="be-podcast-art" alt={"podcast art"} src={episode.podcast.image} />
-            </a>
-          </Tooltip>
-          <div id="be-left">
-            <div>
-              <div className="be-title">{episode.title}</div>
-              <div className="be-released">{date.toDateString()}</div>
-            </div>
-            <Tooltip tooltip={"Bookmark Episode"}>
-              <div>
-                <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={rek && rek.id} />
-              </div>
+        <div className="row" id="big-episode-info">
+          <div className="col-md-5 text-center">
+            <Tooltip tooltip={episode.podcast.title}>
+              <a href={"/podcast/" + episode.podcast.slug}>
+                <img className="be-podcast-art" alt={"podcast art"} src={episode.podcast.image} />
+              </a>
             </Tooltip>
+          </div>
+          <div className="col-md-7">
+            <div id="be-left">
+              <div>
+                <div className="be-title">{episode.title}</div>
+                <div className="be-released">{date.toDateString()}</div>
+              </div>
+              <Tooltip tooltip={"Bookmark Episode"}>
+                <div>
+                  <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={rek && rek.id} />
+                </div>
+              </Tooltip>
+            </div>
           </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: episode.description }}></div>
