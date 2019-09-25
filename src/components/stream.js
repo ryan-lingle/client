@@ -50,7 +50,8 @@ const createStream = (Component) => {
     }
 
     addListener = () => {
-      document.addEventListener('scroll', this.endOfStream)
+      document.addEventListener('touchmove', this.endOfStream);
+      document.addEventListener('scroll', this.endOfStream);
     }
 
     endOfStream = () => {
