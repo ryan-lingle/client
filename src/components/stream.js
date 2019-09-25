@@ -55,7 +55,7 @@ const createStream = (Component) => {
 
     endOfStream = () => {
       const { loading, more } = this.state;
-      const atBottom = document.documentElement.scrollTop + window.innerHeight === document.documentElement.scrollHeight;
+      const atBottom = (document.documentElement.scrollTop + window.innerHeight + 500) >= document.documentElement.scrollHeight;
       if (atBottom && !loading && more) {
         this.fetchMore()
         this.setState({ loading: true });

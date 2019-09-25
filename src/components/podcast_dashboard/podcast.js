@@ -67,40 +67,39 @@ class Podcast extends React.Component {
           episodeIds={this.state.selectedEpisodes}
           close={() => this.setState({ tagGuests: false })}
         />
-        <div className="pd-top">
-          <div>
+        <div className="row pd-row">
+          <div className="col-md-4">
+            <img src={image} alt="podcast art" className="pd-podcast-art" />
+          </div>
+          <div className="col-md-8">
             <h3 id="pd-ptitle">{title}</h3>
             <p dangerouslySetInnerHTML={{ __html: description }} ></p>
-            <div id="pd-info">
+            <div id="pd-summary">
+              You have received
+              <strong> {donationCount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </strong>
+              Donations stacking up to
+              <strong> {donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </strong>
+              Sats.
+            </div>
+            <div className="pd-bottom">
               <div className="pd-item">
-                <h4># of Donations</h4>
-                <div className="pd-count">{donationCount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
+                <h4>Guest Percentage</h4>
+                <div className="pd-count">{this.state.guestShare * 100}%</div>
               </div>
-              <div className="pd-item">
-                <h4>$ of Donations</h4>
-                <div className="pd-count">{donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats</div>
+              <div className="text-center pd-item">
+                <h4>Enable Guest Sharing</h4>
+                <Toggle
+                  on={this.state.guestShare !== 0}
+                  onChange={(checked) => this.handleGuestToggle({ checked, podcastId: id })}
+                  customeClass={"guest-toggle"}
+                />
               </div>
             </div>
           </div>
-          <img src={image} alt="podcast art" className="podcast-art" width="250px"/>
         </div>
-        <div className="pd-bottom">
-          <div className="guest-sharing">
-            <h4>Guest Percentage</h4>
-            <div className="pd-count">{this.state.guestShare * 100}%</div>
-          </div>
-          <div className="guest-sharing">
-            <h4>Enable Guest Sharing</h4>
-            <Toggle
-              on={this.state.guestShare !== 0}
-              onChange={(checked) => this.handleGuestToggle({ checked, podcastId: id })}
-              customeClass={"guest-toggle"}
-            />
-          </div>
-          {this.state.guestShare !== 0 ?
-            <button className="btn btn-secondary" onClick={this.tagGuests}>Bulk Tag</button>
+        {this.state.guestShare !== 0 ?
+            <button id="bulk-tag" className="btn btn-secondary" onClick={this.tagGuests}>Bulk Tag</button>
             : null}
-        </div>
         <div id="pd-episodes">
           <Table
             schema={this.episodeTableSchema}

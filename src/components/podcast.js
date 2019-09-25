@@ -22,7 +22,7 @@ const Podcast = (podcast) => {
         </div>}
       <div className="row" id="podcast">
         <div className="col-md-6">
-          <img src={image} alt="podcast art" width="325px" className="podcast-artwork-lg"/>
+          <img src={image} alt="podcast art" className="podcast-artwork-lg"/>
         </div>
         <div id="podcast-details-1" className="col-md-6">
           <div className="podcast-detail">

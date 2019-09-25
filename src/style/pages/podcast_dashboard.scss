@@ -13,6 +13,12 @@
   h2,h3,h4 {
     font-weight: 300;
   }
+  h4 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 30px;
+  }
   h2 {
     padding: 10px 20px;
     background: $gray;
@@ -22,10 +28,6 @@
     border-top-right-radius: 2px;
 
   }
-}
-
-#pd-ptitle {
-  font-size: 40px;
 }
 
 #pd-podcasts {
@@ -46,6 +48,10 @@
   a:hover {
     text-decoration: none;
   }
+}
+
+.pd-podcast-art {
+  width: 100%;
 }
 
 .pd-podcast:hover {
@@ -69,31 +75,39 @@
   justify-content: space-between;
   margin-right: 20px;
   margin-bottom: 30px;
+  align-items: center;
 }
 
 .pd-bottom {
   display: flex;
   align-items: center;
+  padding: 10px 0px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 #pd-episodes {
-  margin-top: 30px;
+  margin-top: 10px;
   max-height: 200px;
 }
 
+
 .pd-item {
-  padding-right: 30px;
+  margin: 10px;
+  // border: 1px solid $gray-hover;
+  // border-radius: 4px;
+  // padding: 5px;
+  // background: $very-light-gray;
 }
 
 .pd-count {
   font-weight: bold;
+  text-align: center;
   font-size: 20px;
 }
 
-.guest-sharing {
-  text-align: center;
-  max-width: 250px;
-  margin-right: 30px;
+.guest-toggle {
+  margin: auto;
 }
 
 #guest-sharing-label {
