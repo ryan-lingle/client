@@ -37,7 +37,10 @@ export default class ImageEditor extends React.Component {
     .then(blob => {
       updateUser({ variables: {
         profilePic: blob
-      }}).then(data => window.location.reload())
+      }}).then(({ data }) => {
+        localStorage.setItem('profilePic', data.updateUser.profilePic);
+        window.location.reload();
+      })
     })
   }
 
@@ -47,14 +50,14 @@ export default class ImageEditor extends React.Component {
         <AvatarEditor
           image={this.props.image}
           ref={this.editor}
-          width={367}
-          height={367}
+          width={300}
+          height={300}
           borderRadius={500}
           border={50}
           color={[255, 255, 255, 0.6]} // RGBA
           scale={this.state.scale}
           rotate={0}
-          className="firm-logo-window"
+          id="edit-profile-pic"
         />
         <div className="slider-container">
           <input

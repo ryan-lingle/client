@@ -97,6 +97,7 @@
   padding: 8px 10px;
   color: $gray;
   width: 25%;
+  font-size: 15px
 }
 
 .sub-nav-sats {
@@ -168,5 +169,9 @@
 
 .user-profile-pic {
   margin: 10px 0px;
+}
+
+#edit-profile-pic {
+  max-width: 500px;
 }
 

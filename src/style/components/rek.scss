@@ -1,4 +1,6 @@
-
+.rek-wrap {
+  width: 100%;
+}
 
 .rek-flex {
   display: flex;
@@ -63,6 +65,8 @@
 }
 
 // ### BOOKMARK #############
+.rek-bookmark {
+}
 
 .bookmark {
   color: $gray;
@@ -81,15 +85,19 @@
   padding: 1px 5px;
 }
 
+#rek-flex-1 {
+  width: 100%;
+}
+
 #rek-flex-2-1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 110px;
+  min-width: 100px;
 }
 
 #rek-hashtags {
   margin-left: 10px;
-  overflow-x: hidden;
-  max-width: 250px;
+  display: flex;
+  flex-wrap: wrap;
 }
