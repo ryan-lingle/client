@@ -52,6 +52,7 @@ const createStream = (Component) => {
 
     addListener = () => {
       const cb = ({ target }) => {
+        target.style.background = "black";
         this.endOfStream();
       }
 
