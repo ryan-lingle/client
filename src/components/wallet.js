@@ -109,6 +109,7 @@ class Wallet extends React.Component {
           </Modal.Header>
           <div id="deposit-modal">
             <SatoshiInput onUpdate={this.handleSatoshiUpdate} />
+            <br></br>
             <Mutation mutation={DEPOSIT} onCompleted={this.handleInvoice}>
               {(withdrawInvoice, {error, data}) => (
                 <input type="submit" value="Deposit" className="btn btn-primary rek-submit" onClick={(e) => {

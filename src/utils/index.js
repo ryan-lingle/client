@@ -1,10 +1,3 @@
-const options = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 1.0,
-}
-
-
 function callbackWrapper(entries, observer, callback) {
   entries.forEach(entry => {
     if (entry.intersectionRatio === 1) {
@@ -13,6 +6,12 @@ function callbackWrapper(entries, observer, callback) {
   });
 };
 
+
+const options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 1.0,
+}
 
 function observer(callback) {
   return new IntersectionObserver(function(entries, observer) {
