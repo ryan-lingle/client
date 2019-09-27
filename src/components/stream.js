@@ -54,13 +54,11 @@ const createStream = (Component) => {
 
     addListener = () => {
       const cb = ({ target }) => {
-        target.style.background = "black";
         this.endOfStream();
       }
 
       const streamObserver = observer(cb);
       const sb = document.getElementById("stream-bottom");
-      console.log(sb);
       if (sb) streamObserver.observe(sb);
 
       // document.addEventListener('touchmove', this.endOfStream);
