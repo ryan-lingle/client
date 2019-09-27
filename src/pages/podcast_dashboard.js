@@ -17,7 +17,7 @@ class PodcastDashboard extends React.Component {
             if (error) return <ErrorMessage error={error} />;
             if (loading) return <Loader />;
             const { currentUser } = data;
-            console.log(data);
+
             return(
               <div id="pd-wrapper">
                 <h2>Podcast Dashboard</h2>

@@ -634,6 +634,16 @@ const RESET_PASSWORD = gql`
   }
 `
 
+const CREATE_REK_VIEW = gql`
+  mutation CreateRekView($rekId: Int!) {
+    createRekView(rekId: $rekId) {
+      rek {
+        id
+      }
+    }
+  }
+`
+
 export {
   PARSE_PODCAST,
   CURRENT_USER,
@@ -676,5 +686,6 @@ export {
   EPISODE_GUESTS,
   EPISODE_SHOW,
   RESET_PASSWORD_REQUEST,
-  RESET_PASSWORD
+  RESET_PASSWORD,
+  CREATE_REK_VIEW
 };

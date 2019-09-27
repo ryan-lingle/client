@@ -1,6 +1,7 @@
 import React from "react";
 import { Loader } from ".";
 import { withApollo } from "react-apollo";
+import { observer } from '../utils';
 
 
 const createStream = (Component) => {
@@ -10,9 +11,7 @@ const createStream = (Component) => {
       more: true,
       n: 0,
       initialLoad: true,
-      loading: false,
-      q: 0,
-      i: 0
+      loading: false
     };
 
     fetchMore = async () => {
@@ -52,13 +51,20 @@ const createStream = (Component) => {
     }
 
     addListener = () => {
-      document.addEventListener('touchmove', this.endOfStream);
-      document.addEventListener('scroll', this.endOfStream);
+      const cb = () => {
+        this.endOfStream();
+      }
+
+      const streamObserver = observer(cb);
+      const sb = document.getElementById("stream-bottom");
+      if (sb) streamObserver.observe(sb);
+
+      // document.addEventListener('touchmove', this.endOfStream);
+      // document.addEventListener('scroll', this.endOfStream);
     }
 
     endOfStream = () => {
       const { loading, more } = this.state;
-      this.setState({ q: (document.documentElement.scrollTop + window.innerHeight + 500), i: document.documentElement.scrollHeight })
       const atBottom = (document.documentElement.scrollTop + window.innerHeight + 500) >= document.documentElement.scrollHeight;
       if (atBottom && !loading && more) {
         this.fetchMore()
@@ -74,13 +80,13 @@ const createStream = (Component) => {
 
       return(
         <div>
-          <div id="test-box">{this.state.q} - {this.state.i}</div>
           {stream && stream.length > 0 ?
             <div className="stream">
               {stream.map(item => <Component {...item} key={item.id}/>)}
             </div>
             : this.props.onEmpty ? this.props.onEmpty() : null}
           {loading ? <Loader /> : null}
+          <div id="stream-bottom"></div>
         </div>
       )
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./nav_search";
-import { Navbar, Nav } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 
 const NoAuthNav = () => (
   <Navbar bg="white" expand="md" fixed={"top"} >

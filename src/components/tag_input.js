@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorMessage, Loader, Search } from ".";
+import { ErrorMessage, Search } from ".";
 
 export default class TagInput extends React.Component {
   state = {

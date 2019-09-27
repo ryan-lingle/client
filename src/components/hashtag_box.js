@@ -1,10 +1,9 @@
 import React from "react";
 import HashtagCard from "./hashtag_card";
 import { useFollowedHashtags } from "../hooks";
-import { withApollo } from "react-apollo";
 
 function HashtagBox(props) {
-  const hashtags = useFollowedHashtags(props);
+  const hashtags = useFollowedHashtags(props.hashtags);
 
   const buildHashtags = () => {
     return hashtags.map(hashtag => {
@@ -30,4 +29,4 @@ function HashtagBox(props) {
   )
 }
 
-export default withApollo(HashtagBox);
+export default HashtagBox;

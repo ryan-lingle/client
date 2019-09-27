@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation, NoAuthNav, MobileNavBottom } from "./components";
+import { Navigation, NoAuthNav } from "./components";
 
 import { NotificationContainer } from 'react-notifications';
 import {

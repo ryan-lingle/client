@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Dropdown } from "react-bootstrap"
+import { Navbar, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
 import Search from "./nav_search";
 

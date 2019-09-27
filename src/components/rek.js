@@ -1,12 +1,29 @@
 import React from 'react';
 import BookmarkButton from './bookmark_button';
 import { observer } from '../utils';
+import { CREATE_REK_VIEW } from "../actions";
+import { withApollo } from "react-apollo";
 import Tooltip from "./tooltip";
 
-export default class Rek extends React.Component {
+class Rek extends React.Component {
+
   componentDidMount() {
-    const rek = document.getElementById(`rek-${this.props.id}`);
-    if (localStorage.getItem('token')) observer.observe(rek);
+    if (localStorage.getItem('token')) {
+      const rekCallback = ({ target }) => {
+        const rekId = parseInt(target.id.split("-")[1]);
+        this.props.client.mutate({
+          mutation: CREATE_REK_VIEW,
+          variables: {
+            rekId
+          }
+        });
+      }
+
+      const rekObserver = observer(rekCallback);
+      const rek = document.getElementById(`rek-${this.props.id}`);
+
+      rekObserver.observe(rek);
+    }
   }
 
   handleClick = ({ target }) => {
@@ -50,3 +67,5 @@ export default class Rek extends React.Component {
     )
   }
 }
+
+export default withApollo(Rek);

@@ -13,7 +13,7 @@ export default class HashtagFeed extends React.Component {
   render() {
     const isLoggedIn = localStorage.getItem('token');
     const Stream = createStream(Rek);
-    console.log(this.props.match.params)
+
     return(
       <div id="home">
         <Query query={GET_HASHTAG} variables={this.props.match.params} >

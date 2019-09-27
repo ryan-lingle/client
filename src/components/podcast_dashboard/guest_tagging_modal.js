@@ -136,7 +136,6 @@ class GuestTaggingModal extends React.Component {
   }
 
   render() {
-    console.log(this.state.episodeGuests)
     return(
       <Modal show={this.props.show} onHide={this.close} >
         <Modal.Header closeButton>
