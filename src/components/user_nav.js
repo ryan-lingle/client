@@ -160,7 +160,17 @@ export default class UserNav extends React.Component {
                 id="user-profile-avatar"
                 alt={"avatar"}
               />}
-          {this.userBio()}
+          <div>
+            {this.userBio()}
+            <div className="d-block d-md-none">
+              <FollowButton
+                current={this.props.current}
+                followeeId={this.props.id}
+                following={this.props.followedByCurrentUser}
+                type={'user'}
+              />
+            </div>
+          </div>
         </div>
         <div className="sub-nav-wrapper">
           <div className="sub-nav">
@@ -179,12 +189,14 @@ export default class UserNav extends React.Component {
                 </div>
               )
             })}
-            <FollowButton
-              current={this.props.current}
-              followeeId={this.props.id}
-              following={this.props.followedByCurrentUser}
-              type={'user'}
-            />
+            <div className="d-none d-md-block">
+              <FollowButton
+                current={this.props.current}
+                followeeId={this.props.id}
+                following={this.props.followedByCurrentUser}
+                type={'user'}
+              />
+            </div>
             <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" onChange={this.handleFileUpload} />
           </div>
         </div>
