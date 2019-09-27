@@ -10,7 +10,6 @@ class Rek extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       const rekCallback = ({ target }) => {
-        target.style.background = "black";
         const rekId = parseInt(target.id.split("-")[1]);
         this.props.client.mutate({
           mutation: CREATE_REK_VIEW,

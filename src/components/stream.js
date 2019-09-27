@@ -51,8 +51,9 @@ const createStream = (Component) => {
     }
 
     addListener = () => {
-      const cb = () => {
-        this.endOfStream();
+      const cb = ({ target }) => {
+        target.style.background = "black";
+        // this.endOfStream();
       }
 
       const streamObserver = observer(cb);
