@@ -16,7 +16,7 @@ const options = {
 function observer(callback) {
   return new IntersectionObserver(function(entries, observer) {
     callbackWrapper(entries, observer, callback)
-  }, options);
+  }, {});
 }
 
 export { observer };
