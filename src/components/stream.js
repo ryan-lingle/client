@@ -55,12 +55,12 @@ const createStream = (Component) => {
         this.endOfStream();
       }
 
-      const streamObserver = observer(cb);
-      const sb = document.getElementById("stream-bottom");
-      if (sb) streamObserver.observe(sb);
+      // const streamObserver = observer(cb);
+      // const sb = document.getElementById("stream-bottom");
+      // if (sb) streamObserver.observe(sb);
 
-      // document.addEventListener('touchmove', this.endOfStream);
-      // document.addEventListener('scroll', this.endOfStream);
+      document.addEventListener('touchmove', this.endOfStream);
+      document.addEventListener('scroll', this.endOfStream);
     }
 
     endOfStream = () => {
