@@ -22,7 +22,7 @@ const createStream = (Component) => {
         variables: { n, ...variables }
       });
       const { more, stream } = this.findStream(data);
-      this.setState(prevState => {
+      await this.setState(prevState => {
         const newStream = prevState.stream.concat(stream);
         n += 1;
         return {
@@ -46,9 +46,11 @@ const createStream = (Component) => {
       }
     }
 
-    componentDidMount() {
-      this.fetchMore();
+    async componentDidMount() {
+      await this.fetchMore();
+      this.addListener()
     }
+
 
     addListener = () => {
       const cb = ({ target }) => {
@@ -58,6 +60,7 @@ const createStream = (Component) => {
 
       const streamObserver = observer(cb);
       const sb = document.getElementById("stream-bottom");
+      console.log(sb);
       if (sb) streamObserver.observe(sb);
 
       // document.addEventListener('touchmove', this.endOfStream);
@@ -66,16 +69,15 @@ const createStream = (Component) => {
 
     endOfStream = () => {
       const { loading, more } = this.state;
-      const atBottom = (document.documentElement.scrollTop + window.innerHeight + 500) >= document.documentElement.scrollHeight;
-      if (atBottom && !loading && more) {
+      // const atBottom = (document.documentElement.scrollTop + window.innerHeight + 500) >= document.documentElement.scrollHeight;
+      if (!loading && more) {
         this.fetchMore()
         this.setState({ loading: true });
-        document.removeEventListener('scroll', this.endOfStream);
+        // document.removeEventListener('scroll', this.endOfStream);
       }
     }
 
     render() {
-      setTimeout(this.addListener, 100)
       const { stream, loading, initialLoad } = this.state;
       if (initialLoad) return <Loader />;
 
