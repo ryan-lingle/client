@@ -1,6 +1,5 @@
 function callbackWrapper(entries, observer, callback) {
   entries.forEach(entry => {
-    console.log(entry);
     if (entry.intersectionRatio === 1) {
       callback(entry)
     }
