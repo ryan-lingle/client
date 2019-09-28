@@ -28,7 +28,7 @@ const Notification = ({ notifier, rek: { id, episode }, type, satoshis }) => {
             <span className="font-weight-bold rek-username"> {episode.podcast.title}'s </span>
           </a>
           <span>Episode, </span>
-          <a className="rek-episode-details font-weight-bold" href={`/episode/${episode.id}?rekId=${id}`}>{episode.title}</a>
+          <a className="notification-episode-details font-weight-bold" href={`/episode/${episode.id}?rekId=${id}`}>{episode.title}</a>
         </div>
         {type === "rek" ?
           <div className="sats-stacked">
