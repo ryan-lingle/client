@@ -30,7 +30,7 @@ export default class TagInput extends React.Component {
     const { term } = this.state;
     if (term) {
       return(
-        <Search term={term} type={"hashtag"}>
+        <Search term={term.toLowerCase()} type={"hashtag"}>
           {({ results, loading, error }) => {
             if (loading) return <div></div>;
             if (error) return <ErrorMessage error={error} />;

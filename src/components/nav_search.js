@@ -58,7 +58,7 @@ export default class NavSearch extends React.Component {
         />
         <Search term={term} type={type} >
           {({ results, loading, error }) => {
-            if (loading) return <div className="loader-padding"><Loader /></div>;
+            if (loading) return <div className="loader-padding"></div>;
             if (error) return <ErrorMessage error={error} />;
             return (
               <div id="search-results">

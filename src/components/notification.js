@@ -1,6 +1,6 @@
 import React from "react";
 
-const Notification = ({ notifier, rek: { episode }, type, satoshis }) => {
+const Notification = ({ notifier, rek: { id, episode }, type, satoshis }) => {
   const index = {
     bookmark: {
       icon: "bookmark",
@@ -27,9 +27,8 @@ const Notification = ({ notifier, rek: { episode }, type, satoshis }) => {
           <a href={`/podcast/${episode.podcast.slug}`}>
             <span className="font-weight-bold rek-username"> {episode.podcast.title}'s </span>
           </a>
-          Episode,
-
-          <span className="font-weight-bold"> {episode.title}</span>
+          <span>Episode, </span>
+          <a className="rek-episode-details font-weight-bold" href={`/episode/${episode.id}?rekId=${id}`}>{episode.title}</a>
         </div>
         {type === "rek" ?
           <div className="sats-stacked">

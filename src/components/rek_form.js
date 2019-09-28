@@ -1,8 +1,7 @@
 import React from 'react'
-import { Form } from 'react-bootstrap'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
-import { SatoshiInput, TagInput, TwitterSignIn, Toggle, ErrorMessage } from ".";
+import { SatoshiInput, TagInput, TwitterSignIn, Toggle, ErrorMessage, Loader } from ".";
 
 class RekForm extends React.Component {
   constructor(props) {
@@ -81,8 +80,8 @@ class RekForm extends React.Component {
     return(
       <Query query={GET_EPISODE} variables={{ id }} >
         {({ data, loading, error }) => {
-          if (loading) return <p>LOADING</p>;
-          if (error) return <p>ERROR</p>;
+          if (loading) return <Loader />;
+          if (error) return <ErrorMessage error={error} />;
           const { title, podcast } = data.episode;
           return (
             <div>
@@ -92,7 +91,7 @@ class RekForm extends React.Component {
               </div>
               <TagInput onUpdate={this.handleTagChange} />
               <SatoshiInput onUpdate={this.handleChange} />
-              <Form inline id="rek-form">
+              <form  id="rek-form">
                 <div id="twitter-toggle">
                   <Toggle onChange={this.tweetRek} customeClass={"twitter-toggle"}/>
                   <div id="twitter-toggle-label">Tweet It</div>
@@ -108,7 +107,7 @@ class RekForm extends React.Component {
                     </div>
                   )}
                 </Mutation>
-              </Form>
+              </form>
             </div>
           )
         }}

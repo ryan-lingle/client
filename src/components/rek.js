@@ -40,7 +40,7 @@ class Rek extends React.Component {
         <div className="rek-wrap">
           <div className="rek-flex" id="rek-flex-1">
             <a href={"/u/" + user.username}>
-              <img src={user.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"60px"} />
+              <img src={user.profilePic} alt={"avatar"} className="rounded-circle rek-profile-pic" />
             </a>
             <div className="rek-middle">
               <a className="rek-username" href={"/u/" + user.username}>{user.username}</a>

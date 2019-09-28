@@ -372,7 +372,9 @@ const NOTIFICATIONS = gql`
           profilePic
         }
         rek {
+          id
           episode {
+            id
             title
             podcast {
               title
