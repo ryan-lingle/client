@@ -32,7 +32,7 @@ class AuthContainer extends React.Component {
     const warning = this.props.location.search.split('warning=')[1];
     return (
       <div>
-        <Navbar bg="white" expand="md">
+        <Navbar bg="white" expand="md" className="auth-nav">
           <Navbar.Brand href="/" className="text-primary">REKR</Navbar.Brand>
           <Mutation mutation={LOGIN_USER} onCompleted={this.handleLogIn} >
             {(logIn, { error }) => (
@@ -54,7 +54,7 @@ class AuthContainer extends React.Component {
             <h1>Rekr helps both
             <br></br>Podcast <strong>Creators</strong> & <br></br>Podcast <strong>Listeners</strong></h1>
             <h1><strong> Stack Sats </strong></h1>
-            <img src={RekrExplained} width={"450px"} alt="rekr info graphic" />
+            <img src={RekrExplained} alt="rekr info graphic" />
           </div>
           <div id="auth-right" className="col-sm-6">
             {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}

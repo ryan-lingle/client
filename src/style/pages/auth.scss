@@ -1,12 +1,33 @@
+.auth-nav {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .login-inline {
   margin-left: auto;
   position: relative;
 }
 
+#login-form {
+  display: flex;
+  align-items: center;
+  input {
+    display: inline !important;
+    margin-right: 10px;
+    max-width: 100%;
+  }
+
+  button {
+    width: 110px;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+}
+
 #sign-up-form {
   padding-top: 20px;
   margin-top: 20px;
-  border-top: 2px solid $gray;
+  border-top: 2px solid black;
 }
 
 .sign-in-btn {
@@ -19,6 +40,7 @@
   height: 40px;
   width: 210px;
 }
+
 
 .sign-in-btn:hover {
   border: 1px solid $gray;
@@ -39,13 +61,12 @@
 #auth-left {
   background: $primary;
   color: white;
-  height: 100%;
   text-align: center;
   padding-top: 15px;
   h1 {
     font-weight: 300;
     padding-top: 15px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Lexend Deca', sans-serif;
   }
 
   strong {
@@ -53,7 +74,8 @@
   }
 
   img {
-    margin: 10px 0px 100px 0px;
+    margin: 10px 0px 0px 0px;
+    width: 90%;
   }
 }
 

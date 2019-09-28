@@ -1,11 +1,10 @@
 import React from "react";
-import { Form } from "react-bootstrap"
 
 const SignUpForm = (props) => {
   let username, password;
 
   return(
-    <Form inline className="login-inline" onSubmit={(e) => {
+    <form id="login-form" onSubmit={(e) => {
         e.preventDefault();
         const variables = {
           username: username.value,
@@ -13,20 +12,20 @@ const SignUpForm = (props) => {
         };
         props.logIn({ variables })
       }}>
-      <Form.Control
+      <input
+        className="form-control"
         type="text"
         placeholder="Username"
-        className="mr-sm-2"
         ref={node => { username = node }}
       />
-      <Form.Control
+      <input
+        className="form-control"
         type="password"
         placeholder="Password"
-        className="mr-sm-2"
         ref={node => { password = node }}
       />
       <button className="btn btn-primary">Sign In</button>
-    </Form>
+    </form>
   )
 }
 
