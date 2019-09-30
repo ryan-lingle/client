@@ -33,6 +33,12 @@
   }
 }
 
+@media screen and (max-width: 400px) {
+  img {
+    max-width: 75px !important;
+  }
+}
+
 .rekr-brand:hover {
   filter: brightness(90%);
   cursor: pointer;
