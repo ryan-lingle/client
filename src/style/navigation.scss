@@ -19,7 +19,7 @@
 .desktop-brand {
   position: absolute;
   left: 50%;
-  margin-left: -35px !important;
+  margin-left: -50px !important;
 }
 
 .rekr-brand {
@@ -28,6 +28,11 @@
   font-size: 30px;
   font-weight: 300;
   min-width: 90px;
+}
+
+.rekr-brand:hover {
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 .navbar-nav {

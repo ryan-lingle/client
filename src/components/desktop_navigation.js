@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
 import Search from "./nav_search";
+import Logo from "../logo.png";
 
 const DesktopNavigation = ({ path }) => {
   function current(_path_) {
@@ -12,7 +13,9 @@ const DesktopNavigation = ({ path }) => {
   const hasPodcast = localStorage.getItem("hasPodcast");
   return(
     <Navbar bg="white" expand="md" fixed={"top"} >
-      <Navbar.Brand href="/" className="text-primary rekr-brand desktop-brand">REKR</Navbar.Brand>
+      <Navbar.Brand href="/" className="text-primary rekr-brand desktop-brand">
+        <img src={Logo} width={"100px"}/>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
