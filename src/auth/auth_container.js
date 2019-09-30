@@ -35,7 +35,7 @@ class AuthContainer extends React.Component {
       <div>
         <Navbar bg="white" expand="md" className="auth-nav">
           <Navbar.Brand href="/" className="text-primary rekr-brand">
-            <img src={Logo} />
+            <img src={Logo} alt="rekr logo" />
           </Navbar.Brand>
           <Mutation mutation={LOGIN_USER} onCompleted={this.handleLogIn} >
             {(logIn, { error }) => (

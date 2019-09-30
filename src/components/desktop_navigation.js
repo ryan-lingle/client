@@ -14,7 +14,7 @@ const DesktopNavigation = ({ path }) => {
   return(
     <Navbar bg="white" expand="md" fixed={"top"} >
       <Navbar.Brand href="/" className="text-primary rekr-brand desktop-brand">
-        <img src={Logo} />
+        <img src={Logo} alt="rekr logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

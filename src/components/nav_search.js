@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader, ErrorMessage } from ".";
+import { ErrorMessage } from ".";
 import { Form } from "react-bootstrap";
 import { Search } from ".";
 

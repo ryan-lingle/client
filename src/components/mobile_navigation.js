@@ -11,7 +11,7 @@ const MobileNavigation = (props) => {
   return(
     <Navbar bg="white" fixed={"top"} id="mobile-nav">
       <Navbar.Brand href="/" className="text-primary rekr-brand">
-        <img src={Logo} />
+        <img src={Logo} alt="rekr logo" />
       </Navbar.Brand>
       <Search />
       <Dropdown>

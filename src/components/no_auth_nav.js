@@ -6,7 +6,7 @@ import Logo from "../logo.png";
 const NoAuthNav = () => (
   <Navbar bg="white" expand="md" fixed={"top"} >
     <Navbar.Brand href="/" className="text-primary rekr-brand">
-      <img src={Logo} />
+      <img src={Logo} alt="rekr logo" />
     </Navbar.Brand>
     <div id="no-auth-left">
       <Search />
