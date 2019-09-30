@@ -6,6 +6,7 @@ import LogInForm from "./login_form";
 import { SIGN_UP_USER, LOGIN_USER } from '../actions';
 import { ErrorMessage, TwitterSignIn } from '../components';
 import RekrExplained from '../green-rekr-explained.png';
+import Logo from "../logo.png";
 
 class AuthContainer extends React.Component {
   state = {
@@ -33,7 +34,9 @@ class AuthContainer extends React.Component {
     return (
       <div>
         <Navbar bg="white" expand="md" className="auth-nav">
-          <Navbar.Brand href="/" className="text-primary">REKR</Navbar.Brand>
+          <Navbar.Brand href="/" className="text-primary">
+            <img src={Logo} width={"100px"}/>
+          </Navbar.Brand>
           <Mutation mutation={LOGIN_USER} onCompleted={this.handleLogIn} >
             {(logIn, { error }) => (
               <span className="login-inline">

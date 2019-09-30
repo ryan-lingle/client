@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
 import Search from "./nav_search";
+import Logo from "../logo.png";
 
 const MobileNavigation = (props) => {
   const username = localStorage.getItem("username");
@@ -9,7 +10,9 @@ const MobileNavigation = (props) => {
   const hasPodcast = localStorage.getItem("hasPodcast");
   return(
     <Navbar bg="white" fixed={"top"} id="mobile-nav">
-      <Navbar.Brand href="/" className="text-primary rekr-brand">REKR</Navbar.Brand>
+      <Navbar.Brand href="/" className="text-primary rekr-brand">
+        <img src={Logo} width={"100px"}/>
+      </Navbar.Brand>
       <Search />
       <Dropdown>
         <Dropdown.Toggle as="div" >
