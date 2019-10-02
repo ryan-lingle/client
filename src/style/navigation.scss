@@ -27,7 +27,6 @@
   opacity: 1 !important;
   font-size: 30px;
   font-weight: 300;
-  min-width: 90px;
   img {
     max-width: 100px;
   }
@@ -36,7 +35,7 @@
 @media screen and (max-width: 400px) {
   .rekr-brand {
     img {
-      max-width: 75px !important;
+      max-width: 65px !important;
     }
   }
 }
@@ -59,6 +58,7 @@
 
 .dropdown-menu {
   margin-top: 12px !important;
+  z-index: 200;
 }
 
 .nav-link {
@@ -125,4 +125,5 @@
 .no-auth-nav {
   display: flex;
   justify-content: space-between;
+  padding: 5px 10px;
 }

@@ -5,9 +5,9 @@ import Logo from "../logo.png";
 
 const NoAuthNav = () => (
   <Navbar bg="white" expand="md" fixed={"top"} className="no-auth-nav">
-    <Navbar.Brand href="/" className="text-primary rekr-brand">
+    <div href="/" className="text-primary rekr-brand">
       <img src={Logo} alt="rekr logo" />
-    </Navbar.Brand>
+    </div>
     <div id="no-auth-left">
       <Search />
       <a href="/login" className="rek-btn btn btn-secondary">Sign Up</a>

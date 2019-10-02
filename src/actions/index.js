@@ -646,6 +646,12 @@ const CREATE_REK_VIEW = gql`
   }
 `
 
+const DELETE_USER = gql`
+  mutation DeleteUser {
+    deleteUser
+  }
+`
+
 export {
   PARSE_PODCAST,
   CURRENT_USER,
@@ -689,5 +695,6 @@ export {
   EPISODE_SHOW,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD,
-  CREATE_REK_VIEW
+  CREATE_REK_VIEW,
+  DELETE_USER
 };

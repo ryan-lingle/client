@@ -11,6 +11,7 @@ import { FormControl } from "react-bootstrap";
 import { Mutation } from "react-apollo";
 import {
   UPDATE_USER,
+  DELETE_USER,
   REK_STREAM,
   FOLLOWING_STREAM,
   FOLLOWER_STREAM,
@@ -100,6 +101,18 @@ export default class UserNav extends React.Component {
                   e.preventDefault();
                   this.setState({ editBio: false });
                 }} >Cancel</button>
+                <Mutation mutation={DELETE_USER} onCompleted={() => {
+                  localStorage.clear();
+                  window.location.reload();
+                }}>
+                  {(deleteUser, { error}) =>
+                    <a id="delete-user" onClick={() => {
+                      if (window.confirm('ARE YOU SURE YOU WANT TO DELETE THIS ACCOUNT?')) {
+                        deleteUser();
+                      }
+                    }} >Delete this Account</a>
+                  }
+                </Mutation>
               </form>
             </div>
           )}

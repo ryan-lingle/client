@@ -1,6 +1,5 @@
 import React from "react";
 import { ErrorMessage } from ".";
-import { Form } from "react-bootstrap";
 import { Search } from ".";
 
 export default class NavSearch extends React.Component {

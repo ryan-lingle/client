@@ -175,3 +175,14 @@
   max-width: 500px;
 }
 
+#delete-user {
+  color: $gray;
+  font-size: 12px;
+}
+
+#delete-user:hover {
+  color: $gray-hover;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
