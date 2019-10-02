@@ -5,7 +5,7 @@ import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
 import { SIGN_UP_USER, LOGIN_USER } from '../actions';
 import { ErrorMessage, TwitterSignIn } from '../components';
-import RekrExplained from '../green-rekr-explained.png';
+import RekrExplained from '../infographic_1.png';
 import Logo from "../logo.png";
 
 class AuthContainer extends React.Component {

@@ -4,7 +4,7 @@ import { Navbar } from "react-bootstrap"
 import Logo from "../logo.png";
 
 const NoAuthNav = () => (
-  <Navbar bg="white" expand="md" fixed={"top"} >
+  <Navbar bg="white" expand="md" fixed={"top"} className="no-auth-nav">
     <Navbar.Brand href="/" className="text-primary rekr-brand">
       <img src={Logo} alt="rekr logo" />
     </Navbar.Brand>

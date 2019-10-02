@@ -48,11 +48,11 @@ export default class NavSearch extends React.Component {
   render() {
     const { term, type } = this.state;
     return(
-      <Form inline id="search-form" onSubmit={this.handleSubmit}>
-        <Form.Control
+      <form id="search-form" onSubmit={this.handleSubmit}>
+        <input
+          className="form-control"
           type="text"
           placeholder="Search Rekr"
-          className="mr-sm-2"
           value={term}
           onChange={this.handleTermChange}
         />
@@ -78,7 +78,7 @@ export default class NavSearch extends React.Component {
             )
           }}
         </Search>
-      </Form>
+      </form>
     )
   }
 }
