@@ -12,11 +12,6 @@ class Wallet extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.props.client.query({
-      query: CURRENT_SATS
-    }).then(({ data }) => this.currentSats = data.currentUser.satoshis);
-
     this.state = {
       satoshis: 10000,
       withdraw: false,
@@ -55,7 +50,8 @@ class Wallet extends React.Component {
       const { data } = await this.props.client.mutate({
         mutation: WITHDRAW,
         variables: {
-          invoice
+          invoice,
+          podcastId: this.props.podcastId,
         }
       });
 
@@ -86,7 +82,7 @@ class Wallet extends React.Component {
   }
 
   withdraw = () => {
-    if (this.currentSats > 0) this.setState({ withdraw: true })
+    if (this.props.satoshis > 0) this.setState({ withdraw: true })
   }
 
   buildModal = () => {
@@ -131,7 +127,7 @@ class Wallet extends React.Component {
             {joule ?
               <div>
                 <ErrorMessage error={error} />
-                <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.currentSats} />
+                <SatoshiInput onUpdate={this.handleSatoshiUpdate} max={this.props.satoshis} />
                 <br></br>
                 <input type="submit" value="Withdraw" className="btn btn-primary rek-submit" onClick={async (e) => {
                   this.requestInvoice(this.state.satoshis)
@@ -163,18 +159,9 @@ class Wallet extends React.Component {
   render() {
     const { invoice, withdraw, deposit } = this.state;
     return(
-      <div id="wallet">
+      <div>
         {(invoice || withdraw || deposit) ? this.buildModal() : null}
-        <div className="satoshi-amount" id="wallet-amount">
-          <div className="wallet-satoshis">{this.props.satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
-          <div> sats</div>
-        </div>
-        <div id="wallet-actions">
-          <div className="wallet-line">a</div>
-          <div className="wallet-action" onClick={this.deposit} >Deposit</div>
-          <div className="wallet-line">a</div>
-          <div className="wallet-action" onClick={this.withdraw} >Withdraw</div>
-        </div>
+        {this.props.children({ deposit: this.deposit, withdraw: this.withdraw })}
       </div>
     )
   }

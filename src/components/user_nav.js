@@ -5,7 +5,7 @@ import User from "./user";
 import Episode from "./episode"
 import createStream from "./stream";
 import FollowButton from "./follow_button";
-import Wallet from "./wallet.js";
+import Wallet from "./user_wallet.js";
 import ImageEditor from "./image_editor";
 import { FormControl } from "react-bootstrap";
 import { Mutation } from "react-apollo";
@@ -214,7 +214,7 @@ export default class UserNav extends React.Component {
           </div>
         </div>
         {onSats ?
-          <Wallet satoshis={this.props.satoshis} id={this.props.id} />
+          <Wallet satoshis={this.props.satoshis} />
           :  <Stream query={query} variables={{ userId: this.props.id }} />}
         {this.state.image ? <ImageEditor image={this.state.image} removeFile={this.removeFile} /> : null}
       </div>

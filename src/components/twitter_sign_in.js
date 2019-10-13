@@ -4,7 +4,7 @@ import { TWITTER_TOKEN } from "../actions";
 import { ErrorMessage } from ".";
 import TwitterLogo from "../Twitter_Logo_Blue.png";
 
-const TwitterSignIn = () => {
+const TwitterSignIn = ({ write }) => {
   const handleTwitterToken = ({ twitterToken }) => {
     window.location.href = `https://twitter.com/oauth/authenticate?oauth_token=${twitterToken}`
   }
@@ -14,9 +14,9 @@ const TwitterSignIn = () => {
       {(requestTwitterToken, { error }) => (
         <div>
           <ErrorMessage error={error} />
-          <button className="sign-in-btn" onClick={requestTwitterToken}>
+          <button className="sign-in-btn" onClick={() => requestTwitterToken({ variables: { write }})}>
             <img src={TwitterLogo} width={'30px'} alt="twitter-logo" />
-            Sign In with Twitter
+            {write ? 'Grant Rekr Access' : 'Sign In with Twitter'}
           </button>
         </div>
       )}

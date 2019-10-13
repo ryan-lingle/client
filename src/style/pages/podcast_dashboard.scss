@@ -195,3 +195,20 @@
   margin: 10px auto;
   text-align: center;
 }
+
+#podcast-wallet {
+  border-top: 1px solid $gray-hover;
+  border-bottom: 1px solid $gray-hover;
+  padding: 15px 0px;
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  #p-sats {
+    border-left: 1px solid $gray-hover;
+    border-right: 1px solid $gray-hover;
+    min-width: 33%;
+  }
+}

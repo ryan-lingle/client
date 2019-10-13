@@ -5,8 +5,6 @@
 .rek-flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 7px 0px;
 }
 
 
@@ -26,31 +24,36 @@
   width: 60px;
 }
 
-.rek-satoshis {
-  white-space: nowrap;
-  font-size: 12px;
-  text-align: center;
+.rek-sats {
+  padding-bottom: 7px;
+}
+
+.sats-sats {
   color: $primary;
-  margin-left: 3px;
-  padding: 1px 5px;
-  border-radius: 5px;
-  border: 1px $primary solid;
+}
+
+.rek-details {
+  color: $gray;
+  font-size: 12px;
+}
+
+.rek-main {
+  padding-top: 15px;
+  padding-bottom: 7px;
 }
 
 .rek-username {
-  font-weight: bold;
-  padding-bottom: 10px;
-  color: black;
+  color: $gray;
 }
 
 .rek-username:hover {
-  text-decoration: none !important;
-  color: black;
+  color: $gray;
 }
 
 .rek-episode-details {
   color: black;
   font-size: 14px;
+  text-align: center;
 }
 
 .rek-episode-details:hover {
@@ -59,7 +62,7 @@
 
 .rek-podcast-art {
   border-radius: 2px;
-  width: 70px;
+  width: 80px;
 }
 
 .rek-podcast-art:hover {
@@ -83,8 +86,7 @@
   font-size: 12px;
   text-align: center;
   color: $primary;
-  margin-left: 3px;
-  padding: 1px 5px;
+  padding: 1px 3px;
 }
 
 #rek-flex-1 {
@@ -99,7 +101,6 @@
 }
 
 #rek-hashtags {
-  margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
 }

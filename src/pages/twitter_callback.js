@@ -5,12 +5,14 @@ import { withApollo } from "react-apollo";
 
 class TwitterCallback extends React.Component {
   async componentDidMount() {
+    const { type }  = this.props.match.params;
     const { search } = this.props.location;
     const split1 = search.split('?oauth_token=')[1];
     const split2 = split1.split('&oauth_verifier=');
     const { data } = await this.props.client.mutate({
       mutation: TWITTER_ACCESS_TOKEN,
       variables: {
+        write: type === 'write',
         requestToken: split2[0],
         oathVerifier: split2[1]
       }

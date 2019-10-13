@@ -1,9 +1,10 @@
 import React from "react";
 import { withApollo } from "react-apollo";
-import { Table, Toggle, Tooltip } from "../../components";
+import { Table, Toggle, Tooltip, Invoice } from "../../components";
 import { GUEST_SHARE } from "../../actions";
 import GuestSharingModal from "./guest_sharing_modal";
 import GuestTaggingModal from "./guest_tagging_modal";
+import PodcastWallet from "./podcast_wallet";
 
 class Podcast extends React.Component {
   state = {
@@ -52,7 +53,7 @@ class Podcast extends React.Component {
   }
 
   render() {
-    const { id, title, image, description, donationSum, donationCount, episodes } = this.props;
+    const { id, title, image, description, donationSum, donationCount, episodes, satoshis } = this.props;
     return(
       <div>
         <GuestSharingModal
@@ -81,6 +82,7 @@ class Podcast extends React.Component {
               <strong> {donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </strong>
               Sats.
             </div>
+            <PodcastWallet satoshis={satoshis} podcastId={id} />
             <div className="pd-bottom">
               <div className="pd-item">
                 <h4>Guest Percentage</h4>

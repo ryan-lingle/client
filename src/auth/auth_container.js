@@ -62,7 +62,7 @@ class AuthContainer extends React.Component {
           <div id="auth-right" className="col-sm-6">
             {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}
             <div id="sign-in-btns">
-              <TwitterSignIn />
+              <TwitterSignIn write={false} />
               <a href="/password-reset/request" style={{ fontSize: "12px" }}>I Forgot My Password</a>
             </div>
             <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >

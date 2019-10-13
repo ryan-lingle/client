@@ -71,6 +71,7 @@ const FEED_STREAM = gql`
       stream {
         id
         satoshis
+        monthValueGenerated
         user {
           id
           profilePic
@@ -397,8 +398,8 @@ const DEPOSIT = gql`
 `
 
 const WITHDRAW = gql`
-  mutation Withdraw($invoice: String!) {
-    withdraw(invoice: $invoice) {
+  mutation Withdraw($invoice: String!, $podcastId: String) {
+    withdraw(invoice: $invoice, podcastId: $podcastId) {
       success
       error
     }
@@ -442,6 +443,7 @@ const REK_STREAM = gql`
       stream {
         id
         satoshis
+        monthValueGenerated
         user {
           id
           profilePic
@@ -504,6 +506,7 @@ const HASHTAG_FEED = gql`
       more
       stream {
         id
+        monthValueGenerated
         satoshis
         user {
           id
@@ -555,14 +558,14 @@ const RESEND_PODCAST_EMAIL = gql`
 `
 
 const TWITTER_TOKEN = gql`
-  mutation TwitterToken {
-    twitterToken
+  mutation TwitterToken($write: Boolean!) {
+    twitterToken(write: $write)
   }
 `
 
 const TWITTER_ACCESS_TOKEN = gql`
-  mutation TwitterAccessToken($requestToken: String!, $oathVerifier: String!) {
-    twitterAccessToken(requestToken: $requestToken, oathVerifier: $oathVerifier) {
+  mutation TwitterAccessToken($write: Boolean!, $requestToken: String!, $oathVerifier: String!) {
+    twitterAccessToken(write: $write, requestToken: $requestToken, oathVerifier: $oathVerifier) {
       username
       profilePic
       id
@@ -583,6 +586,7 @@ const PODCAST_DASHBOARD = gql`
         description
         donationCount
         donationSum
+        satoshis
         guestShare
         episodes {
           id
