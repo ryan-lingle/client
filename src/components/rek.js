@@ -33,7 +33,7 @@ class Rek extends React.Component {
   }
 
   render() {
-    const { user, episode, satoshis, id, hashtags, monthValueGenerated } = this.props;
+    const { user, episode, id, hashtags, monthValueGenerated } = this.props;
     const { podcast } = episode;
     return(
       <div className="rek item" id={`rek-${id}`}>
@@ -52,7 +52,7 @@ class Rek extends React.Component {
           <div className="rek-flex rek-main" id="rek-flex-1">
             <Tooltip tooltip={podcast.title}>
               <a href={`/podcast/${podcast.slug}`}>
-                <img src={podcast.image} className="rek-podcast-art"/>
+                <img src={podcast.image} alt="podcast art" className="rek-podcast-art"/>
               </a>
             </Tooltip>
             <div className="rek-middle">

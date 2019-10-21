@@ -9,7 +9,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/login" component={AuthContainer}/>
-          <Route exact path="/auth/twitter/callback/:type" component={TwitterCallback} />
+          <Route exact path="/auth/twitter/callback/" component={TwitterCallback} />
           <Route component={DefaultContainer}/>
         </Switch>
       </Router>

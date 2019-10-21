@@ -123,8 +123,8 @@ const GET_USER = gql`
 `
 
 const GET_PODCAST = gql`
-  query GetPodcast($slug: String, $id: String) {
-    podcast(slug: $slug, id: $id) {
+  query GetPodcast($slug: String, $id: String, $token: String) {
+    podcast(slug: $slug, id: $id, token: $token) {
       id
       title
       slug
@@ -133,6 +133,7 @@ const GET_PODCAST = gql`
       email
       image
       website
+      satoshis
       emailVerified
       episodes {
         id
@@ -541,6 +542,7 @@ const CONFIRM_EMAIL = gql`
       user {
         id
       }
+      loggedIn
     }
   }
 `
@@ -558,14 +560,14 @@ const RESEND_PODCAST_EMAIL = gql`
 `
 
 const TWITTER_TOKEN = gql`
-  mutation TwitterToken($write: Boolean!) {
-    twitterToken(write: $write)
+  mutation TwitterToken {
+    twitterToken
   }
 `
 
 const TWITTER_ACCESS_TOKEN = gql`
-  mutation TwitterAccessToken($write: Boolean!, $requestToken: String!, $oathVerifier: String!) {
-    twitterAccessToken(write: $write, requestToken: $requestToken, oathVerifier: $oathVerifier) {
+  mutation TwitterAccessToken($requestToken: String!, $oathVerifier: String!) {
+    twitterAccessToken(requestToken: $requestToken, oathVerifier: $oathVerifier) {
       username
       profilePic
       id

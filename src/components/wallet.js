@@ -4,7 +4,7 @@ import SatoshiInput from "./satoshi_input";
 import Invoice from "./invoice"
 import { ErrorMessage } from ".";
 import { Mutation, withApollo } from "react-apollo";
-import { DEPOSIT, WITHDRAW, CURRENT_SATS } from "../actions";
+import { DEPOSIT, WITHDRAW } from "../actions";
 import { NotificationManager } from 'react-notifications';
 import { requestProvider } from 'webln'
 

@@ -18,6 +18,8 @@ class PodcastDashboard extends React.Component {
             if (loading) return <Loader />;
             const { currentUser } = data;
 
+            console.log(currentUser);
+
             return(
               <div id="pd-wrapper">
                 <h2>Podcast Dashboard</h2>

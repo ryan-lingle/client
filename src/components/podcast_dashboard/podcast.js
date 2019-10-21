@@ -1,6 +1,6 @@
 import React from "react";
 import { withApollo } from "react-apollo";
-import { Table, Toggle, Tooltip, Invoice } from "../../components";
+import { Table, Toggle, Tooltip } from "../../components";
 import { GUEST_SHARE } from "../../actions";
 import GuestSharingModal from "./guest_sharing_modal";
 import GuestTaggingModal from "./guest_tagging_modal";

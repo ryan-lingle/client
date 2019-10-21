@@ -69,7 +69,7 @@ class RekForm extends React.Component {
       <div id="twitter-wrapper">
         <div className="back-btn fa fa-arrow-left" style={{top: "1px", left: "5px" }} onClick={() => { this.setState({ twitterSignIn: false })}}></div>
         <h2>Looks like you haven't granted us permission to create Tweets yet!<br></br><br></br>Grant us access to continue.</h2>
-        <TwitterSignIn write={true} />
+        <TwitterSignIn />
       </div>
     )
   }

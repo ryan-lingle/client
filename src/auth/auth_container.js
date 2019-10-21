@@ -1,10 +1,8 @@
 import React from "react";
 import { Navbar } from "react-bootstrap"
-import { Mutation } from "react-apollo";
 import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
-import { SIGN_UP_USER, LOGIN_USER } from '../actions';
-import { ErrorMessage, TwitterSignIn } from '../components';
+import { TwitterSignIn, Tooltip } from '../components';
 import RekrExplained from '../infographic_1.png';
 import Logo from "../logo.png";
 
@@ -13,14 +11,7 @@ class AuthContainer extends React.Component {
     redirectToReferrer: false
   }
 
-  handleLogIn = ({ createUser, logIn }) => {
-    const data = createUser || logIn;
-    localStorage.setItem('id', data.id);
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('username', data.username);
-    localStorage.setItem('profilePic', data.profilePic);
-    localStorage.setItem('email', data.email);
-    localStorage.setItem('hasPodcast', data.hasPodcast);
+  handleLogIn = () => {
     try {
       window.location.href = this.props.location.state.from;
     } catch {
@@ -37,42 +28,35 @@ class AuthContainer extends React.Component {
           <Navbar.Brand href="/" className="text-primary rekr-brand">
             <img src={Logo} alt="rekr logo" />
           </Navbar.Brand>
-          <Mutation mutation={LOGIN_USER} onCompleted={this.handleLogIn} >
-            {(logIn, { error }) => (
-              <span className="login-inline">
-                <LogInForm logIn={logIn} />
-                <ErrorMessage
-                  error={error}
-                  position={{
-                    top: "55px",
-                    right: "70px"
-                  }}
-                />
-              </span>
-            )}
-          </Mutation>
+          <LogInForm handleLogIn={this.handleLogIn} />
         </Navbar>
         <div className="auth-container row">
           <div id="auth-left" className="col-sm-6">
-            <h1>Rekr helps both
-            <br></br>Podcast <strong>Creators</strong> & <br></br>Podcast <strong>Listeners</strong></h1>
-            <h1><strong> Stack Sats </strong></h1>
+            <h1 id="the-rules">The Rules:</h1>
+            <ol>
+              <li>
+                <h1>Make a <Tooltip tooltip="Rek (n) 1. A public donation. 2. A recommendation with skin in the game."><span className="dotted">Rek</span></Tooltip>.</h1>
+              </li>
+              <li>
+                <h1>Tag up to 3 Topics to get listed on Topic Boards.</h1>
+              </li>
+              <li>
+                <h1>Earn 10% on all <Tooltip tooltip="re-Rek (n) 1. A Rek that occurs based on the influence of your initial Rek."><span className="dotted">re-Reks</span></Tooltip>.</h1>
+              </li>
+              <li>
+                <h1>Climb the Topic Boards as your <Tooltip tooltip={"Rek (n) 1. A public donation. 2. A recommendation with skin in the game."}><span className="dotted">Rek</span></Tooltip> spurs more <Tooltip tooltip="re-Rek (n) 1. A Rek that occurs based on the influence of your initial Rek."><span className="dotted">re-Reks</span></Tooltip>.</h1>
+              </li>
+            </ol>
             <img src={RekrExplained} alt="rekr info graphic" />
           </div>
           <div id="auth-right" className="col-sm-6">
             {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}
             <div id="sign-in-btns">
-              <TwitterSignIn write={false} />
+              <TwitterSignIn />
               <a href="/password-reset/request" style={{ fontSize: "12px" }}>I Forgot My Password</a>
             </div>
-            <Mutation mutation={SIGN_UP_USER} onCompleted={this.handleLogIn} >
-              {(logIn, { error }) => (
-                <div>
-                  <ErrorMessage error={error} />
-                  <SignUpForm logIn={logIn} />
-                </div>)
-              }
-            </Mutation>
+            <h2>Sign Up</h2>
+            <SignUpForm handleLogIn={this.handleLogIn} />
           </div>
         </div>
       </div>

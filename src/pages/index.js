@@ -12,3 +12,4 @@ export {default as TwitterCallback} from "./twitter_callback";
 export {default as PodcastDashboard} from "./podcast_dashboard";
 export {default as EpisodeShow} from "./episode_show";
 export {default as PasswordReset} from "./password_reset";
+export {default as ClaimPodcast} from "./claim_podcast";

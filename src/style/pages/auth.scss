@@ -59,14 +59,19 @@
 }
 
 #auth-left {
+  li {
+    font-size: 30px;
+  }
+
   background: $primary;
   color: white;
-  text-align: center;
+  text-align: left;
+  padding: 15px 50px 0px 50px;
   padding-top: 15px;
   h1 {
-    font-weight: 300;
+    font-weight: 400;
     padding-top: 15px;
-    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Inconsolata', monospace;
   }
 
   strong {
@@ -82,4 +87,20 @@
 #auth-right {
   padding: 30px 50px;
   margin-bottom: 300px;
+}
+
+.dotted {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.dotted:hover {
+  cursor: pointer;
+}
+
+#the-rules {
+  padding-left: 35px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid white;
 }

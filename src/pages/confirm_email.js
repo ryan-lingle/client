@@ -2,7 +2,6 @@ import React from "react";
 import { CONFIRM_EMAIL } from "../actions";
 import { Loader } from "../components";
 import { withApollo } from "react-apollo";
-
 class ConfirmEmail extends React.Component {
   state = {
     loading: true,
@@ -23,7 +22,11 @@ class ConfirmEmail extends React.Component {
       mutation: CONFIRM_EMAIL,
       variables: this.props.match.params
     });
-    this.onCompleted(data);
+    if (data.confirmEmail.loggedIn) {
+      this.onCompleted(data);
+    } else if (data.confirmEmail.podcast) {
+      window.location.href = `/claim-podcast/${this.props.match.params.token}`;
+    }
   }
 
   render() {
