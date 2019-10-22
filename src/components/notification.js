@@ -1,6 +1,6 @@
 import React from "react";
 
-const Notification = ({ notifier, rek: { id, episode }, type, satoshis }) => {
+const Notification = ({ notifier, rek, type, satoshis }) => {
   const index = {
     bookmark: {
       icon: "bookmark",
@@ -9,9 +9,30 @@ const Notification = ({ notifier, rek: { id, episode }, type, satoshis }) => {
     rek: {
       icon: "coins",
       copy: "Rerek'd"
+    },
+    follow: {
+      icon: "user",
+      copy: "Sucked"
     }
   };
+  if (!rek) return (
+    <div className="item notification-card">
+      <div className="fa fa-user bookmark-notification"></div>
+      <div className="notification-description">
+        <a href={"/u/" + notifier.username}>
+          <img src={notifier.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"40px"} />
+        </a>
+        <div>
+          <a href={"/u/" + notifier.username}>
+            <span className="font-weight-bold notification-username">{notifier.username} </span>
+          </a>
+          followed you
+        </div>
+      </div>
+    </div>
+  );
 
+  const { id, episode } = rek;
   return(
     <div className="item notification-card">
       <div className={`fa fa-${index[type].icon} bookmark-notification`}></div>
@@ -21,11 +42,11 @@ const Notification = ({ notifier, rek: { id, episode }, type, satoshis }) => {
         </a>
         <div>
           <a href={"/u/" + notifier.username}>
-            <span className="font-weight-bold rek-username">{notifier.username} </span>
+            <span className="font-weight-bold notification-username">{notifier.username} </span>
           </a>
           {index[type].copy} your Rek of
           <a href={`/podcast/${episode.podcast.slug}`}>
-            <span className="font-weight-bold rek-username"> {episode.podcast.title}'s </span>
+            <span className="font-weight-bold notification-username"> {episode.podcast.title}'s </span>
           </a>
           <span>Episode, </span>
           <a className="notification-episode-details font-weight-bold" href={`/episode/${episode.id}?rekId=${id}`}>{episode.title}</a>

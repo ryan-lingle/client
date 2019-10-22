@@ -9,7 +9,8 @@ class Invoice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showQR: false
+      showQR: false,
+      weblnError: false
     }
 
     this.subscribe();
@@ -22,7 +23,7 @@ class Invoice extends React.Component {
       const webln = await requestProvider();
       webln.sendPayment(this.props.invoice)
     } catch(err) {
-      console.log(err)
+      this.setState({ weblnError: true });
     }
   }
 
@@ -57,7 +58,7 @@ class Invoice extends React.Component {
     }).subscribe({
       next({ data }) {
         if (data.invoicePaid.invoice === invoice) {
-          handleInvoicePaid()
+          handleInvoicePaid(data.invoicePaid.rekId);
         }
       },
       error(err) { console.error('err', err); },
@@ -69,6 +70,7 @@ class Invoice extends React.Component {
     if (this.state.showQR) return this.qrCode();
     return(
       <div id="invoice">
+        {this.state.weblnError ? <div id="no-webln">No Webln Provider found. <a target="_blank" rel="noopener noreferrer" href="https://lightningjoule.com/">Download Joule</a> for a better app experience.</div> : null}
         <h4 id="invoice-header">Invoice</h4>
         <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</span> Satoshis</h4>
 

@@ -146,7 +146,7 @@ const GET_PODCAST = gql`
 `
 
 const GET_EPISODE = gql`
-  query GetEpisode($id: Int!) {
+  query GetEpisode($id: String!) {
     episode(id: $id) {
       title
       podcast {
@@ -287,8 +287,8 @@ const LOGIN_USER = gql`
 `
 
 const CREATE_REK = gql`
-  mutation CreateRek($episodeId: String!, $tweetRek: Boolean!, $tags: [TagInput], $walletSatoshis: Int, $invoiceSatoshis: Int) {
-    createRek(episodeId: $episodeId, tweetRek: $tweetRek, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
+  mutation CreateRek($episodeId: String!, $tags: [TagInput], $walletSatoshis: Int, $invoiceSatoshis: Int) {
+    createRek(episodeId: $episodeId, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
       invoice
       satoshis
     }
@@ -300,6 +300,7 @@ const SUBSRIBE_INVOICE = gql`
     invoicePaid(invoice: $invoice) {
       userId
       invoice
+      rekId
     }
   }
 `

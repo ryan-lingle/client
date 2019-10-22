@@ -1,15 +1,13 @@
 import React from 'react'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
-import { SatoshiInput, TagInput, TwitterSignIn, Toggle, ErrorMessage, Loader } from ".";
+import { SatoshiInput, TagInput, ErrorMessage, Loader } from ".";
 
 class RekForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      twitterSignIn: false,
-      tweetRek: false,
       satoshis: 10000,
       tags: [],
     }
@@ -44,7 +42,6 @@ class RekForm extends React.Component {
       ) {
       createRek({ variables: {
         episodeId: this.props.id,
-        tweetRek: this.state.tweetRek,
         tags: this.state.tags,
         invoiceSatoshis,
         walletSatoshis
@@ -56,27 +53,10 @@ class RekForm extends React.Component {
     this.props.handleInvoice(createRek)
   }
 
-  tweetRek = (checked) => {
-    if (this.canTweet) {
-      this.setState({ tweetRek: checked })
-    } else {
-      this.setState({ twitterSignIn: true })
-    }
-  }
 
-  buildTwitterSignIn = () => {
-    return(
-      <div id="twitter-wrapper">
-        <div className="back-btn fa fa-arrow-left" style={{top: "1px", left: "5px" }} onClick={() => { this.setState({ twitterSignIn: false })}}></div>
-        <h2>Looks like you haven't granted us permission to create Tweets yet!<br></br><br></br>Grant us access to continue.</h2>
-        <TwitterSignIn />
-      </div>
-    )
-  }
 
   render() {
-    const id = parseInt(this.props.id);
-    if (this.state.twitterSignIn) return this.buildTwitterSignIn();
+    const { id } = this.props;
     return(
       <Query query={GET_EPISODE} variables={{ id }} >
         {({ data, loading, error }) => {
@@ -92,10 +72,6 @@ class RekForm extends React.Component {
               <TagInput onUpdate={this.handleTagChange} />
               <SatoshiInput onUpdate={this.handleChange} />
               <form  id="rek-form">
-                <div id="twitter-toggle">
-                  <Toggle onChange={this.tweetRek} customeClass={"twitter-toggle"}/>
-                  <div id="twitter-toggle-label">Tweet It</div>
-                </div>
                 <Mutation mutation={CREATE_REK} onCompleted={this.handleInvoice}>
                   {(createRek, {error, data}) => (
                     <div>

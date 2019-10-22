@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SignUpForm from "../auth/sign_up_form";
 import { TwitterSignIn, Loader, ErrorMessage } from "../components";
-import { GET_PODCAST, CONFIRM_EMAIL } from "../actions";
+import { GET_PODCAST } from "../actions";
 import { Query, withApollo } from "react-apollo";
 
 const ClaimPodcast = ({ match, client }) => {

@@ -1,10 +1,9 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { NotificationManager } from 'react-notifications';
-
 import EpisodeSearch from "./episode_search";
 import RekForm from "./rek_form";
 import Invoice from "./invoice";
+import RekCreated from "./rek_created";
 
 export default class RekModal extends React.Component {
   constructor(props) {
@@ -15,6 +14,7 @@ export default class RekModal extends React.Component {
       episodeId: null,
       satoshis: null,
       invoice: null,
+      rekId: null
     };
 
     if (this.props.episodeId) {
@@ -29,58 +29,56 @@ export default class RekModal extends React.Component {
   }
 
   onChildClick = () => {
-    this.setState({ isOpen: true })
+    this.setState({ isOpen: true });
   }
 
   closeModal = () => {
-    this.setState({ isOpen: false, step: 1 })
+    this.setState({ isOpen: false, step: 1 });
   }
 
   handleEpisodeSelection = (episodeId) => {
-    this.setState({ episodeId, step: 2 })
+    this.setState({ episodeId, step: 2 });
   }
 
   handleInvoice = ({ invoice, satoshis }) => {
     if (invoice) {
       this.setState({ invoice, satoshis, step: 3})
     } else {
-      this.setState({ step: 1, isOpen: false })
-      NotificationManager.info('Rek Created');
+      this.setState({ step: 4 })
     }
   }
 
-  handleInvoicePaid = () => {
-    this.setState({ isOpen: false })
-    NotificationManager.info('Rek Created');
+  handleInvoicePaid = (rekId) => {
+    this.setState({ step: 4, rekId });
   }
 
   renderStep = (step) => {
-    const { episodeId, invoice, satoshis } = this.state;
+    const { episodeId, invoice, satoshis, rekId } = this.state;
     return {
-      1: () => {
-        return(
-          <EpisodeSearch
-            handleSelection={this.handleEpisodeSelection}
-          />
-        )
-      },
-      2: () => {
-        return(
-          <RekForm
-            id={episodeId}
-            handleInvoice={this.handleInvoice}
-          />
-        )
-      },
-      3: () =>{
-        return(
-          <Invoice
-            invoice={invoice}
-            satoshis={satoshis}
-            handleInvoicePaid={this.handleInvoicePaid}
-          />
-        )
-      }
+      1: () => (
+        <EpisodeSearch
+          handleSelection={this.handleEpisodeSelection}
+        />
+      ),
+      2: () => (
+        <RekForm
+          id={episodeId}
+          handleInvoice={this.handleInvoice}
+        />
+      ),
+      3: () => (
+        <Invoice
+          invoice={invoice}
+          satoshis={satoshis}
+          handleInvoicePaid={this.handleInvoicePaid}
+        />
+      ),
+      4: () => (
+        <RekCreated
+          episodeId={episodeId}
+          rekId={rekId}
+        />
+      )
     }[step]();
   }
 

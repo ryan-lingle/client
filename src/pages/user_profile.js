@@ -8,6 +8,13 @@ const UserProfile = ({ match, location }) => {
     <Query query={GET_USER} variables={match.params} >
       {({ data, loading, error }) => {
         if (loading) return <Loader />;
+        if (error && error.message === "GraphQL error: Cannot return null for non-nullable field Query.user.") return(
+          <div id="user-profile"className="text-center">
+            <div className="item text-center">
+              This user does not exist.
+            </div>
+          </div>
+        );
         if (error) return(
           <div id="user-profile"className="text-center">
             <ErrorMessage error={error} />
