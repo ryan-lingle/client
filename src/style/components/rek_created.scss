@@ -24,5 +24,9 @@
 
 #rc-actions {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+
+  a {
+    margin: 0px 10px;
+  }
 }

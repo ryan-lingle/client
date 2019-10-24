@@ -15,16 +15,16 @@ const RekCreated = ({ episodeId, rekId }) => {
         const url = `${window.location.origin}/episode/${episodeId}?rekId=${rekId}`;
         return(
           <div id="rek-created">
-            <div id="rc-sats">Success - <strong>{satoshis} sat</strong> Rek created for:</div>
+            <div id="rc-sats">Success - <strong>{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sat</strong> Rek created for:</div>
             <div id="rc-episode">
               <img id="rc-podcast-img" src={podcast.image} />
               <div id="rc-episode-title" >{title}</div>
             </div>
             <div id="rc-actions">
-              <a className="btn btn-secondary" href={url}>
+              <a className="btn btn-primary" href={url}>
                 View Rek
               </a>
-              <a className="sign-in-btn" target="_blank" href={`https://twitter.com/intent/tweet?text=I just donated ${satoshis} sats to ${podcast.title} on Rekr. Check out my episode rek:&url=${url}`} >
+              <a className="sign-in-btn" target="_blank" href={`https://twitter.com/intent/tweet?text=I just donated ${satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats to ${podcast.title} on Rekr. Check out my episode rek:&url=${url}`} >
                 <img src={TwitterLogo} width={'30px'} alt="twitter-logo" />
                 Share on Twitter
               </a>
