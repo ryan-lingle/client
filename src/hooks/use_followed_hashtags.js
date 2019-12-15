@@ -15,8 +15,9 @@ function useFollowedHashtags(defaultHashtags) {
   }
 
   const removeHashtag = (id) => {
-    const newHashtags = hashtags.filter(hashtag => hashtag.id !== id.toString());
-    setHashtags(newHashtags);
+    setHashtags(hashtags => {
+      return hashtags.filter(hashtag => hashtag.id !== id.toString());
+    });
   }
 
   useEffect(() => {

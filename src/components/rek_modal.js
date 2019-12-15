@@ -40,11 +40,11 @@ export default class RekModal extends React.Component {
     this.setState({ episodeId, step: 2 });
   }
 
-  handleInvoice = ({ invoice, satoshis }) => {
+  handleInvoice = ({ invoice, satoshis, rekId }) => {
     if (invoice) {
       this.setState({ invoice, satoshis, step: 3})
     } else {
-      this.setState({ step: 4 })
+      this.setState({ rekId, step: 4 })
     }
   }
 

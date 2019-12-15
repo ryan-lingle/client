@@ -72,7 +72,7 @@ class Wallet extends React.Component {
   }
 
   handleInvoicePaid = () => {
-    this.setState({ invoice: null })
+    this.setState({ invoice: null });
     NotificationManager.info('Deposit Created');
   }
 

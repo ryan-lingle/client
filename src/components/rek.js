@@ -33,7 +33,7 @@ class Rek extends React.Component {
   }
 
   render() {
-    const { user, episode, id, hashtags, monthValueGenerated } = this.props;
+    const { user, episode, id, hashtags, monthValueGenerated, satoshis } = this.props;
     const { podcast } = episode;
     return(
       <div className="rek item" id={`rek-${id}`}>
@@ -48,6 +48,12 @@ class Rek extends React.Component {
           </div>
           <div className="rek-details rek-sats" >
             generated <span className="sats-sats"> {monthValueGenerated.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </span> sats this month
+            <Tooltip tooltip={`${user.username}'s initial donation of
+              ${satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}
+              sats has influenced a total of ${(monthValueGenerated).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}
+              sats donations this month.`}>
+              <i className="fa fa-question-circle" />
+            </Tooltip>
           </div>
           <div className="rek-flex rek-main" id="rek-flex-1">
             <Tooltip tooltip={podcast.title}>

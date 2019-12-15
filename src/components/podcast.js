@@ -13,7 +13,7 @@ const Podcast = (podcast) => {
     <div>
       {podcast.emailVerified || podcast.hideUnverifiedMessage ? null :
         <div id="unverified-podcast">
-          This Podcasts has not been authorized for donations. Is it yours?
+          This Podcast's donations have not been claimed. Is it yours?
           <Mutation mutation={RESEND_PODCAST_EMAIL} onCompleted={onCompleted}>
             {(resendConfirmEmail) => (
               <a href="#" onClick={() => resendConfirmEmail({ variables: { podcastId: podcast.id }})} > Claim this Podcast.</a>

@@ -291,6 +291,7 @@ const CREATE_REK = gql`
     createRek(episodeId: $episodeId, tags: $tags, walletSatoshis: $walletSatoshis, invoiceSatoshis: $invoiceSatoshis) {
       invoice
       satoshis
+      rekId
     }
   }
 `

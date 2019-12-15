@@ -35,10 +35,7 @@ class RekForm extends React.Component {
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
     if (
         walletSatoshis <= 0 ||
-        (
-          !this.walletPermission ||
-          window.confirm(`Okay to Spend ${walletSatoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satohsis from your Rekr Wallet?`)
-        )
+        (window.confirm(`Okay to Spend ${walletSatoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satohsis from your Rekr Wallet?`))
       ) {
       createRek({ variables: {
         episodeId: this.props.id,
@@ -50,6 +47,7 @@ class RekForm extends React.Component {
   }
 
   handleInvoice = ({ createRek }) => {
+    console.log(createRek)
     this.props.handleInvoice(createRek)
   }
 

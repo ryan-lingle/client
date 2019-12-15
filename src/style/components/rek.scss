@@ -26,6 +26,14 @@
 
 .rek-sats {
   padding-bottom: 7px;
+  i {
+    color: $gray;
+    font-size: 9px;
+    margin-left: 2px;
+  }
+  i:hover {
+    cursor: pointer;
+  }
 }
 
 .sats-sats {
