@@ -622,7 +622,7 @@ const TAG_GUEST = gql`
 `
 
 const EPISODE_GUESTS = gql`
-  query EpisodeGuests($episodeId: Int!) {
+  query EpisodeGuests($episodeId: String!) {
     episode(id: $episodeId) {
       guests {
         id

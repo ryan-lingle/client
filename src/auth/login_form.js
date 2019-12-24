@@ -13,7 +13,6 @@ const SignUpForm = (props) => {
     localStorage.setItem('profilePic', logIn.profilePic);
     localStorage.setItem('email', logIn.email);
     localStorage.setItem('hasPodcast', logIn.hasPodcast);
-    console.log(props);
     props.handleLogIn();
   }
 

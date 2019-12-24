@@ -78,4 +78,8 @@ ReactDOM.render(
   </ApolloProvider>, document.getElementById('root')
 );
 
+Number.prototype.toMoney = function() {
+  return this.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0});
+};
+
 export default client;

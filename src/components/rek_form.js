@@ -1,7 +1,7 @@
 import React from 'react'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
-import { SatoshiInput, TagInput, ErrorMessage, Loader } from ".";
+import { SatoshiInput, TagInput, ErrorMessage, Loader, Tooltip } from ".";
 
 class RekForm extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class RekForm extends React.Component {
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
     if (
         walletSatoshis <= 0 ||
-        (window.confirm(`Okay to Spend ${walletSatoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} Satohsis from your Rekr Wallet?`))
+        (window.confirm(`Okay to Spend ${walletSatoshis.toMoney()} Satohsis from your Rekr Wallet?`))
       ) {
       createRek({ variables: {
         episodeId: this.props.id,
@@ -47,8 +47,7 @@ class RekForm extends React.Component {
   }
 
   handleInvoice = ({ createRek }) => {
-    console.log(createRek)
-    this.props.handleInvoice(createRek)
+    this.props.handleInvoice(createRek);
   }
 
 
@@ -74,10 +73,13 @@ class RekForm extends React.Component {
                   {(createRek, {error, data}) => (
                     <div>
                       <ErrorMessage error={error} />
-                      <input type="submit" value="Rek It" className="btn btn-primary rek-submit" onClick={(e) => {
+                      <input type="submit" value="Create Rek" className="btn btn-primary rek-submit" onClick={(e) => {
                         e.preventDefault()
                         this.handleRekCreate(createRek)
                       }}/>
+                      <Tooltip tooltip="Rekr collects a 3% fee on donations.">
+                        <i className="fa fa-question-circle question-tooltip"/>
+                      </Tooltip>
                     </div>
                   )}
                 </Mutation>

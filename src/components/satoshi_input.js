@@ -55,7 +55,7 @@ export default class SatoshiInput extends React.Component {
             <div> Satoshis</div>
           </div>
           : <div className="satoshi-amount" id="rek-form-satoshis">
-              <div onClick={this.numberInput} className="wallet-satoshis">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
+              <div onClick={this.numberInput} className="wallet-satoshis">{satoshis.toMoney()}</div>
               <div> Satoshis</div>
             </div>
         }

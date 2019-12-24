@@ -83,3 +83,13 @@
   font-size: 20px;
   font-weight: 300;
 }
+
+.question-tooltip {
+  color: $gray;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.question-tooltip:hover {
+  cursor: pointer;
+}

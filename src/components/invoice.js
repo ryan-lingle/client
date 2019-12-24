@@ -38,7 +38,7 @@ class Invoice extends React.Component {
     return(
       <div className="text-center">
         <div className="back-btn fa fa-arrow-left" onClick={() => { this.setState({ showQR: false })}}></div>
-        <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</span> Satoshis</h4>
+        <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toMoney()}</span> Satoshis</h4>
         <QRCode value={invoice} fgColor={'#404040'} size={250} id="qr-code" />
       </div>
     )
@@ -72,7 +72,7 @@ class Invoice extends React.Component {
       <div id="invoice">
         {this.state.weblnError ? <div id="no-webln">No Webln Provider found. <a target="_blank" rel="noopener noreferrer" href="https://lightningjoule.com/">Download Joule</a> for a better app experience.</div> : null}
         <h4 id="invoice-header">Invoice</h4>
-        <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}</span> Satoshis</h4>
+        <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toMoney()}</span> Satoshis</h4>
 
         <button className="btn-secondary invoice-btn" onClick={this.showQR}>Show QR Code</button>
         <button className="joule-btn invoice-btn" href={`lightning:${invoice}`} >Pay Invoice</button>

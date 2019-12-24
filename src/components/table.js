@@ -8,7 +8,7 @@ export default class Table extends React.Component {
   }
 
   format = {
-    integer: (val) => ((val && val.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})) || 0),
+    integer: (val) => ((val && val.toMoney()) || 0),
     date: (val) => {
       const date = new Date(val);
       return date.toDateString();

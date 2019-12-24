@@ -47,10 +47,10 @@ class Rek extends React.Component {
             </div>
           </div>
           <div className="rek-details rek-sats" >
-            generated <span className="sats-sats"> {monthValueGenerated.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </span> sats this month
+            generated <span className="sats-sats"> {monthValueGenerated.toMoney()} </span> sats this month
             <Tooltip tooltip={`${user.username}'s initial donation of
-              ${satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}
-              sats has influenced a total of ${(monthValueGenerated).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})}
+              ${satoshis.toMoney()}
+              sats has influenced a total of ${(monthValueGenerated).toMoney()}
               sats donations this month.`}>
               <i className="fa fa-question-circle" />
             </Tooltip>

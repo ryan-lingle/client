@@ -27,7 +27,7 @@ const ClaimPodcast = ({ match, client }) => {
               <img className="col-sm-3" alt="podcast art" src={podcast.image} style={{ borderRadius: "3px" }}  />
               <h3 className="col-sm-9" style={{ fontWeight: 200, margin: "10px 0px" }} >
                 <strong>{podcast.title}</strong> has received
-                <strong> {podcast.satoshis.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} sats </strong>
+                <strong> {podcast.satoshis.toMoney()} sats </strong>
                 in donations.
                 <br></br><br></br>
                 Sign up to claim these sats and all future donations.

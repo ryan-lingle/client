@@ -1,6 +1,6 @@
 import React from "react";
 import { ErrorMessage } from ".";
-import { Search } from ".";
+import { Search, Tabs } from ".";
 
 export default class NavSearch extends React.Component {
   state = {
@@ -61,13 +61,11 @@ export default class NavSearch extends React.Component {
             if (error) return <ErrorMessage error={error} />;
             return (
               <div id="search-results">
-                <div id="search-tabs">
-                  {['podcast', 'user', 'hashtag'].map((tab, i) => {
-                      const current = type === tab;
-                      return <span key={i} onClick={() => this.setState({ type: tab })} className={`search-tab ${current ? 'current-search-tab' : null}`} id={`${tab}-search-tab`}>{tab}s</span>
-                    }
-                  )}
-                </div>
+                <Tabs
+                  tabs={["podcast", "user", "hashtag"]}
+                  pluralize={true}
+                  onChange={tab => this.setState({ type: tab })}
+                />
                 <div>
                   {results.map((result) => (
                     this[type + 'Result'](result)

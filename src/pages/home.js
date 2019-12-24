@@ -1,5 +1,5 @@
 import React from "react";
-import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage } from "../components";
+import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage, Loader } from "../components";
 import { FEED_STREAM, CURRENT_USER } from '../actions';
 import { Query } from 'react-apollo';
 
@@ -21,7 +21,7 @@ const Home = ({ match }) => {
     <div>
       <Query query={CURRENT_USER} >
         {({ data, error, loading}) => {
-          if (loading) return <div></div>;
+          if (loading) return <Loader />;
           if (error) return <div id="home"><ErrorMessage error={error} /></div>;
           const { currentUser } = data;
 

@@ -128,7 +128,7 @@ class GuestTaggingModal extends React.Component {
     if (episodeIds.length === 1) {
       const { data } = await this.props.client.query({
         query: EPISODE_GUESTS,
-        variables: { episodeId: parseInt(episodeIds[0]) }
+        variables: { episodeId: episodeIds[0] }
       })
       episodeGuests = data.episode.guests;
     }

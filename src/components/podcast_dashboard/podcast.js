@@ -77,9 +77,9 @@ class Podcast extends React.Component {
             <p dangerouslySetInnerHTML={{ __html: description }} ></p>
             <div id="pd-summary">
               You have received
-              <strong> {donationCount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </strong>
+              <strong> {donationCount.toMoney()} </strong>
               Donations stacking up to
-              <strong> {donationSum.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0})} </strong>
+              <strong> {donationSum.toMoney()} </strong>
               Sats.
             </div>
             <PodcastWallet satoshis={satoshis} podcastId={id} />
