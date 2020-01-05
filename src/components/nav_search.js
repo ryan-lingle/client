@@ -64,6 +64,7 @@ export default class NavSearch extends React.Component {
                 <Tabs
                   tabs={["podcast", "user", "hashtag"]}
                   pluralize={true}
+                  _default={"user"}
                   onChange={tab => this.setState({ type: tab })}
                 />
                 <div>

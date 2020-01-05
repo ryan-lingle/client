@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const Tabs = ({ tabs, onChange, pluralize }) => {
-  const [current, setCurrent] = useState(tabs[0]);
+const Tabs = ({ tabs, onChange, _default, pluralize }) => {
+  const [current, setCurrent] = useState(_default || tabs[0]);
+
   return(
     <div id="search-tabs">
       {tabs.map((tab, i) => {
