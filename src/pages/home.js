@@ -27,9 +27,6 @@ const Home = ({ match }) => {
 
           return (
             <div id="home" className="row">
-              <div id="sub-nav">
-                <Tabs tabs={["week", "month", "alltime"]} onChange={(cur) => console.log(cur)} />
-              </div>
               <div className="col-md-12 col-lg-3 user-box-col">
                 <UserBox {...currentUser} />
               </div>
