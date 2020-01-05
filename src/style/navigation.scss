@@ -127,3 +127,19 @@
   justify-content: space-between;
   padding: 5px 10px;
 }
+
+#sub-nav {
+  width: 100%;
+  background: white;
+  text-align: center;
+  padding: 5px;
+  color: $primary;
+  border-top: $light-gray 1px solid;
+  position: fixed;
+  top: 56px;
+  z-index: 20;
+  opacity: .95;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage, Loader } from "../components";
+import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage, Loader, Tabs } from "../components";
 import { FEED_STREAM, CURRENT_USER } from '../actions';
 import { Query } from 'react-apollo';
 
@@ -27,6 +27,9 @@ const Home = ({ match }) => {
 
           return (
             <div id="home" className="row">
+              <div id="sub-nav">
+                <Tabs tabs={["week", "month", "alltime"]} onChange={(cur) => console.log(cur)} />
+              </div>
               <div className="col-md-12 col-lg-3 user-box-col">
                 <UserBox {...currentUser} />
               </div>

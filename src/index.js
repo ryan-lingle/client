@@ -37,7 +37,7 @@ const uploadLink = createUploadLink({
     id: localStorage.getItem('id'),
     token: localStorage.getItem('token'),
   },
-})
+});
 
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_WS_ENDPOINT,
@@ -70,7 +70,7 @@ const link = split(
 const client = new ApolloClient({
   cache,
   link: from([errorLink, link])
-})
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>

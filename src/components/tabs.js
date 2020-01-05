@@ -13,7 +13,7 @@ const Tabs = ({ tabs, onChange, pluralize }) => {
               setCurrent(tab);
               onChange(tab);
             }}
-            className={`search-tab ${current ? 'current-search-tab' : null}`}
+            className={`search-tab ${isCurrent ? 'current-search-tab' : null}`}
             id={`${tab}-search-tab`}
           >
             {tab}{pluralize ? "s" : ""}

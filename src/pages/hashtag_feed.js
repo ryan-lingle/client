@@ -22,7 +22,7 @@ export default class HashtagFeed extends React.Component {
             if (error) return <div id="home"><ErrorMessage error={error} /></div>;
             const { name, followedByCurrentUser, id } = data.hashtag;
             return (
-              <div id="hashtag-nav">
+              <div id="sub-nav">
                 <h3 id="hashtag-header">
                   {name}
                 </h3>
@@ -31,6 +31,7 @@ export default class HashtagFeed extends React.Component {
                   following={followedByCurrentUser}
                   type={'hashtag'}
                 />
+                <div id="hashtag-divider"></div>
               </div>
             );
           }}
