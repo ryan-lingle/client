@@ -75,7 +75,7 @@ class Invoice extends React.Component {
         <h4 id="invoice-satoshis"><span className="font-weight-bol">{satoshis.toMoney()}</span> Satoshis</h4>
 
         <button className="btn-secondary invoice-btn" onClick={this.showQR}>Show QR Code</button>
-        <button className="joule-btn invoice-btn" href={`lightning:${invoice}`} >Pay Invoice</button>
+        <a className="joule-btn invoice-btn" href={`lightning:${invoice}`} >Pay Invoice</a>
         <Tooltip tooltip={"Copy Invoice"} placement="bottom">
           <input className="payment-request invoice-btn" id="payment-request" value={invoice} readOnly={true} onClick={this.copyInvoice} />
         </Tooltip>
