@@ -55,6 +55,11 @@
   margin: 25px auto;
   border-radius: 3px;
   width: 330px;
+  padding-top: 5px;
+}
+
+.invoice-btn:hover {
+  text-decoration: none;
 }
 
 .payment-request {

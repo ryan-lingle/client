@@ -14,8 +14,8 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
           </a>
           <span className="font-weight-bold">{rek.user.username} </span>
           donated
-          <span className="font-weight-bold"> {rek.satoshis} </span>
-          Satoshis
+          <span className="font-weight-bold"> {rek.satoshis.toMoney()} </span>
+          sats
            {rek.hashtags.length > 0 ? tags() : null}
         </div>
       )
