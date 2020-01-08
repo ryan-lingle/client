@@ -21,7 +21,7 @@ const EmailUnconfirmed = ({ location: { search } }) => {
   }
 
   return(
-    <div id="confirm-email" >
+    <div className="message-box" >
       <h1>We've sent an email to {podcastEmail || userEmail}. <br></br>To continue, please check your email and verify your {podcastEmail ? "podcast" : "account"}.</h1>
       <Mutation mutation={podcastEmail ? RESEND_PODCAST_EMAIL : RESEND_USER_EMAIL} onCompleted={onCompleted}>
         {(resendEmail) => (

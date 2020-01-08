@@ -31,11 +31,11 @@ class ConfirmEmail extends React.Component {
 
   render() {
     const { loading, type } = this.state;
-    if (loading) return <div id="confirm-email"><Loader /></div>;
+    if (loading) return <div className="message-box"><Loader /></div>;
 
     if (type === "user") {
       return(
-        <div id="confirm-email">
+        <div className="message-box">
           <h1>Your email has been confirmed.</h1>
           <br></br>
           <a href="/">Check out your Feed</a>
@@ -45,7 +45,7 @@ class ConfirmEmail extends React.Component {
 
     if (type === "podcast") {
       return(
-        <div id="confirm-email">
+        <div className="message-box">
           <h1>Your email has been confirmed.</h1>
           <br></br>
           <a href="/podcast-dashboard">Check out your Podcast Dashboard</a>

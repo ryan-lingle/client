@@ -35,7 +35,7 @@ class TwitterCallback extends React.Component {
 
   render() {
     return(
-      <div id="confirm-email" >
+      <div className="message-box" style={{maxWidth: "500px"}}>
         You Should Be Redirected Shortly.
         <Loader />
       </div>

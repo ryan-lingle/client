@@ -30,7 +30,7 @@ export default class PasswordReset extends React.Component {
     if (params.token === "request") {
       if (this.state.email) {
         return(
-          <div id="confirm-email">
+          <div className="message-box">
             <h1>
               An email has been sent to <strong>{this.state.email}</strong>.
               <br></br>

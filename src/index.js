@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './style/index.scss'
 import App from './app/app.js';
-
+import ErrorBoundary from './error_boundary';
 import { ApolloProvider } from 'react-apollo';
 
 import { ApolloClient } from 'apollo-client';
@@ -74,7 +74,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </ApolloProvider>, document.getElementById('root')
 );
 
