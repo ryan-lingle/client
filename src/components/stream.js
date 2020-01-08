@@ -60,9 +60,6 @@ const createStream = (Component) => {
       const streamObserver = observer(cb);
       const sb = document.getElementById("stream-bottom");
       if (sb) streamObserver.observe(sb);
-
-      // document.addEventListener('touchmove', this.endOfStream);
-      // document.addEventListener('scroll', this.endOfStream);
     }
 
     endOfStream = () => {
@@ -83,7 +80,7 @@ const createStream = (Component) => {
         <div>
           {stream && stream.length > 0 ?
             <div className="stream">
-              {stream.map(item => <Component {...item} key={item.id}/>)}
+              {stream.map(item => <Component {...item} key={item.id} variables={this.props.variables} />)}
             </div>
             : this.props.onEmpty ? this.props.onEmpty() : null}
           {loading ? <Loader /> : null}

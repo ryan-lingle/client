@@ -66,6 +66,8 @@ export default class NavSearch extends React.Component {
                   pluralize={true}
                   _default={"user"}
                   onChange={tab => this.setState({ type: tab })}
+                  customClass="search-tab"
+                  selectedClass="current-search-tab"
                 />
                 <div>
                   {results.map((result) => (

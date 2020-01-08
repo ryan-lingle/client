@@ -33,8 +33,10 @@ class Rek extends React.Component {
   }
 
   render() {
-    const { user, episode, id, hashtags, monthValueGenerated, satoshis } = this.props;
+    const { user, episode, id, hashtags, satoshis, variables } = this.props;
     const { podcast } = episode;
+    const valueGenerated = this.props[`${variables.timePeriod}ValueGenerated`].toMoney();
+
     return(
       <div className="rek item" id={`rek-${id}`}>
         <div className="rek-wrap">
@@ -47,11 +49,11 @@ class Rek extends React.Component {
             </div>
           </div>
           <div className="rek-details rek-sats" >
-            generated <span className="sats-sats"> {monthValueGenerated.toMoney()} </span> sats this month
+            generated <span className="sats-sats"> {valueGenerated} </span> sats this {variables.timePeriod}
             <Tooltip tooltip={`${user.username}'s initial donation of
               ${satoshis.toMoney()}
-              sats has influenced a total of ${(monthValueGenerated).toMoney()}
-              sats donations this month.`}>
+              sats has influenced a total of ${valueGenerated}
+              sats donations this ${variables.timePeriod}.`}>
               <i className="fa fa-question-circle" />
             </Tooltip>
           </div>

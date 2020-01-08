@@ -65,12 +65,14 @@ const UPDATE_USER = gql`
 `
 
 const FEED_STREAM = gql`
-  query FeedStream($n: Int!) {
-    reks(n: $n, feed: true) {
+  query FeedStream($n: Int!, $timePeriod: String!) {
+    reks(n: $n, feed: true, timePeriod: $timePeriod) {
       more
       stream {
         id
         satoshis
+        allTimeValueGenerated
+        weekValueGenerated
         monthValueGenerated
         user {
           id
@@ -504,12 +506,14 @@ const GET_HASHTAG = gql`
 `
 
 const HASHTAG_FEED = gql`
-  query HashtagFeed($name: String!, $n: Int!) {
-    hashtagFeed(name: $name, n: $n) {
+  query HashtagFeed($name: String!, $n: Int!, $timePeriod: String!) {
+    hashtagFeed(name: $name, n: $n, timePeriod: $timePeriod) {
       more
       stream {
         id
+        weekValueGenerated
         monthValueGenerated
+        allTimeValueGenerated
         satoshis
         user {
           id
