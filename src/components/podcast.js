@@ -9,6 +9,7 @@ const Podcast = (podcast) => {
   }
 
   const { image, title, website, description, email, episodes } = podcast;
+
   return (
     <div>
       {podcast.emailVerified || podcast.hideUnverifiedMessage ? null :

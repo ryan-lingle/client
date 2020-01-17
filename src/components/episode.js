@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import RekModal from "./rek_modal";
 import BookmarkButton from "./bookmark_button";
 import Tooltip from "./tooltip";
@@ -22,10 +22,13 @@ const Episode = ({ episode, podcast }) => {
           {episode.title}
         </div>
       </a>
-      <RekModal episodeId={episode.id}>
-        <div href="#" id="rek-btn" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
-      </RekModal>
-      <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+      {episode.id ?
+        <Fragment>
+          <RekModal episodeId={episode.id}>
+            <div href="#" id="rek-btn" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
+          </RekModal>
+          <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
+        </Fragment> : null}
     </div>
   )
 }

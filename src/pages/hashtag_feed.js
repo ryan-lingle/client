@@ -31,7 +31,7 @@ const HashtagFeed = ({ match: { params }}) => {
               />
               <div id="hashtag-divider"></div>
               <Tabs
-                tabs={["week", "month", "allTime"]}
+                tabs={["week", "month", "century"]}
                 onChange={_tab_ => setTimePeriod(_tab_)}
                 _default={timePeriod}
               />

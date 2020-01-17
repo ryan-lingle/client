@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ErrorMessage = ({ error, position}) => {
+  console.log(error);
+
   if (error && (error.message === "GraphQL error: AUTH")) {
     window.location.href = "/login?warning=1";
   } else if (error && error.graphQLErrors) {

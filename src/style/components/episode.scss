@@ -58,7 +58,6 @@
 
 .be-title {
   font-weight: bold;
-  padding-left: 50px;
 }
 
 #be-tags {
@@ -72,16 +71,26 @@
 
 .be-released {
   margin-top: 10px;
-  padding-left: 50px;
 }
 
 #be-left {
-  display: flex;
-  align-items: center;
   width: 100%;
-  margin: 25px 0px;
-  justify-content: space-between;
+  margin: 25px auto;
+  text-align: center;
   i {
     font-size: 25px;
+    margin-left: 10px;
   }
+}
+
+#be-info {
+  margin: 0px auto;
+}
+
+#be-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
 }

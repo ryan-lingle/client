@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip } from '.';
+import { Tooltip, RekModal } from '.';
 import { Helmet } from "react-helmet";
 import BookmarkButton from './bookmark_button';
 
@@ -49,17 +49,22 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
               </a>
             </Tooltip>
           </div>
-          <div className="col-md-7">
+          <div className="col-md-6">
             <div id="be-left">
-              <div>
+              <div id="be-info">
                 <div className="be-title">{episode.title}</div>
                 <div className="be-released">{date.toDateString()}</div>
               </div>
-              <Tooltip tooltip={"Bookmark Episode"}>
-                <div>
-                  <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={rek && rek.id} />
-                </div>
-              </Tooltip>
+              <div id="be-btns">
+                <RekModal episodeId={episode.id}>
+                  <div href="#" id="rek-btn" className="rek-btn btn btn-secondary episode-rek-btn">Rek</div>
+                </RekModal>
+                <Tooltip tooltip={"Bookmark Episode"}>
+                  <div>
+                    <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={rek && rek.id} />
+                  </div>
+                </Tooltip>
+              </div>
             </div>
           </div>
         </div>

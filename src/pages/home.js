@@ -34,7 +34,7 @@ const Home = ({ match }) => {
             <div id="home" className="row">
               <div id="sub-nav">
                 <Tabs
-                  tabs={["week", "month", "allTime"]}
+                  tabs={["week", "month", "century"]}
                   onChange={_tab_ => setTimePeriod(_tab_)}
                   _default={timePeriod}
                 />

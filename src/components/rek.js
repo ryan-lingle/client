@@ -35,7 +35,7 @@ class Rek extends React.Component {
   render() {
     const { user, episode, id, hashtags, satoshis, variables } = this.props;
     const { podcast } = episode;
-    const valueGenerated = this.props[`${variables.timePeriod}ValueGenerated`].toMoney();
+    const valueGenerated = this.props[`${variables.timePeriod}ValueGenerated`] && this.props[`${variables.timePeriod}ValueGenerated`].toMoney();
 
     return(
       <div className="rek item" id={`rek-${id}`}>

@@ -71,7 +71,7 @@ const FEED_STREAM = gql`
       stream {
         id
         satoshis
-        allTimeValueGenerated
+        centuryValueGenerated
         weekValueGenerated
         monthValueGenerated
         user {
@@ -513,7 +513,7 @@ const HASHTAG_FEED = gql`
         id
         weekValueGenerated
         monthValueGenerated
-        allTimeValueGenerated
+        centuryValueGenerated
         satoshis
         user {
           id
