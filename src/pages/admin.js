@@ -8,6 +8,13 @@ const Admin = () => {
   const [timePeriod, setTimePeriod] = useState("alltime");
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_ADMIN_TOKEN);
+    if (process.env.REACT_APP_ADMIN_TOKEN !== localStorage.getItem("__admin_token__")) {
+      window.location = "/";
+    };
+  }, []);
+
+  useEffect(() => {
     async function fetchData() {
       const response = await fetch(`${process.env.REACT_APP_ADMIN_ENDPOINT}/api?t=${timePeriod}`, {
         mode: 'cors',
@@ -17,9 +24,6 @@ const Admin = () => {
     }
     fetchData();
   }, [timePeriod]);
-
-
-  console.log(metrics);
 
   return(
     <div>
