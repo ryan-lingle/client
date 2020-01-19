@@ -15,7 +15,8 @@ const Admin = () => {
         },
         mode: 'cors',
       });
-      if (response.status === 403) window.location = "/";
+      console.log(response);
+      // if (response.status === 403) window.location = "/";
       const res = await response.json();
       setMetrics(res);
     }
