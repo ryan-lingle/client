@@ -21,7 +21,6 @@ const errorLink = onError(({ response, graphQLErrors, networkError, operation })
   if (graphQLErrors) {
     graphQLErrors.map((error) => {
       const { code } = error.extensions;
-      console.log(code);
       if (code === "UNAUTHENTICATED") {
         response.errors = null;
         localStorage.removeItem('token');
