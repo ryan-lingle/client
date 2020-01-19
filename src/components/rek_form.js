@@ -2,6 +2,7 @@ import React from 'react'
 import { Query, Mutation, withApollo } from "react-apollo";
 import { GET_EPISODE, CREATE_REK, CURRENT_SATS } from "../actions"
 import { SatoshiInput, TagInput, ErrorMessage, Loader, Tooltip } from ".";
+import { toSats } from "../utils";
 
 class RekForm extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class RekForm extends React.Component {
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
     if (
         walletSatoshis <= 0 ||
-        (window.confirm(`Okay to Spend ${walletSatoshis.toMoney()} Satohsis from your Rekr Wallet?`))
+        (window.confirm(`Okay to Spend ${toSats(walletSatoshis)} from your Rekr Wallet?`))
       ) {
       createRek({ variables: {
         episodeId: this.props.id,

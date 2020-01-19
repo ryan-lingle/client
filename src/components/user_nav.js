@@ -17,6 +17,8 @@ import {
   FOLLOWER_STREAM,
   BOOKMARK_STREAM } from "../actions";
 
+import { toSats } from "../utils";
+
 const tabs = ['reks', 'bookmarks', 'following', 'followers'];
 
 const tabMap = {
@@ -189,7 +191,7 @@ export default class UserNav extends React.Component {
           <div className="sub-nav">
             {this.props.current ?
               <div className={`sub-nav-tab sub-nav-sats ${onSats ? 'current-sub-nav-tab' : null}`} onClick={() => { this.setState({ tab: "satoshis" })}} >
-                <div className="text-center font-weight-bold">{this.props.satoshis.toMoney()}</div>
+                <div className="text-center font-weight-bold">{toSats(this.props.satoshis, false)}</div>
                 <div>Sats</div>
               </div>
               : null}
@@ -197,7 +199,7 @@ export default class UserNav extends React.Component {
               const current = _tab_ === tab;
               return(
                 <div key={i} className={`sub-nav-tab ${current ? 'current-sub-nav-tab' : null}`} onClick={() => { this.setState({ tab: _tab_ })}}>
-                  <div className="text-center font-weight-bold">{this.props[_tab_].count.toMoney()}</div>
+                  <div className="text-center font-weight-bold">{toSats(this.props[_tab_].count, false)}</div>
                   <div>{capitalize(_tab_)}</div>
                 </div>
               )

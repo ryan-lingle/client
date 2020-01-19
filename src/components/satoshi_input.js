@@ -1,4 +1,5 @@
 import React from 'react'
+import { toSats } from "../utils";
 
 function generateValues(max = 1000000) {
   const vals = [];
@@ -55,8 +56,8 @@ export default class SatoshiInput extends React.Component {
             <div> Satoshis</div>
           </div>
           : <div className="satoshi-amount" id="rek-form-satoshis">
-              <div onClick={this.numberInput} className="wallet-satoshis">{satoshis.toMoney()}</div>
-              <div> Satoshis</div>
+              <div onClick={this.numberInput} className="wallet-satoshis">{toSats(satoshis, false)}</div>
+              <div> sats</div>
             </div>
         }
         <input

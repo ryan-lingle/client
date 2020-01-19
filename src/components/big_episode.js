@@ -2,6 +2,7 @@ import React from 'react';
 import { Tooltip, RekModal } from '.';
 import { Helmet } from "react-helmet";
 import BookmarkButton from './bookmark_button';
+import { toSats } from '../utils';
 
 const BigEpisode = ({ episode, rek, saveRek }) => {
   if (saveRek) localStorage.setItem('rekId', rek.id);
@@ -14,8 +15,7 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
           </a>
           <span className="font-weight-bold">{rek.user.username} </span>
           donated
-          <span className="font-weight-bold"> {rek.satoshis.toMoney()} </span>
-          sats
+          <span className="font-weight-bold"> {toSats(rek.satoshis)} </span>
            {rek.hashtags.length > 0 ? tags() : null}
         </div>
       )

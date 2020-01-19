@@ -1,5 +1,6 @@
 import React from "react";
 import HashtagCard from "./hashtag_card";
+import { toSats } from "../utils";
 
 export default class UserBox extends React.Component {
   state = {
@@ -39,7 +40,7 @@ export default class UserBox extends React.Component {
           </a>
         </div>
         <a id="user-box-satoshis" href={`/u/${username}?tab=satoshis`} >
-          {satoshis.toMoney()} Sats
+          {toSats(satoshis)}
         </a>
         <div id="user-box-counts">
           <a className="user-box-count" href={`/u/${username}?tab=reks`}>

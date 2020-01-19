@@ -1,5 +1,7 @@
 import React from "react";
 import { Tooltip } from ".";
+import { toSats } from "../utils";
+
 export default class Table extends React.Component {
   state = {
     sortBy: null,
@@ -8,10 +10,14 @@ export default class Table extends React.Component {
   }
 
   format = {
-    integer: (val) => ((val && val.toMoney()) || 0),
+    integer: (val) => (toSats(val, false) || 0),
     date: (val) => {
       const date = new Date(val);
       return date.toDateString();
+    },
+    time: (val) => {
+      const date = new Date(val);
+      return date.toTimeString();
     },
     string: (val) => val
   }

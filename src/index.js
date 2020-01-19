@@ -13,20 +13,32 @@ import { createUploadLink } from 'apollo-upload-client';
 import { WebSocketLink } from 'apollo-link-ws';
 import { onError } from 'apollo-link-error';
 import { getMainDefinition } from 'apollo-utilities'
-
+import { errorLogger } from "./utils";
 
 const cache = new InMemoryCache();
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ response, graphQLErrors, networkError, operation }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message }) => {
-      if (message === "AUTH") {
+    graphQLErrors.map((error) => {
+      const { code } = error.extensions;
+      console.log(code);
+      if (code === "UNAUTHENTICATED") {
+        response.errors = null;
         localStorage.removeItem('token');
         window.location.href = "/login";
-      } else if (message === "UNCONFIRMED") {
+      } else if (code === "UNCONFIRMED") {
         window.location.href = "/email_unconfirmed";
+      } else if (code === "BAD_USER_INPUT") {
+        // do not log user input errors
+      } else {
+        errorLogger({
+          error,
+          operation,
+          location: window.location.href,
+          client: false
+        });
       }
-      return "stf";
+      return;
     });
   }
 });
@@ -73,15 +85,11 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={client} >
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
   </ApolloProvider>, document.getElementById('root')
 );
-
-Number.prototype.toMoney = function() {
-  return this.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0});
-};
 
 export default client;

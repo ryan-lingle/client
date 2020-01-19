@@ -3,6 +3,7 @@ import SignUpForm from "../auth/sign_up_form";
 import { TwitterSignIn, Loader, ErrorMessage } from "../components";
 import { GET_PODCAST } from "../actions";
 import { Query, withApollo } from "react-apollo";
+import { toSats } from "../utils";
 
 const ClaimPodcast = ({ match, client }) => {
   const handleLogIn = async () => {
@@ -27,7 +28,7 @@ const ClaimPodcast = ({ match, client }) => {
               <img className="col-sm-3" alt="podcast art" src={podcast.image} style={{ borderRadius: "3px" }}  />
               <h3 className="col-sm-9" style={{ fontWeight: 200, margin: "10px 0px" }} >
                 <strong>{podcast.title}</strong> has received
-                <strong> {podcast.satoshis.toMoney()} sats </strong>
+                <strong> {toSats(podcast.satoshis)} </strong>
                 in donations.
                 <br></br><br></br>
                 Sign up to claim these sats and all future donations.

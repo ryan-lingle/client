@@ -1,4 +1,5 @@
 import React from "react";
+import { toSats } from "../utils";
 
 const Notification = ({ notifier, rek, type, satoshis }) => {
   const index = {
@@ -54,7 +55,7 @@ const Notification = ({ notifier, rek, type, satoshis }) => {
         {type === "rek" ?
           <div className="sats-stacked">
             You stacked
-            <span className="font-weight-bold"> {satoshis.toMoney()}</span> Sats
+            <span className="font-weight-bold"> {toSats(satoshis)}</span>
           </div>
           : null}
       </div>

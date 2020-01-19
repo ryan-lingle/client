@@ -5,6 +5,7 @@ import { GUEST_SHARE } from "../../actions";
 import GuestSharingModal from "./guest_sharing_modal";
 import GuestTaggingModal from "./guest_tagging_modal";
 import PodcastWallet from "./podcast_wallet";
+import { toSats } from "../../utils";
 
 class Podcast extends React.Component {
   state = {
@@ -77,9 +78,9 @@ class Podcast extends React.Component {
             <p dangerouslySetInnerHTML={{ __html: description }} ></p>
             <div id="pd-summary">
               You have received
-              <strong> {donationCount.toMoney()} </strong>
+              <strong> {toSats(donationCount, false)} </strong>
               Donations stacking up to
-              <strong> {donationSum.toMoney()} </strong>
+              <strong> {toSats(donationSum, false)} </strong>
               Sats.
             </div>
             <PodcastWallet satoshis={satoshis} podcastId={id} />

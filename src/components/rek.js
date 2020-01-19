@@ -1,6 +1,6 @@
 import React from 'react';
 import BookmarkButton from './bookmark_button';
-import { observer } from '../utils';
+import { observer, toSats } from '../utils';
 import { CREATE_REK_VIEW } from "../actions";
 import { withApollo } from "react-apollo";
 import Tooltip from "./tooltip";
@@ -35,7 +35,7 @@ class Rek extends React.Component {
   render() {
     const { user, episode, id, hashtags, satoshis, variables } = this.props;
     const { podcast } = episode;
-    const valueGenerated = this.props[`${variables.timePeriod}ValueGenerated`] && this.props[`${variables.timePeriod}ValueGenerated`].toMoney();
+    const valueGenerated = toSats(this.props[`${variables.timePeriod}ValueGenerated`]);
 
     return(
       <div className="rek item" id={`rek-${id}`}>
@@ -51,9 +51,9 @@ class Rek extends React.Component {
           <div className="rek-details rek-sats" >
             generated <span className="sats-sats"> {valueGenerated} </span> sats this {variables.timePeriod}
             <Tooltip tooltip={`${user.username}'s initial donation of
-              ${satoshis.toMoney()}
-              sats has influenced a total of ${valueGenerated}
-              sats donations this ${variables.timePeriod}.`}>
+              ${toSats(satoshis)}
+              has influenced a total of ${valueGenerated}
+              donations this ${variables.timePeriod}.`}>
               <i className="fa fa-question-circle" />
             </Tooltip>
           </div>

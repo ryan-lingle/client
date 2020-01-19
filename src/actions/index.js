@@ -322,7 +322,7 @@ const SUBSRIBE_HASHTAGS = gql`
 `
 
 const TOGGLE_FOLLOW = gql`
-  mutation ToggleFollow($followeeId: String, $hashtagId: String, $type: String) {
+  mutation ToggleFollow($followeeId: String, $hashtagId: String, $type: String!) {
     toggleFollow(followeeId: $followeeId, hashtagId: $hashtagId, type: $type)
   }
 `

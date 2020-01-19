@@ -1,5 +1,6 @@
 import React from "react";
 import { Wallet } from ".";
+import { toSats } from "../utils";
 
 const UserWallet = ({ satoshis }) => {
   return(
@@ -7,7 +8,7 @@ const UserWallet = ({ satoshis }) => {
       {({ deposit, withdraw }) => (
         <div id="wallet">
           <div className="satoshi-amount" id="wallet-amount">
-            <div className="wallet-satoshis">{satoshis.toMoney()}</div>
+            <div className="wallet-satoshis">{toSats(satoshis, false)}</div>
             <div> sats</div>
           </div>
           <div id="wallet-actions">

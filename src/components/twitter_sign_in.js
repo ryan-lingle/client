@@ -2,7 +2,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import { TWITTER_TOKEN } from "../actions";
 import { ErrorMessage } from ".";
-import TwitterLogo from "../Twitter_Logo_Blue.png";
+import TwitterLogo from "../assets/Twitter_Logo_Blue.png";
 
 const TwitterSignIn = () => {
   const handleTwitterToken = ({ twitterToken }) => {

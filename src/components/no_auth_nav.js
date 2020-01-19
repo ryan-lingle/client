@@ -1,7 +1,7 @@
 import React from "react";
 import Search from "./nav_search";
 import { Navbar } from "react-bootstrap"
-import Logo from "../logo.png";
+import Logo from "../assets/logo.png";
 
 const NoAuthNav = () => (
   <Navbar bg="white" expand="md" fixed={"top"} className="no-auth-nav">

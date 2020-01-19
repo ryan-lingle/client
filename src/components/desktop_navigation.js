@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap"
 import RekModal from './rek_modal';
 import Search from "./nav_search";
-import Logo from "../logo.png";
+import Logo from "../assets/logo.png";
 
 const DesktopNavigation = ({ path }) => {
   function current(_path_) {

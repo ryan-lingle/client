@@ -3,8 +3,8 @@ import { Navbar } from "react-bootstrap"
 import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
 import { TwitterSignIn, Tooltip } from '../components';
-import RekrExplained from '../infographic_1.png';
-import Logo from "../logo.png";
+import RekrExplained from '../assets/infographic_1.png';
+import Logo from "../assets/logo.png";
 
 class AuthContainer extends React.Component {
   state = {
