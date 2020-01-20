@@ -9,9 +9,10 @@ const Admin = () => {
 
   useEffect(() => {
     async function fetchData() {
+      console.log(process.env);
       const response = await fetch(`${process.env.REACT_APP_ADMIN_ENDPOINT}/api?t=${timePeriod}`, {
         headers: {
-          adminToken: localStorage.getItem("__admin_token__"),
+          admintoken: localStorage.getItem("__admin_token__"),
         },
         mode: 'cors',
       });
