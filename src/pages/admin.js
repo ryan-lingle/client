@@ -9,15 +9,13 @@ const Admin = () => {
 
   useEffect(() => {
     async function fetchData() {
-      console.log(process.env);
       const response = await fetch(`${process.env.REACT_APP_ADMIN_ENDPOINT}/api?t=${timePeriod}`, {
         headers: {
           admintoken: localStorage.getItem("__admin_token__"),
         },
         mode: 'cors',
       });
-      console.log(response);
-      // if (response.status === 403) window.location = "/";
+      if (response.status === 403) window.location = "/";
       const res = await response.json();
       setMetrics(res);
     }
