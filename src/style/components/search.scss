@@ -6,10 +6,19 @@
   display: inline;
   position: relative;
   margin-left: -10px;
+
   input {
     padding: 0px 0px 0px 10px;
     width: 90%;
     margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #search-form {
+    input {
+      height: 35px;
+    }
   }
 }
 
