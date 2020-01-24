@@ -46,7 +46,7 @@ export default class FollowButton extends React.Component {
           {(toggleFollow, { error }) => (
             <div>
               <ErrorMessage error={error} />
-              <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
+              <div onClick={() => toggleFollow({ variables: { followeeId, hashtagId, type } })} onMouseEnter={this.enter} onMouseLeave={this.leave} className="btn btn-primary follow-btn unfollow-btn">Following</div>
             </div>
           )}
         </Mutation>

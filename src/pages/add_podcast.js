@@ -1,7 +1,7 @@
 import React from "react"
 import { RssParser } from "../components"
 
-const CreatePodcast = (props) => {
+const AddPodcast = (props) => {
 
   return(
     <div id="create-podcast-container">
@@ -10,4 +10,4 @@ const CreatePodcast = (props) => {
   )
 }
 
-export default CreatePodcast;
+export default AddPodcast;

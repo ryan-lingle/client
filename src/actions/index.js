@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const PARSE_PODCAST = gql`
-  mutation ParsePodcast($rssUrl: String!) {
-    parsePodcast(rssUrl: $rssUrl) {
+const CREATE_PODCAST = gql`
+  mutation CreatePodcast($rssUrl: String!) {
+    createPodcast(rssUrl: $rssUrl) {
       id
       title
       description
@@ -71,7 +71,7 @@ const FEED_STREAM = gql`
       stream {
         id
         satoshis
-        centuryValueGenerated
+        allTimeValueGenerated
         weekValueGenerated
         monthValueGenerated
         user {
@@ -187,20 +187,6 @@ const EPISODE_SHOW = gql`
         released
         description
       }
-    }
-  }
-`
-
-const CREATE_PODCAST = gql`
-  mutation CreatePodcast($title: String!, $rss: String!, $description: String, $email: String!, $website: String, $image: String!) {
-    createPodcast(title: $title, rss: $rss, description: $description, email: $email, website: $website, image: $image) {
-      id
-      title
-      description
-      email
-      image
-      website
-      slug
     }
   }
 `
@@ -513,7 +499,7 @@ const HASHTAG_FEED = gql`
         id
         weekValueGenerated
         monthValueGenerated
-        centuryValueGenerated
+        allTimeValueGenerated
         satoshis
         user {
           id
@@ -665,7 +651,6 @@ const DELETE_USER = gql`
 `
 
 export {
-  PARSE_PODCAST,
   CURRENT_USER,
   FEED_STREAM,
   UPDATE_USER,

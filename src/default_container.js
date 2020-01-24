@@ -8,7 +8,7 @@ import {
   Notifications,
   UserProfile,
   PodcastShow,
-  CreatePodcast,
+  AddPodcast,
   Search,
   HashtagFeed,
   EmailUnconfirmed,
@@ -43,7 +43,7 @@ const DefaultContainer = () => (
       <Route path="/podcast/:slug" component={PodcastShow} />
       <PrivateRoute path="/bookmarks" component={Bookmarks} />
       <PrivateRoute path="/notifications" exact component={Notifications} />
-      <PrivateRoute path="/create-podcast" exact component={CreatePodcast} />
+      <PrivateRoute path="/add-podcast" exact component={AddPodcast} />
     </div>
   </div>
 )

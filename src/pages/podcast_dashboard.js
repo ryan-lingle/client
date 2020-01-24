@@ -33,7 +33,7 @@ class PodcastDashboard extends React.Component {
                       }
                     )}
                     <div className="pd-podcast text-center">
-                    <a href="/create-podcast"><i className="fa fa-plus-circle"/></a>
+                    <a href="/add-podcast"><i className="fa fa-plus-circle"/></a>
                     </div>
                   </div>
                   <div id="pd-main-podcast">
