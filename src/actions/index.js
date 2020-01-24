@@ -1,5 +1,15 @@
 import gql from "graphql-tag";
 
+const SEARCH_PODCASTS = gql`
+  query SearchPodcasts($term: String!) {
+    podcasts(term: $term) {
+      title
+      image
+      rss
+    }
+  }
+`
+
 const CREATE_PODCAST = gql`
   mutation CreatePodcast($rssUrl: String!) {
     createPodcast(rssUrl: $rssUrl) {
@@ -187,14 +197,6 @@ const EPISODE_SHOW = gql`
         released
         description
       }
-    }
-  }
-`
-
-const CREATE_EPISODES = gql`
-  mutation CreateEpisodes($episodes: [EpisodeInput], $podcastId: String!) {
-    createEpisodes(episodes: $episodes, podcastId: $podcastId) {
-      id
     }
   }
 `
@@ -651,6 +653,7 @@ const DELETE_USER = gql`
 `
 
 export {
+  SEARCH_PODCASTS,
   CURRENT_USER,
   FEED_STREAM,
   UPDATE_USER,
@@ -659,7 +662,6 @@ export {
   GET_PODCAST,
   GET_EPISODE,
   CREATE_PODCAST,
-  CREATE_EPISODES,
   SEARCH,
   SEARCH_EPISODES,
   SIGN_UP_USER,

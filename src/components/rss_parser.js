@@ -1,37 +1,36 @@
 import React, { useState } from "react";
-import { CREATE_PODCAST } from '../actions';
-import { Mutation, withApollo } from "react-apollo";
+import { CREATE_PODCAST, SEARCH_PODCASTS } from '../actions';
+import { Mutation, Query } from "react-apollo";
 import { ErrorMessage, Loader } from ".";
 
 const RssParser = () => {
-  const [rss, setRss] = useState("");
-
-  function handlePodcast({ createPodcast }) {
-    console.log(createPodcast);
-  };
+  const [term, setTerm] = useState("");
 
   return(
-    <Mutation mutation={CREATE_PODCAST} onCompleted={handlePodcast}>
-      {(createPodcast, {error, loading}) => (
-        <form id="rss-form" onSubmit={(e) => {
-          e.preventDefault();
-          createPodcast({ variables: {
-            rssUrl: rss
-          }});
-        }}>
-          <div id="rss-input">
-            <div className="form-label">RSS Feed</div>
-            <input
-              className="form-control"
-              placeholder="https://your-podcast.com/rss-feed.rss"
-              value={rss}
-              onChange={({ target }) => setRss(target.value)}
-            />
-            <button className="btn btn-primary">Fetch</button>
-          </div>
-        </form>
-      )}
-    </Mutation>
+    <div>
+      <input
+        className="form-control"
+        placeholder="Search for a Podcast"
+        value={term}
+        onChange={({target}) => setTerm(target.value)}
+      />
+      <Query query={SEARCH_PODCASTS} variables={{term}}>
+        {({ data, loading, error }) => {
+          if (loading) return <Loader />;
+          if (error) return <ErrorMessage error={error} />;
+
+          return(
+            <div>
+              {data.podcasts.map((podcast, i) =>
+                <div key={i}>
+                  <div>{podcast.title}</div>
+                </div>
+              )}
+            </div>
+          );
+        }}
+      </Query>
+    </div>
   )
 };
 
