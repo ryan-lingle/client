@@ -55,7 +55,7 @@ const SignUpForm = (props) => {
               </Form.Group>
               <input type="hidden" value={rekId || undefined} ref={node => { rek = node }} />
               <button className="btn btn-primary" type="submit">
-                Submit
+                Sign Up
               </button>
             </Form>
           </div>

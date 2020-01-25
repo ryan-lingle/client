@@ -27,7 +27,7 @@ const RssParser = () => {
             <div id="podcast-search-results">
               {data.podcasts.map((podcast, i) =>
                 <div className="podcast-search-result" key={i}>
-                  <img src={podcast.image} alt="podcast art" className="rek-podcast-art"/>
+                  <img src={podcast.image} alt="podcast art" className="rek-podcast-art" width={"80px"}/>
                   <div className="psr-title">{podcast.title}</div>
                   <Mutation mutation={CREATE_PODCAST} onCompleted={handlePodcastCreate} >
                     {(createPodcast, {loading, error}) =>

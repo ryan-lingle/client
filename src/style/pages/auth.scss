@@ -1,6 +1,16 @@
 .auth-nav {
   display: flex;
   flex-wrap: nowrap;
+  .rekr-brand {
+    margin-left: 20px;
+  }
+}
+
+.auth-container {
+  background: $primary;
+  h2 {
+    color: $primary;
+  }
 }
 
 .login-inline {
@@ -24,10 +34,18 @@
   }
 }
 
+.auth-form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+}
+
+
 #sign-up-form {
-  padding-top: 20px;
-  margin-top: 20px;
-  border-top: 2px solid black;
+  button {
+    margin-top: 10px;
+    width: 100%;
+  }
 }
 
 .sign-in-btn {
@@ -58,6 +76,14 @@
   align-items: center;
 }
 
+#forgot-password {
+  position: absolute;
+  color: white;
+  font-size: 14px !important;
+  right: 0px;
+  top: 50px
+}
+
 
 #auth-warning {
   margin: 5px 0px 20px 0px;
@@ -76,7 +102,7 @@
   padding-top: 15px;
   h1 {
     font-weight: 400;
-    padding-top: 15px;
+    padding-top: 5px;
     font-family: 'Inconsolata', monospace;
   }
 
@@ -102,6 +128,10 @@
 
 .dotted:hover {
   cursor: pointer;
+}
+
+#rekr-msg {
+  font-size: 30px;
 }
 
 #the-rules {

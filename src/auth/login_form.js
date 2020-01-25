@@ -40,6 +40,7 @@ const SignUpForm = (props) => {
               placeholder="Password"
               ref={node => { password = node }}
             />
+            <a href="/password-reset/request" id="forgot-password">I Forgot My Password</a>
             <button className="btn btn-primary">Sign In</button>
           </form>
           <ErrorMessage

@@ -3,7 +3,7 @@ import { Navbar } from "react-bootstrap"
 import SignUpForm from "./sign_up_form";
 import LogInForm from "./login_form";
 import { TwitterSignIn, Tooltip } from '../components';
-import RekrExplained from '../assets/infographic_1.png';
+import Rek from "../assets/rek.png";
 import Logo from "../assets/logo.png";
 
 class AuthContainer extends React.Component {
@@ -32,31 +32,21 @@ class AuthContainer extends React.Component {
         </Navbar>
         <div className="auth-container row">
           <div id="auth-left" className="col-sm-6">
-            <h1 id="the-rules">The Rules:</h1>
-            <ol>
-              <li>
-                <h1>Make a <Tooltip tooltip={"Rek (n) 1. A public podcast donation. \u000a 2. A recommendation with skin in the game."}><span className="dotted">Rek</span></Tooltip>.</h1>
-              </li>
-              <li>
-                <h1>Tag up to 3 Topics to get listed on Topic Boards.</h1>
-              </li>
-              <li>
-                <h1>Earn 10% on all <Tooltip tooltip="re-Rek (n) 1. A Rek that occurs based on the influence of your initial Rek."><span className="dotted">re-Reks</span></Tooltip>.</h1>
-              </li>
-              <li>
-                <h1>Climb the Topic Boards as your <Tooltip tooltip={"Rek (n) 1. A public donation. 2. A recommendation with skin in the game."}><span className="dotted">Rek</span></Tooltip> spurs more <Tooltip tooltip="re-Rek (n) 1. A Rek that occurs based on the influence of your initial Rek."><span className="dotted">re-Reks</span></Tooltip>.</h1>
-              </li>
-            </ol>
-            <img src={RekrExplained} alt="rekr info graphic" />
+            <h1>This is a <Tooltip placement="right" tooltip="rek (n) 1. A public podcast donation. 2. A recommendation with skin in the game."><span className="dotted">rek</span></Tooltip>.</h1>
+            <img src={Rek} style={{borderRadius: "5px"}} />
+            <h1>It helps your favorite podcast creators stack sats and your fellow podcast listeners find great episodes.</h1>
+            <br></br>
+            <h1>So start making reks :)</h1>
+
           </div>
           <div id="auth-right" className="col-sm-6">
             {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}
             <div id="sign-in-btns">
               <TwitterSignIn />
-              <a href="/password-reset/request" style={{ fontSize: "12px" }}>I Forgot My Password</a>
             </div>
-            <h2>Sign Up</h2>
-            <SignUpForm handleLogIn={this.handleLogIn} />
+            <div className="auth-form-container">
+              <SignUpForm handleLogIn={this.handleLogIn} />
+            </div>
           </div>
         </div>
       </div>

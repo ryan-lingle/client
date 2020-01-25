@@ -8,8 +8,6 @@ const TimePeriodSelector = ({ timePeriod, onChange }) => {
   const [showTimes, setShowTimes] = useState(false);
 
   function current(time) {
-    console.log(time);
-    console.log(timePeriod)
     return timePeriod === time ? " current-time-period" : "";
   };
 
@@ -71,7 +69,7 @@ const HashtagFeed = ({ match: { params }}) => {
           if (error) return <ErrorMessage error={error} />;
 
           const { currentUser } = data;
-
+          console.log(timePeriod)
           return (
             <div className="row">
               <div className="col-md-12 col-lg-3 user-box-col">
