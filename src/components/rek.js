@@ -35,28 +35,21 @@ class Rek extends React.Component {
   render() {
     const { user, episode, id, hashtags, satoshis, variables } = this.props;
     const { podcast } = episode;
-    const valueGenerated = toSats(this.props[`${variables.timePeriod}ValueGenerated`]);
 
     return(
       <div className="rek item" id={`rek-${id}`}>
         <div className="rek-wrap">
           <div className="rek-flex rek-details">
             <div >
-              rek'd by <a className="rek-username" href={"/u/" + user.username}>{user.username}</a> in
+              <a className="rek-username" href={"/u/" + user.username}>{user.username}</a> donated
+              <span className="rek-sats"> {toSats(satoshis)}</span>
+              {hashtags.length > 0 ? " in" : ""}
             </div>
             <div id="rek-hashtags">
               {hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`} className="rek-hashtag">#{hashtag.name}</a>)}
             </div>
           </div>
-          <div className="rek-details rek-sats" >
-            generated <span className="sats-sats"> {valueGenerated} </span> sats this {variables.timePeriod}
-            <Tooltip tooltip={`${user.username}'s initial donation of
-              ${toSats(satoshis)}
-              has influenced a total of ${valueGenerated}
-              donations this ${variables.timePeriod}.`}>
-              <i className="fa fa-question-circle" />
-            </Tooltip>
-          </div>
+
           <div className="rek-flex rek-main" id="rek-flex-1">
             <Tooltip tooltip={podcast.title}>
               <a href={`/podcast/${podcast.slug}`}>

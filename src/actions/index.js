@@ -70,9 +70,6 @@ const FEED_STREAM = gql`
       stream {
         id
         satoshis
-        allTimeValueGenerated
-        weekValueGenerated
-        monthValueGenerated
         user {
           id
           profilePic
@@ -428,7 +425,6 @@ const REK_STREAM = gql`
       stream {
         id
         satoshis
-        monthValueGenerated
         user {
           id
           profilePic
@@ -491,9 +487,6 @@ const HASHTAG_FEED = gql`
       more
       stream {
         id
-        weekValueGenerated
-        monthValueGenerated
-        allTimeValueGenerated
         satoshis
         user {
           id
