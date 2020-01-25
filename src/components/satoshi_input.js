@@ -23,10 +23,12 @@ export default class SatoshiInput extends React.Component {
       satoshis: this.values[Math.floor((this.values.length - 1) / 2)],
       numberInput: false
     };
-
-
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ numberInput: false });
+  }
 
   handleChange = ({ target }) => {
     const index = parseInt(target.value);
@@ -36,7 +38,7 @@ export default class SatoshiInput extends React.Component {
   }
 
   handleSatoshiChange = ({target}) => {
-    const satoshis = parseInt(target.value);
+    const satoshis = parseInt(target.value || 0);
     this.setState({ satoshis });
     this.props.onUpdate(satoshis)
   }
@@ -52,7 +54,9 @@ export default class SatoshiInput extends React.Component {
       <div id="satoshi-input-container">
         {this.state.numberInput ?
           <div className="satoshi-amount" id="rek-form-satoshis">
-            <input autoFocus={true} id="satoshis-number-input" type="text" value={satoshis} onChange={this.handleSatoshiChange} />
+            <form onSubmit={this.handleSubmit} >
+              <input autoFocus={true} id="satoshis-number-input" type="text" value={satoshis} onChange={this.handleSatoshiChange} />
+            </form>
             <div> Satoshis</div>
           </div>
           : <div className="satoshi-amount" id="rek-form-satoshis">
