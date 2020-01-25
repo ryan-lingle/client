@@ -31,6 +31,9 @@ export default class EpisodeSearch extends React.Component {
                 {data.search.episode.stream.map((result) => (
                   this.episodeResult(result)
                 ))}
+                <div id="no-episode-msg">
+                  Not finding the episode you are looking for?<br></br>It's super easy to <a href="/add-podcast">add a new podcast to Rekr.</a>
+                </div>
               </div>
             )
           }}

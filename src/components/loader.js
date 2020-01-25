@@ -7,8 +7,8 @@ const Loader = (props) => {
       <LoaderSpinner
        type="Oval"
        color="#00d72e"
-       height="50"
-       width="50"
+       height={"50" || props.size}
+       width={"50" || props.size}
       />
     </div>
   )

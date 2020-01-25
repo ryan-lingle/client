@@ -5,9 +5,14 @@ import { ErrorMessage, Loader } from ".";
 
 const RssParser = () => {
   const [term, setTerm] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  function handlePodcastCreate({ createPodcast }) {
+    window.location = "podcast/" + createPodcast.slug;
+  };
 
   return(
-    <div>
+    <div id="add-podcast">
       <input
         className="form-control"
         placeholder="Search for a Podcast"
@@ -20,10 +25,26 @@ const RssParser = () => {
           if (error) return <ErrorMessage error={error} />;
 
           return(
-            <div>
+            <div id="podcast-search-results">
               {data.podcasts.map((podcast, i) =>
-                <div key={i}>
-                  <div>{podcast.title}</div>
+                <div className="podcast-search-result" key={i}>
+                  <img src={podcast.image} alt="podcast art" className="rek-podcast-art"/>
+                  <div className="psr-title">{podcast.title}</div>
+                  <Mutation mutation={CREATE_PODCAST} onCompleted={handlePodcastCreate} >
+                    {(createPodcast, {loading, error}) =>
+                      (loading ?
+                        <Loader />
+                        : <button
+                          onClick={() => {
+                            setLoading(true);
+                            createPodcast({ variables: { rssUrl: podcast.rss }})
+                          }}
+                          className="btn btn-primary"
+                        >
+                          Add to Rekr
+                        </button>)
+                    }
+                  </Mutation>
                 </div>
               )}
             </div>

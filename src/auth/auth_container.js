@@ -35,7 +35,7 @@ class AuthContainer extends React.Component {
             <h1 id="the-rules">The Rules:</h1>
             <ol>
               <li>
-                <h1>Make a <Tooltip tooltip="Rek (n) 1. A public podcast donation. 2. A recommendation with skin in the game."><span className="dotted">Rek</span></Tooltip>.</h1>
+                <h1>Make a <Tooltip tooltip={"Rek (n) 1. A public podcast donation. \u000a 2. A recommendation with skin in the game."}><span className="dotted">Rek</span></Tooltip>.</h1>
               </li>
               <li>
                 <h1>Tag up to 3 Topics to get listed on Topic Boards.</h1>

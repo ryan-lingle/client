@@ -13,18 +13,7 @@ const SEARCH_PODCASTS = gql`
 const CREATE_PODCAST = gql`
   mutation CreatePodcast($rssUrl: String!) {
     createPodcast(rssUrl: $rssUrl) {
-      id
-      title
-      description
-      rss
-      email
-      image
-      website
-      episodes {
-        title
-        description
-        released
-      }
+      slug
     }
   }
 `
