@@ -486,26 +486,19 @@ const HASHTAG_FEED = gql`
     hashtagFeed(name: $name, n: $n, timePeriod: $timePeriod) {
       more
       stream {
-        id
         satoshis
-        user {
-          id
-          profilePic
-          username
+        hashtag {
+          name
         }
+        timePeriod
         episode {
-          title
           id
-          bookmarked
+          title
           podcast {
             title
             image
             slug
           }
-        }
-        hashtags {
-          name
-          id
         }
       }
     }

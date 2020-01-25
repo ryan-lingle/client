@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { createStream, Rek, UserBox, HashtagBox, HashtagSearch, ErrorMessage, Loader } from "../components";
 import { FEED_STREAM, CURRENT_USER } from '../actions';
 import { Query } from 'react-apollo';
-import { useSubNav } from "../hooks";
 
 const Home = ({ match }) => {
   const Stream = createStream(Rek);
@@ -18,8 +17,6 @@ const Home = ({ match }) => {
       </div>
     )
   }
-
-  useSubNav();
 
   return(
     <div>

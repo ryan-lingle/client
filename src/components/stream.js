@@ -22,6 +22,7 @@ const createStream = (Component) => {
         variables: { n, ...variables }
       });
       const { more, stream } = this.findStream(data);
+
       await this.setState(prevState => {
         const newStream = prevState.stream.concat(stream);
         n += 1;
@@ -80,7 +81,7 @@ const createStream = (Component) => {
         <div>
           {stream && stream.length > 0 ?
             <div className="stream">
-              {stream.map(item => <Component {...item} key={item.id} />)}
+              {stream.map((item, i) => <Component {...item} key={item.id || i} />)}
             </div>
             : this.props.onEmpty ? this.props.onEmpty() : null}
           {loading ? <Loader /> : null}

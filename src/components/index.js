@@ -29,3 +29,4 @@ export {default as Invoice} from "./invoice";
 export {default as RekCreated} from "./rek_created";
 export {default as Tabs} from "./tabs";
 export {default as RekModal} from "./rek_modal";
+export {default as EpisodeDonations} from "./episode_donations";

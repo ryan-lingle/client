@@ -1,14 +1,45 @@
 import React, { useState } from "react";
-import { createStream, Rek, UserBox, HashtagBox, FollowButton, Loader, ErrorMessage, Tabs } from "../components";
+import { createStream, EpisodeDonations, UserBox, HashtagBox, FollowButton, Loader, ErrorMessage } from "../components";
 import { HASHTAG_FEED, GET_HASHTAG, CURRENT_USER } from '../actions';
 import { Query } from "react-apollo";
 import { useSubNav } from "../hooks";
 
-const HashtagFeed = ({ match: { params }}) => {
+const TimePeriodSelector = ({ timePeriod, onChange }) => {
+  const [showTimes, setShowTimes] = useState(false);
 
-  const isLoggedIn = localStorage.getItem('token');
-  const Stream = createStream(Rek);
+  function current(time) {
+    console.log(time);
+    console.log(timePeriod)
+    return timePeriod === time ? " current-time-period" : "";
+  };
+
+  function timePeriodOptions(on) {
+    return(
+      <div style={{ display: on ? "" : "none"}}className="time-period-list" onMouseEnter={() => setShowTimes(true)} onMouseLeave={() => setShowTimes(false)}>
+        <div
+          className={"time-period" + current("week")}
+          onClick={() => onChange("week")} >Week</div>
+        <div
+          className={"time-period" + current("month")}
+          onClick={() => onChange("month")} >Month</div>
+        <div
+          className={"time-period" + current("all-time")}
+          onClick={() => onChange("all-time")} >All-Time</div>
+      </div>
+    );
+  };
+
+  return(
+    <i className="far fa-clock time-period-btn" onMouseEnter={() => setShowTimes(true)} onClick={() => setShowTimes(true)} >
+      {timePeriodOptions(showTimes)}
+    </i>
+  );
+};
+
+const HashtagFeed = ({ match: { params }}) => {
   const [timePeriod, setTimePeriod] = useState("month");
+  const isLoggedIn = localStorage.getItem('token');
+  const Stream = createStream(EpisodeDonations);
 
   useSubNav();
 
@@ -24,16 +55,11 @@ const HashtagFeed = ({ match: { params }}) => {
               <h3 id="hashtag-header">
                 {name}
               </h3>
+              <TimePeriodSelector timePeriod={timePeriod} onChange={(timePeriod) => setTimePeriod(timePeriod)} />
               <FollowButton
                 hashtagId={id}
                 following={followedByCurrentUser}
                 type={'hashtag'}
-              />
-              <div id="hashtag-divider"></div>
-              <Tabs
-                tabs={["week", "month", "all-time"]}
-                onChange={_tab_ => setTimePeriod(_tab_)}
-                _default={timePeriod}
               />
             </div>
           );
