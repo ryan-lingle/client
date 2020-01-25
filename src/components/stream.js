@@ -80,7 +80,7 @@ const createStream = (Component) => {
         <div>
           {stream && stream.length > 0 ?
             <div className="stream">
-              {stream.map(item => <Component {...item} key={item.id} variables={this.props.variables} />)}
+              {stream.map(item => <Component {...item} key={item.id} />)}
             </div>
             : this.props.onEmpty ? this.props.onEmpty() : null}
           {loading ? <Loader /> : null}

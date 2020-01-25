@@ -64,8 +64,8 @@ const UPDATE_USER = gql`
 `
 
 const FEED_STREAM = gql`
-  query FeedStream($n: Int!, $timePeriod: String!) {
-    reks(n: $n, feed: true, timePeriod: $timePeriod) {
+  query FeedStream($n: Int!) {
+    reks(n: $n, feed: true) {
       more
       stream {
         id

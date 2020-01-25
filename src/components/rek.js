@@ -3,7 +3,22 @@ import BookmarkButton from './bookmark_button';
 import { observer, toSats } from '../utils';
 import { CREATE_REK_VIEW } from "../actions";
 import { withApollo } from "react-apollo";
-import Tooltip from "./tooltip";
+import { Tooltip, Episode } from ".";
+
+const RekHeader = ({ user, satoshis, hashtags }) => {
+  return(
+    <div className="rek-header">
+      <span>
+        <a className="rek-username" href={"/u/" + user.username}>{user.username}</a> donated
+        <span className="rek-sats"> {toSats(satoshis)}</span>
+        {hashtags.length > 0 ? " in" : ""}
+      </span>
+      <span className="rek-hashtags">
+        {hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`} className="rek-hashtag">#{hashtag.name}</a>)}
+      </span>
+    </div>
+  );
+};
 
 class Rek extends React.Component {
 
@@ -26,46 +41,15 @@ class Rek extends React.Component {
     }
   }
 
-  handleClick = ({ target }) => {
-    if (target.id !== "bookmark-btn") {
-      window.location.href = `/episode/${this.props.episode.id}?rekId=${this.props.id}`;
-    }
-  }
-
   render() {
     const { user, episode, id, hashtags, satoshis, variables } = this.props;
     const { podcast } = episode;
 
     return(
-      <div className="rek item" id={`rek-${id}`}>
-        <div className="rek-wrap">
-          <div className="rek-flex rek-details">
-            <div >
-              <a className="rek-username" href={"/u/" + user.username}>{user.username}</a> donated
-              <span className="rek-sats"> {toSats(satoshis)}</span>
-              {hashtags.length > 0 ? " in" : ""}
-            </div>
-            <div id="rek-hashtags">
-              {hashtags.map(hashtag => <a key={hashtag.id} href={`/hashtag/${hashtag.name}`} className="rek-hashtag">#{hashtag.name}</a>)}
-            </div>
-          </div>
-
-          <div className="rek-flex rek-main" id="rek-flex-1">
-            <Tooltip tooltip={podcast.title}>
-              <a href={`/podcast/${podcast.slug}`}>
-                <img src={podcast.image} alt="podcast art" className="rek-podcast-art"/>
-              </a>
-            </Tooltip>
-            <div className="rek-middle">
-              <a className="rek-episode-details" href={`/episode/${this.props.episode.id}?rekId=${this.props.id}`}>{podcast.title}<br></br>{episode.title}</a>
-            </div>
-            <div className="rek-bookmark">
-              <Tooltip tooltip={"Bookmark Episode"}>
-                <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} rekId={id} />
-              </Tooltip>
-            </div>
-          </div>
-        </div>
+      <div id={`rek-${id}`}>
+        <Episode episode={episode} podcast={podcast} rekId={id} rekBtn={false} >
+          <RekHeader user={user} satoshis={satoshis} hashtags={hashtags} />
+        </Episode>
       </div>
     )
   }
