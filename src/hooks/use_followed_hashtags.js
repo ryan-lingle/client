@@ -25,7 +25,8 @@ function useFollowedHashtags(defaultHashtags) {
       query: SUBSRIBE_HASHTAGS
     }).subscribe({
       next({ data: { hashtags } }) {
-        handleUpdate(hashtags);
+        if (hashtags.user.id === localStorage.getItem("id"))
+          handleUpdate(hashtags);
       },
       error(err) { console.error(err); },
     });

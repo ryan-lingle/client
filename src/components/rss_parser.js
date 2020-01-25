@@ -5,7 +5,6 @@ import { ErrorMessage, Loader } from ".";
 
 const RssParser = () => {
   const [term, setTerm] = useState("");
-  const [loading, setLoading] = useState(false);
 
   function handlePodcastCreate({ createPodcast }) {
     window.location = "podcast/" + createPodcast.slug;
@@ -33,12 +32,9 @@ const RssParser = () => {
                   <Mutation mutation={CREATE_PODCAST} onCompleted={handlePodcastCreate} >
                     {(createPodcast, {loading, error}) =>
                       (loading ?
-                        <Loader />
+                        <div style={{marginRight: "20px"}}><Loader /></div>
                         : <button
-                          onClick={() => {
-                            setLoading(true);
-                            createPodcast({ variables: { rssUrl: podcast.rss }})
-                          }}
+                          onClick={() => createPodcast({ variables: { rssUrl: podcast.rss }})}
                           className="btn btn-primary"
                         >
                           Add to Rekr

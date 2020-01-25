@@ -293,6 +293,9 @@ const SUBSRIBE_HASHTAGS = gql`
         name
         followedByCurrentUser
       }
+      user {
+        id
+      }
       follow
     }
   }
