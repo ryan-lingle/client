@@ -27,7 +27,7 @@ export default class UserBox extends React.Component {
   }
 
   render() {
-    const { username, profilePic, satoshis,
+    const { username, profilePic,
       bookmarks, following, followers, reks } = this.props;
     return(
       <div id="user-box" >
@@ -39,9 +39,6 @@ export default class UserBox extends React.Component {
             {username}
           </a>
         </div>
-        <a id="user-box-satoshis" href={`/u/${username}?tab=satoshis`} >
-          {toSats(satoshis)}
-        </a>
         <div id="user-box-counts">
           <a className="user-box-count" href={`/u/${username}?tab=reks`}>
             <div className="count">{reks.count}</div>

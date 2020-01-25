@@ -5,7 +5,6 @@ import User from "./user";
 import Episode from "./episode"
 import createStream from "./stream";
 import FollowButton from "./follow_button";
-import Wallet from "./user_wallet.js";
 import ImageEditor from "./image_editor";
 import { FormControl } from "react-bootstrap";
 import { Mutation } from "react-apollo";
@@ -51,7 +50,7 @@ export default class UserNav extends React.Component {
     if (tabs.includes(this.props.tab)) {
       this.state.tab = this.props.tab
     } else {
-      this.state.tab = this.props.current ? "satoshis" : "reks";
+      this.state.tab = "reks";
     }
   }
 
@@ -153,7 +152,6 @@ export default class UserNav extends React.Component {
 
   render() {
     const { tab } = this.state;
-    const onSats = tab === "satoshis";
     const { component, query } = tabMap[tab] || {};
     const Stream = createStream(component);
 
@@ -189,12 +187,6 @@ export default class UserNav extends React.Component {
         </div>
         <div className="sub-nav-wrapper">
           <div className="sub-nav">
-            {this.props.current ?
-              <div className={`sub-nav-tab sub-nav-sats ${onSats ? 'current-sub-nav-tab' : null}`} onClick={() => { this.setState({ tab: "satoshis" })}} >
-                <div className="text-center font-weight-bold">{toSats(this.props.satoshis, false)}</div>
-                <div>Sats</div>
-              </div>
-              : null}
             {tabs.map((_tab_, i) => {
               const current = _tab_ === tab;
               return(
@@ -215,9 +207,7 @@ export default class UserNav extends React.Component {
             <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" onChange={this.handleFileUpload} />
           </div>
         </div>
-        {onSats ?
-          <Wallet satoshis={this.props.satoshis} />
-          :  <Stream query={query} variables={{ userId: this.props.id }} />}
+        <Stream query={query} variables={{ userId: this.props.id }} />
         {this.state.image ? <ImageEditor image={this.state.image} removeFile={this.removeFile} /> : null}
       </div>
     )
