@@ -5,7 +5,7 @@ import BookmarkButton from './bookmark_button';
 import { toSats } from '../utils';
 
 const BigEpisode = ({ episode, rek, saveRek }) => {
-  if (saveRek) localStorage.setItem('rekId', rek.id);
+
   const buildRek = () => {
     if (rek) {
       return(

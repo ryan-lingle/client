@@ -66,7 +66,7 @@ class RekForm extends React.Component {
           const { title, podcast } = data.episode;
           return (
             <div>
-              <div id="episode-info">
+              <div className="episode-info">
                 <img src={podcast.image} id="rek-form-podcast-art" alt="podcast art"/>
                 <div id="rek-form-episode">{title}</div>
               </div>

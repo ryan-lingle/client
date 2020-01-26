@@ -2,6 +2,8 @@
   font-size: 25px;
   text-align: center;
   font-weight: 300;
+  color: $gray-hover;
+  margin-bottom: 20px;
 }
 
 #rc-episode {
@@ -29,4 +31,17 @@
   a {
     margin: 0px 10px;
   }
+}
+
+#rc-episode {
+  padding: 0px 50px 25px 50px;
+}
+
+.claim-rek-msg {
+  color: $primary;
+  background: $primary-light;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 5px 0px;
+  border-radius: 3px;
 }

@@ -14,7 +14,8 @@ export default class RekModal extends React.Component {
       episodeId: null,
       satoshis: null,
       invoice: null,
-      rekId: null
+      rekId: null,
+      userId: null,
     };
 
     if (this.props.episodeId) {
@@ -48,12 +49,12 @@ export default class RekModal extends React.Component {
     }
   }
 
-  handleInvoicePaid = (rekId) => {
-    this.setState({ step: 4, rekId });
+  handleInvoicePaid = (rekId, userId) => {
+    this.setState({ step: 4, rekId, userId });
   }
 
   renderStep = (step) => {
-    const { episodeId, invoice, satoshis, rekId } = this.state;
+    const { episodeId, invoice, satoshis, rekId, userId } = this.state;
     return {
       1: () => (
         <EpisodeSearch
@@ -77,6 +78,7 @@ export default class RekModal extends React.Component {
         <RekCreated
           episodeId={episodeId}
           rekId={rekId}
+          userId={userId}
         />
       )
     }[step]();
