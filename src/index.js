@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 
 import './style/index.scss'
 import App from './app/app.js';
@@ -90,5 +91,10 @@ ReactDOM.render(
     </ErrorBoundary>
   </ApolloProvider>, document.getElementById('root')
 );
+
+if (process.env.ENVIRONMENT === "production") {
+  ReactGA.initialize('UA-156997606-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+};
 
 export default client;
