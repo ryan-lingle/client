@@ -59,10 +59,10 @@ class Invoice extends React.Component {
     }).subscribe({
       next({ data }) {
         if (data.invoicePaid.invoice === invoice) {
-          handleInvoicePaid(data.invoicePaid.rekId);
+          handleInvoicePaid(data.invoicePaid.rekId, data.invoicePaid.userId);
         }
       },
-      error(err) { console.error('err', err); },
+      error(err) { console.error('bla', err); },
     });
   }
 
