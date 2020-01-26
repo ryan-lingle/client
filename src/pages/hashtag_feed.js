@@ -8,6 +8,7 @@ const TimePeriodSelector = ({ timePeriod, onChange }) => {
   const [showTimes, setShowTimes] = useState(false);
 
   function current(time) {
+    console.log(time);
     return timePeriod === time ? " current-time-period" : "";
   };
 
@@ -86,7 +87,7 @@ const HashtagFeed = ({ match: { params }}) => {
         }}
       </Query>
       : <div className="col-lg-6 col-md-12 offset-md-3 feed-col">
-          <Stream query={HASHTAG_FEED} variables={params} />
+          <Stream query={HASHTAG_FEED} variables={{...params, timePeriod}} />
         </div>}
     </div>
   )
