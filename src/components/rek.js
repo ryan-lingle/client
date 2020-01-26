@@ -8,7 +8,7 @@ import { Tooltip, Episode } from ".";
 const RekHeader = ({ user, satoshis, hashtags }) => {
   return(
     <div className="rek-header">
-      <span>
+      <span className="rek-description">
         <a className="rek-username" href={"/u/" + user.username}>{user.username}</a> donated
         <span className="rek-sats"> {toSats(satoshis)}</span>
         {hashtags.length > 0 ? " in" : ""}
