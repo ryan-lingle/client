@@ -12,14 +12,16 @@ class RekForm extends React.Component {
       satoshis: 10000,
       tags: [],
     }
-
-    this.props.client.query({
-      query: CURRENT_SATS
-    }).then(({ data }) => {
-      this.walletPermission = data.currentUser.walletPermission;
-      this.currentSats = data.currentUser.satoshis;
-      this.canTweet = data.currentUser.canTweet;
-    })
+    const isLoggedIn = localStorage.getItem('token');
+    if (isLoggedIn) {
+      this.props.client.query({
+        query: CURRENT_SATS
+      }).then(({ data }) => {
+        this.walletPermission = data.currentUser.walletPermission;
+        this.currentSats = data.currentUser.satoshis;
+        this.canTweet = data.currentUser.canTweet;
+      })
+    };
   }
 
 
@@ -32,6 +34,7 @@ class RekForm extends React.Component {
   }
 
   handleRekCreate = (createRek) => {
+    this.currentSats = this.currentSats || 0;
     const invoiceSatoshis = this.state.satoshis - this.currentSats;
     const walletSatoshis = invoiceSatoshis > 0 ? this.currentSats : this.state.satoshis;
     if (
