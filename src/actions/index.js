@@ -182,6 +182,7 @@ const EPISODE_SHOW = gql`
         title
         released
         description
+        content
       }
     }
   }

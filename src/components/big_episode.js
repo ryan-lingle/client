@@ -68,6 +68,11 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
             </div>
           </div>
         </div>
+        <div className="audio-player">
+          <audio controls>
+            <source src={episode.content} type="audio/mpeg" />
+          </audio>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: episode.description }}></div>
       </div>
     </div>
