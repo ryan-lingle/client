@@ -21,7 +21,7 @@ const Notification = ({ notifier, rek, type, satoshis }) => {
       <div className="fa fa-user bookmark-notification"></div>
       <div className="notification-description">
         <a href={"/u/" + notifier.username}>
-          <img src={notifier.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"40px"} />
+          <img src={notifier.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"40px"} height={"40px"}/>
         </a>
         <div>
           <a href={"/u/" + notifier.username}>
