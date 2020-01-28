@@ -11,7 +11,7 @@ const BigEpisode = ({ episode, rek, saveRek }) => {
       return(
         <div className="be-rek">
           <a href={"/u/" + rek.user.username}>
-            <img src={rek.user.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"40px"} />
+            <img src={rek.user.profilePic} alt={"avatar"} className="rounded-circle profile-pic" width={"40px"} height={"40px"} />
           </a>
           <span className="font-weight-bold">{rek.user.username} </span>
           donated
