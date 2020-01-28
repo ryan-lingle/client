@@ -32,6 +32,7 @@ const Episode = ({ episode, podcast, rekId, rekBtn=true, children }) => {
           : null}
         <BookmarkButton bookmarked={episode.bookmarked} episodeId={episode.id} />
       </div>
+      <div>{episode.released.toDateString()}</div>
     </div>
   )
 }

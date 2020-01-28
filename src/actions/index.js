@@ -79,6 +79,7 @@ const FEED_STREAM = gql`
           title
           id
           bookmarked
+          released
           podcast {
             title
             image
@@ -147,6 +148,7 @@ const GET_EPISODE = gql`
   query GetEpisode($id: String!) {
     episode(id: $id) {
       title
+      released
       podcast {
         slug
         image
@@ -330,6 +332,7 @@ const BOOKMARKS = gql`
         episode {
           id
           title
+          released
           bookmarked
           podcast {
             slug
@@ -435,6 +438,7 @@ const REK_STREAM = gql`
           title
           id
           bookmarked
+          released
           podcast {
             title
             image
@@ -460,6 +464,7 @@ const BOOKMARK_STREAM = gql`
           id
           title
           bookmarked
+          released
           podcast {
             slug
             title
@@ -495,6 +500,7 @@ const HASHTAG_FEED = gql`
         episode {
           id
           title
+          released
           podcast {
             title
             image
