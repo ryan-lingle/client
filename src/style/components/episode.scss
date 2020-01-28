@@ -1,5 +1,5 @@
 .episode {
-  padding: 20px 0px;
+  padding: 10px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +23,13 @@
 
 .episode-spacer {
   height: 10px;
+}
+
+.episode-date {
+  color: $gray-hover;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
 }
 
 // BIG EPISODE
