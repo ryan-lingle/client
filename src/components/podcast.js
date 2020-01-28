@@ -31,14 +31,6 @@ const Podcast = (podcast) => {
             <h4 className="thin" >{title || "No Title Found"}</h4>
           </div>
           <div className="podcast-detail">
-            <h4>Website</h4>
-            <h4 className="thin">{website || "No Website Found"}</h4>
-          </div>
-          <div className="podcast-detail">
-            <h4>Email</h4>
-            <h4 className="thin">{email || "No Email Found"}</h4>
-          </div>
-          <div className="podcast-detail">
             <h4>Description</h4>
             <h4 className="thin" dangerouslySetInnerHTML={{ __html: description }}></h4>
           </div>
