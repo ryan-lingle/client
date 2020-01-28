@@ -6,10 +6,14 @@ import Tooltip from "./tooltip";
 const Episode = ({ episode, podcast, rekId, rekBtn=true, children }) => {
   if (!podcast) podcast = episode.podcast;
 
+  function episodeDate() {
+    const date = new Date(episode.released);
+    return <div className="episode-date">{date.toDateString()}</div>
+  };
 
   return(
     <div className="item" style={{display: "block"}}>
-      {children}
+      {children || episodeDate()}
       <div className="episode">
         <Tooltip tooltip={podcast.title}>
           <a href={"/podcast/" + podcast.slug}>
