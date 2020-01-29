@@ -40,7 +40,7 @@ class AuthContainer extends React.Component {
 
           </div>
           <div id="auth-right" className="col-sm-6">
-            {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that action.</div> : null}
+            {warning ? <div id="auth-warning" className="error nice-error" >You must sign up before you can do that.</div> : null}
             <div id="sign-in-btns">
               <TwitterSignIn />
             </div>

@@ -25,7 +25,7 @@ const errorLink = onError(({ response, graphQLErrors, networkError, operation })
       if (code === "UNAUTHENTICATED") {
         response.errors = null;
         localStorage.removeItem('token');
-        window.location.href = "/login";
+        window.location.href = "/login?warning=1";
       } else if (code === "UNCONFIRMED") {
         window.location.href = "/email_unconfirmed";
       } else if (code === "BAD_USER_INPUT") {
