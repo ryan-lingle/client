@@ -66,15 +66,33 @@ class Invoice extends React.Component {
     });
   }
 
+  isMobileDevice = () => {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  }
+
+  walletRek = () => {
+    if (this.isMobileDevice()) {
+      return(
+        <span> We recommend <a target="_blank" href={"https://testflight.apple.com/join/wPju2Du7"}>Breez.</a></span>
+      )
+    } else {
+      return(
+        <span> We recommend <a target="_blank" href={"https://zap.jackmallers.com"}>Zap.</a></span>
+      )
+    }
+  }
+
   render() {
     const { satoshis, invoice } = this.props;
     if (this.state.showQR) return this.qrCode();
     return(
       <div id="invoice">
-        {this.state.weblnError ? <div id="no-webln">No Webln Provider found. <a target="_blank" rel="noopener noreferrer" href="https://lightningjoule.com/">Download Joule</a> for a better app experience.</div> : null}
+        <div className="no-wallet-msg">
+          No lightning wallet?
+          {this.walletRek()}
+        </div>
         <h4 id="invoice-header">Invoice</h4>
         <h4 id="invoice-satoshis"><span className="font-weight-bol">{toSats(satoshis)}</span></h4>
-
         <button className="btn-secondary invoice-btn" onClick={this.showQR}>Show QR Code</button>
         <a className="joule-btn invoice-btn" href={`lightning:${invoice}`} >Pay Invoice</a>
         <Tooltip tooltip={"Copy Invoice"} placement="bottom">
