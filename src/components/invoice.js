@@ -19,7 +19,6 @@ class Invoice extends React.Component {
   }
 
   joule = async () => {
-    // if (window.confirm("Use Your Browser Wallet by Default Going Forward?")) {
     try {
       const webln = await requestProvider();
       webln.sendPayment(this.props.invoice)
@@ -66,21 +65,6 @@ class Invoice extends React.Component {
     });
   }
 
-  isMobileDevice = () => {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-  }
-
-  walletRek = () => {
-    if (this.isMobileDevice()) {
-      return(
-        <span> We recommend <a target="_blank" href={"https://testflight.apple.com/join/wPju2Du7"}>Breez.</a></span>
-      )
-    } else {
-      return(
-        <span> We recommend <a target="_blank" href={"https://zap.jackmallers.com"}>Zap.</a></span>
-      )
-    }
-  }
 
   render() {
     const { satoshis, invoice } = this.props;
@@ -89,7 +73,8 @@ class Invoice extends React.Component {
       <div id="invoice">
         <div className="no-wallet-msg">
           No lightning wallet?
-          {this.walletRek()}
+          We recommend <a target="_blank" href={"https://breez.technology/"}>Breez</a> for mobile
+          and <a target="_blank" href={"https://zap.jackmallers.com"}>Zap</a> for desktop.
         </div>
         <h4 id="invoice-header">Invoice</h4>
         <h4 id="invoice-satoshis"><span className="font-weight-bol">{toSats(satoshis)}</span></h4>

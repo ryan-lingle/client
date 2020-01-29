@@ -134,7 +134,11 @@ class Wallet extends React.Component {
                 }} />
               </div>
               : <div>
-                  <div id="joule-msg">We recommend getting the <a target="_blank" rel="noopener noreferrer" href="https://lightningjoule.com/">Joule Chrome Extension</a> for a Better User Experience.</div>
+                  <div id="joule-msg">
+                    No lightning wallet?
+                    We recommend <a target="_blank" href={"https://breez.technology/"}>Breez</a> for mobile
+                    and <a target="_blank" href={"https://zap.jackmallers.com"}>Zap</a> for desktop.
+                  </div>
                   <form onSubmit={(e) => {
                     e.preventDefault();
                     this.submitInvoice(this.invoice.current.value);
