@@ -33,7 +33,7 @@ const DesktopNavigation = ({ path }) => {
               <Dropdown.Item href={`/u/${username}`} >Profile</Dropdown.Item>
               {hasPodcast === "true" ?
                 <Dropdown.Item href="/podcast-dashboard">Podcast Dashboard</Dropdown.Item>
-                : <Dropdown.Item href="/add-podcast">Have a Podcast?</Dropdown.Item>}
+                : <Dropdown.Item href="/add-podcast">Add a Podcast</Dropdown.Item>}
               <Dropdown.Item onClick={() => {
                 localStorage.clear();
                 window.location.href = "/login";
