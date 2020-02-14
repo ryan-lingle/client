@@ -21,11 +21,11 @@ const NavSearch = () => {
         </a>
       )
     },
-    user: function({ id, image, title, slug }) {
+    user: function({ id, username, profilePic }) {
       return(
-        <a key={id} className="podcast-result search-result" href={`/podcast/${slug}`} >
-          <img src={image} width="60px" alt="podcast art"/>
-          <div>{title}</div>
+        <a key={id} className="search-result" href={`/u/${username}`} >
+          <img src={profilePic} alt={"avatar"} className="rounded-circle" width={"60px"} />
+          <div>{username}</div>
         </a>
       )
     },
